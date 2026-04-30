@@ -5,9 +5,83 @@ import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
-import { templates, TAG_COLORS } from "@/lib/templates";
+import { templates, TAG_COLORS, type Template } from "@/lib/templates";
 import { Search, X, Clock, PlaySquare, SlidersHorizontal, ChevronDown } from "lucide-react";
 import { clsx } from "clsx";
+
+function TemplateMediaCard({ template }: { template: Template }) {
+  const [isHovered, setIsHovered] = useState(false);
+  const thumbnailSrc = template.videoUrl.replace('/videos/', '/thumbnails/').replace('.mp4', '.jpg');
+  return (
+    <Link
+      href={`/templates/${template.id}`}
+      className="group flex flex-col bg-white border border-zinc-200 hover:border-zinc-300 rounded-3xl overflow-hidden hover:shadow-[0_8px_30px_rgb(0,0,0,0.06)] transition-all duration-300"
+    >
+      <div
+        className="relative aspect-[4/3] bg-zinc-100 overflow-hidden"
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+      >
+        {isHovered ? (
+          <video
+            key="video"
+            src={template.videoUrl}
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="none"
+            className={clsx(
+              "w-full h-full transition-transform duration-700 group-hover:scale-105",
+              template.height > template.width ? "object-contain py-4" : "object-cover"
+            )}
+          />
+        ) : (
+          /* eslint-disable-next-line @next/next/no-img-element */
+          <img
+            key="img"
+            src={thumbnailSrc}
+            alt={template.title}
+            loading="lazy"
+            className={clsx(
+              "w-full h-full transition-transform duration-700 group-hover:scale-105",
+              template.height > template.width ? "object-contain py-4" : "object-cover"
+            )}
+          />
+        )}
+        <div className="absolute top-3 left-3 flex items-center gap-1.5 px-2.5 py-1.5 rounded-full bg-white/90 backdrop-blur-md border border-black/5 text-[11px] font-semibold text-zinc-700 shadow-sm">
+          <Clock className="w-3.5 h-3.5 text-zinc-400" />
+          {template.duration}
+        </div>
+        {template.height > template.width && (
+          <div className="absolute top-3 right-3 flex items-center px-2 py-1.5 rounded-lg bg-zinc-900/80 backdrop-blur-md border border-white/10 text-[10px] font-bold text-white shadow-sm uppercase tracking-wider">
+            9:16
+          </div>
+        )}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+          <div className="w-12 h-12 rounded-full bg-white/90 backdrop-blur shadow-xl flex items-center justify-center text-zinc-900 translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+            <PlaySquare className="w-5 h-5 ml-0.5" />
+          </div>
+        </div>
+      </div>
+      <div className="p-6">
+        <h3 className="text-[17px] font-semibold text-zinc-900 mb-2 truncate">
+          {template.title}
+        </h3>
+        <p className="text-sm text-zinc-500 line-clamp-2 leading-relaxed mb-4 min-h-[40px]">
+          {template.description}
+        </p>
+        <div className="flex flex-wrap gap-2">
+          {template.tags.map(tag => (
+            <span key={tag} className="px-2.5 py-1 text-[11px] font-medium bg-zinc-100 text-zinc-600 rounded-lg">
+              {tag}
+            </span>
+          ))}
+        </div>
+      </div>
+    </Link>
+  );
+}
 
 export default function TemplatesPage() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -223,57 +297,7 @@ export default function TemplatesPage() {
                     exit={{ opacity: 0, scale: 0.95 }}
                     transition={{ duration: 0.4, delay: Math.min(idx * 0.05, 0.4) }}
                   >
-                    <Link
-                      href={`/templates/${template.id}`}
-                      className="group flex flex-col bg-white border border-zinc-200 hover:border-zinc-300 rounded-3xl overflow-hidden hover:shadow-[0_8px_30px_rgb(0,0,0,0.06)] transition-all duration-300"
-                    >
-                      <div className="relative aspect-[4/3] bg-zinc-100 overflow-hidden">
-                        <video
-                          src={template.videoUrl}
-                          className={clsx(
-                            "w-full h-full transition-transform duration-700 group-hover:scale-105",
-                            template.height > template.width ? "object-contain py-4" : "object-cover"
-                          )}
-                          muted
-                          loop
-                          playsInline
-                          onMouseEnter={(e) => e.currentTarget.play()}
-                          onMouseLeave={(e) => {
-                            e.currentTarget.pause();
-                            e.currentTarget.currentTime = 0;
-                          }}
-                        />
-                        <div className="absolute top-3 left-3 flex items-center gap-1.5 px-2.5 py-1.5 rounded-full bg-white/90 backdrop-blur-md border border-black/5 text-[11px] font-semibold text-zinc-700 shadow-sm">
-                          <Clock className="w-3.5 h-3.5 text-zinc-400" />
-                          {template.duration}
-                        </div>
-                        {template.height > template.width && (
-                          <div className="absolute top-3 right-3 flex items-center px-2 py-1.5 rounded-lg bg-zinc-900/80 backdrop-blur-md border border-white/10 text-[10px] font-bold text-white shadow-sm uppercase tracking-wider">
-                            9:16
-                          </div>
-                        )}
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                           <div className="w-12 h-12 rounded-full bg-white/90 backdrop-blur shadow-xl flex items-center justify-center text-zinc-900 translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-                             <PlaySquare className="w-5 h-5 ml-0.5" />
-                           </div>
-                        </div>
-                      </div>
-                      <div className="p-6">
-                        <h3 className="text-[17px] font-semibold text-zinc-900 mb-2 truncate">
-                          {template.title}
-                        </h3>
-                        <p className="text-sm text-zinc-500 line-clamp-2 leading-relaxed mb-4 min-h-[40px]">
-                          {template.description}
-                        </p>
-                        <div className="flex flex-wrap gap-2">
-                          {template.tags.map(tag => (
-                            <span key={tag} className="px-2.5 py-1 text-[11px] font-medium bg-zinc-100 text-zinc-600 rounded-lg">
-                              {tag}
-                            </span>
-                          ))}
-                        </div>
-                      </div>
-                    </Link>
+                    <TemplateMediaCard template={template} />
                   </motion.div>
                 ))}
               </motion.div>

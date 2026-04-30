@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { ArrowRight, Clock } from "lucide-react";
@@ -14,6 +15,9 @@ function PreviewCard({
   template: (typeof templates)[number];
   index: number;
 }) {
+  const [isHovered, setIsHovered] = useState(false);
+  const thumbnailSrc = template.videoUrl.replace('/videos/', '/thumbnails/').replace('.mp4', '.jpg');
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 24 }}
@@ -27,23 +31,35 @@ function PreviewCard({
         className="block bg-surface border border-black/5  rounded-3xl overflow-hidden hover:bg-zinc-100  transition-colors duration-500"
       >
         <div
-          className="relative aspect-video overflow-hidden bg-zinc-100 "
+          className="relative aspect-video overflow-hidden bg-zinc-100"
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
         >
-          <video
-            src={template.videoUrl}
-            className={`w-full h-full transition-transform duration-700 group-hover:scale-[1.02] ${
-              template.height > template.width ? 'object-contain' : 'object-cover'
-            }`}
-            muted
-            loop
-            playsInline
-            onMouseEnter={(e) => (e.currentTarget as HTMLVideoElement).play()}
-            onMouseLeave={(e) => {
-              const v = e.currentTarget as HTMLVideoElement;
-              v.pause();
-              v.currentTime = 0;
-            }}
-          />
+          {isHovered ? (
+            <video
+              key="video"
+              src={template.videoUrl}
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="none"
+              className={`w-full h-full transition-transform duration-700 group-hover:scale-[1.02] ${
+                template.height > template.width ? 'object-contain' : 'object-cover'
+              }`}
+            />
+          ) : (
+            /* eslint-disable-next-line @next/next/no-img-element */
+            <img
+              key="img"
+              src={thumbnailSrc}
+              alt={template.title}
+              loading="lazy"
+              className={`w-full h-full transition-transform duration-700 group-hover:scale-[1.02] ${
+                template.height > template.width ? 'object-contain' : 'object-cover'
+              }`}
+            />
+          )}
           <div className="absolute top-4 left-4 flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/80  backdrop-blur-md text-[11px] text-black/90  font-medium border border-black/10  shadow-sm">
             <Clock className="w-3 h-3 text-black/60 " />
             {template.duration}

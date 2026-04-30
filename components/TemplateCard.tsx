@@ -15,6 +15,8 @@ interface TemplateCardProps {
 
 export function TemplateCard({ template, index }: TemplateCardProps) {
   const [copied, setCopied] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
+  const thumbnailSrc = template.videoUrl.replace('/videos/', '/thumbnails/').replace('.mp4', '.jpg');
 
   const handleCopy = async () => {
     try {
@@ -39,27 +41,39 @@ export function TemplateCard({ template, index }: TemplateCardProps) {
       className="h-full"
     >
       <GlassCard hover className="flex flex-col overflow-hidden h-full group">
-        {/* Video — clicking navigates to template page */}
+        {/* Thumbnail — clicking navigates to template page */}
         <Link
           href={`/templates/${template.id}`}
           className="block relative aspect-video overflow-hidden"
           style={{ background: template.height > template.width ? '#0a0a14' : undefined }}
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
         >
-          <video
-            src={template.videoUrl}
-            className={`w-full h-full transition-transform duration-300 group-hover:scale-[1.02] ${
-              template.height > template.width ? 'object-contain' : 'object-cover'
-            }`}
-            muted
-            loop
-            playsInline
-            onMouseEnter={(e) => (e.currentTarget as HTMLVideoElement).play()}
-            onMouseLeave={(e) => {
-              const v = e.currentTarget as HTMLVideoElement;
-              v.pause();
-              v.currentTime = 0;
-            }}
-          />
+          {isHovered ? (
+            <video
+              key="video"
+              src={template.videoUrl}
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="none"
+              className={`w-full h-full transition-transform duration-300 group-hover:scale-[1.02] ${
+                template.height > template.width ? 'object-contain' : 'object-cover'
+              }`}
+            />
+          ) : (
+            /* eslint-disable-next-line @next/next/no-img-element */
+            <img
+              key="img"
+              src={thumbnailSrc}
+              alt={template.title}
+              loading="lazy"
+              className={`w-full h-full transition-transform duration-300 group-hover:scale-[1.02] ${
+                template.height > template.width ? 'object-contain' : 'object-cover'
+              }`}
+            />
+          )}
           {/* Duration badge */}
           <div className="absolute top-3 left-3 flex items-center gap-1 px-2 py-1 rounded-md bg-white/90 backdrop-blur-sm text-[10px] text-zinc-600 font-semibold shadow-sm border border-zinc-200/60 z-10">
             <Clock className="w-3 h-3" />

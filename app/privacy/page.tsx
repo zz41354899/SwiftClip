@@ -28,7 +28,7 @@ export default function PrivacyPage() {
             <section>
               <h2 className="text-xl font-semibold text-zinc-900 mb-3">1. Overview</h2>
               <p>
-                SwiftClip (&quot;we&quot;, &quot;us&quot;, or &quot;our&quot;) is an open-source library of Remotion video templates. This Privacy Policy explains what information we collect when you visit <strong className="text-zinc-800">swiftclip.dev</strong>, how we use it, and what rights you have regarding your data.
+                SwiftClip (&quot;we&quot;, &quot;us&quot;, or &quot;our&quot;) is an open-source library of Remotion video templates. This Privacy Policy explains what information we collect when you visit <strong className="text-zinc-800">swiftclip</strong>, how we use it, and what rights you have regarding your data.
               </p>
               <p className="mt-3">
                 Because SwiftClip is a static website with no user accounts or server-side data processing, our data collection is minimal. We are committed to your privacy and will never sell your personal information.

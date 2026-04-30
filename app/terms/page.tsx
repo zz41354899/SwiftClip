@@ -28,7 +28,7 @@ export default function TermsPage() {
             <section>
               <h2 className="text-xl font-semibold text-zinc-900 mb-3">1. Acceptance of Terms</h2>
               <p>
-                By accessing or using the SwiftClip website (<strong className="text-zinc-800">swiftclip.dev</strong>) or any of its templates, you agree to be bound by these Terms of Service. If you do not agree, please do not use the site or templates.
+                By accessing or using the SwiftClip website (<strong className="text-zinc-800">swiftclip</strong>) or any of its templates, you agree to be bound by these Terms of Service. If you do not agree, please do not use the site or templates.
               </p>
             </section>
 
