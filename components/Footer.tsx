@@ -30,7 +30,7 @@ const nav = [
     heading: "Community",
     links: [
       { label: "Community", href: "/community", external: false as const },
-      { label: "GitHub", href: "https://github.com", external: true as const },
+      { label: "GitHub", href: "https://github.com/zz41354899/SwiftClip", external: true as const },
       { label: "Remotion docs", href: "https://remotion.dev/docs", external: true as const },
     ],
   },
@@ -61,7 +61,7 @@ export function Footer() {
           </p>
           <div className="flex items-center gap-3">
             <a
-              href="https://github.com"
+              href="https://github.com/zz41354899/SwiftClip"
               target="_blank"
               rel="noopener noreferrer"
               className="w-8 h-8 rounded-full border border-black/10  flex items-center justify-center text-black/40  hover:text-black  hover:border-black/20  transition-colors"

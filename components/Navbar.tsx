@@ -79,7 +79,7 @@ export function Navbar() {
 
           {/* Desktop actions */}
           <div className="hidden md:flex items-center gap-4">
-            <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="text-zinc-400 hover:text-zinc-900 transition-colors" aria-label="GitHub">
+            <a href="https://github.com/zz41354899/SwiftClip" target="_blank" rel="noopener noreferrer" className="text-zinc-400 hover:text-zinc-900 transition-colors" aria-label="GitHub">
               <GithubIcon className="w-[16px] h-[16px]" />
             </a>
             <Link
@@ -92,7 +92,7 @@ export function Navbar() {
 
           {/* Mobile: icons + hamburger */}
           <div className="flex md:hidden items-center gap-3 pr-1">
-            <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="text-zinc-400 hover:text-zinc-900 transition-colors" aria-label="GitHub">
+            <a href="https://github.com/zz41354899/SwiftClip" target="_blank" rel="noopener noreferrer" className="text-zinc-400 hover:text-zinc-900 transition-colors" aria-label="GitHub">
               <GithubIcon className="w-[15px] h-[15px]" />
             </a>
             <button

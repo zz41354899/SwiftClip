@@ -216,7 +216,7 @@ npx remotion render remotion/index.tsx ProductLaunch output.mp4 \
 Contributions are welcome! Here's how:
 
 1. **Fork** this repository
-2. **Clone** your fork: `git clone https://github.com/YOUR_USERNAME/swiftclip`
+2. **Clone** your fork: `git clone https://github.com/zz41354899/SwiftClip`
 3. **Create a branch**: `git checkout -b feat/my-template`
 4. **Add your template** to `remotion/` — follow the naming and prop conventions of existing templates
 5. **Register** it in `remotion/Root.tsx` and add metadata to `lib/templates.ts`
@@ -244,6 +244,6 @@ This project is free to use in personal and commercial projects. Attribution is 
 ## 🔗 Links
 
 - 📖 [Remotion Docs](https://remotion.dev/docs)
-- 💬 [Community (LINE)](https://line.me)
-- 🐛 [Report an Issue](https://github.com/YOUR_USERNAME/swiftclip/issues)
-- ✨ [Request a Template](https://github.com/YOUR_USERNAME/swiftclip/issues/new?template=template_request.md)
+- 💬 [Community (LINE)](https://line.me/ti/g2/FO-LwoDfH0RrlsJ2hylmAyfA04-ZYNQBUWY-ow?utm_source=invitation&utm_medium=link_copy&utm_campaign=default)
+- 🐛 [Report an Issue](https://github.com/zz41354899/SwiftClip/issues)
+- ✨ [Request a Template](https://github.com/zz41354899/SwiftClip/issues/new?template=template_request.md)

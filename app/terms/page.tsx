@@ -45,7 +45,7 @@ export default function TermsPage() {
               </ul>
               <p className="mt-4">
                 The only requirement is that the original MIT License notice is included in any distributed copy. The full license text is available in the{" "}
-                <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="text-indigo-600 hover:underline">
+                <a href="https://github.com/zz41354899/SwiftClip" target="_blank" rel="noopener noreferrer" className="text-indigo-600 hover:underline">
                   GitHub repository
                 </a>.
               </p>
@@ -122,7 +122,7 @@ export default function TermsPage() {
               <h2 className="text-xl font-semibold text-zinc-900 mb-3">11. Contact</h2>
               <p>
                 Questions about these Terms? Open an issue on our{" "}
-                <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="text-indigo-600 hover:underline">
+                <a href="https://github.com/zz41354899/SwiftClip" target="_blank" rel="noopener noreferrer" className="text-indigo-600 hover:underline">
                   GitHub repository
                 </a>.
               </p>

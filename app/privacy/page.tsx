@@ -115,7 +115,7 @@ export default function PrivacyPage() {
               <h2 className="text-xl font-semibold text-zinc-900 mb-3">9. Contact</h2>
               <p>
                 If you have any questions about this Privacy Policy, please open an issue on our{" "}
-                <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="text-indigo-600 hover:underline">
+                <a href="https://github.com/zz41354899/SwiftClip" target="_blank" rel="noopener noreferrer" className="text-indigo-600 hover:underline">
                   GitHub repository
                 </a>.
               </p>
