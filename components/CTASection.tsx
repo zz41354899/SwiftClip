@@ -27,7 +27,7 @@ export function CTASection() {
         >
           Start rendering
           <br />
-          <span className="text-black/40 ">today.</span>
+          <span className="text-black/40">today.</span>
         </motion.h2>
 
         <motion.p
@@ -37,7 +37,7 @@ export function CTASection() {
           transition={{ duration: 0.5, delay: 0.12 }}
           className="text-black/60  text-lg leading-relaxed mb-10 max-w-lg mx-auto font-light"
         >
-          No installs, no waiting, no learning curve. Copy a template and ship your first video in minutes.
+          29 free Remotion templates. Pick one, copy the code, done.
         </motion.p>
 
         <motion.div

@@ -51,7 +51,7 @@ export function FeatureSection() {
             Engineered for speed.
           </h2>
           <p className="text-black/60  text-[17px] max-w-2xl mx-auto leading-relaxed font-light">
-            Skip After Effects. Leverage React's composability to author video content without ever leaving your editor.
+            Write React, get video. No timeline scrubbing, no keyframe dragging — just code.
           </p>
         </motion.div>
 

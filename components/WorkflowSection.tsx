@@ -40,7 +40,7 @@ export function WorkflowSection() {
             <span className="text-black/40 ">video creation.</span>
           </h2>
           <p className="text-black/60  text-[17px] leading-relaxed font-light">
-            Skip After Effects. Leverage the familiar React lifecycle to automate video production without compromises.
+            Use React components to compose every frame. Automate video production and ship faster than any timeline editor.
           </p>
         </motion.div>
 
