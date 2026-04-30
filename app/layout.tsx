@@ -2,9 +2,28 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "SwiftClip — High-performance Remotion Templates",
+  title: {
+    default: "SwiftClip — Video Templates for Developers",
+    template: "%s | SwiftClip",
+  },
   description:
-    "Discover and use high-performance Remotion templates for modern developers. Code-driven video, beautifully designed.",
+    "29 production-ready Remotion video templates built with React & TypeScript. Code-driven video, frame-perfect animations, zero config.",
+  keywords: ["Remotion", "video templates", "React video", "TypeScript", "animation", "open source"],
+  authors: [{ name: "SwiftClip" }],
+  openGraph: {
+    title: "SwiftClip — Video Templates for Developers",
+    description:
+      "29 production-ready Remotion video templates built with React & TypeScript.",
+    url: "https://github.com/zz41354899/SwiftClip",
+    siteName: "SwiftClip",
+    type: "website",
+  },
+  twitter: {
+    card: "summary",
+    title: "SwiftClip — Video Templates for Developers",
+    description:
+      "29 production-ready Remotion video templates built with React & TypeScript.",
+  },
 };
 
 export default function RootLayout({

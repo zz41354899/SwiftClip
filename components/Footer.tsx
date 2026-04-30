@@ -9,13 +9,6 @@ function GithubIcon({ className }: { className?: string }) {
   );
 }
 
-function XIcon({ className }: { className?: string }) {
-  return (
-    <svg className={className} xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-      <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.737-8.835L1.254 2.25H8.08l4.259 5.629 5.905-5.629zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-    </svg>
-  );
-}
 
 const nav = [
   {
@@ -69,15 +62,7 @@ export function Footer() {
             >
               <GithubIcon className="w-3.5 h-3.5" />
             </a>
-            <a
-              href="https://twitter.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-8 h-8 rounded-full border border-black/10  flex items-center justify-center text-black/40  hover:text-black  hover:border-black/20  transition-colors"
-              aria-label="Twitter / X"
-            >
-              <XIcon className="w-3.5 h-3.5" />
-            </a>
+
           </div>
         </div>
 
