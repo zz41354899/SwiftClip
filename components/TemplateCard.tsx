@@ -1,9 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import Link from "next/link";
-import { Copy, Check, Clock, ArrowRight } from "lucide-react";
+import { Clock, ArrowRight, Code } from "lucide-react";
 import { GlassCard } from "./ui/GlassCard";
 import { Button } from "./ui/Button";
 import { type Template, TAG_COLORS } from "@/lib/templates";
@@ -14,19 +14,8 @@ interface TemplateCardProps {
 }
 
 export function TemplateCard({ template, index }: TemplateCardProps) {
-  const [copied, setCopied] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
   const thumbnailSrc = template.videoUrl.replace('/videos/', '/thumbnails/').replace('.mp4', '.jpg');
-
-  const handleCopy = async () => {
-    try {
-      await navigator.clipboard.writeText(template.codeSnippet);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
-    } catch {
-      // Clipboard API not available
-    }
-  };
 
   return (
     <motion.div
@@ -117,39 +106,12 @@ export function TemplateCard({ template, index }: TemplateCardProps) {
 
           {/* Action buttons */}
           <div className="flex gap-2 pt-1">
-            <Button
-              variant="ghost"
-              size="sm"
-              className="flex-1"
-              onClick={handleCopy}
-              aria-label="Copy code snippet"
-            >
-              <AnimatePresence mode="wait" initial={false}>
-                {copied ? (
-                  <motion.span
-                    key="check"
-                    initial={{ scale: 0.8, opacity: 0 }}
-                    animate={{ scale: 1, opacity: 1 }}
-                    exit={{ scale: 0.8, opacity: 0 }}
-                    className="flex items-center gap-1.5 text-green-600 text-xs font-medium"
-                  >
-                    <Check className="w-3 h-3" />
-                    Copied!
-                  </motion.span>
-                ) : (
-                  <motion.span
-                    key="copy"
-                    initial={{ scale: 0.8, opacity: 0 }}
-                    animate={{ scale: 1, opacity: 1 }}
-                    exit={{ scale: 0.8, opacity: 0 }}
-                    className="flex items-center gap-1.5 text-xs font-medium"
-                  >
-                    <Copy className="w-3 h-3" />
-                    Copy code
-                  </motion.span>
-                )}
-              </AnimatePresence>
-            </Button>
+            <Link href={`/templates/${template.id}`} className="flex-1">
+              <Button variant="ghost" size="sm" className="w-full">
+                <Code className="w-3 h-3" />
+                View code
+              </Button>
+            </Link>
             <Link href={`/templates/${template.id}`} className="flex-1">
               <Button variant="primary" size="sm" className="w-full">
                 <ArrowRight className="w-3.5 h-3.5" />

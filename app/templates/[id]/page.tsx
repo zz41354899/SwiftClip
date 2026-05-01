@@ -1,5 +1,7 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import { readFileSync } from "fs";
+import { join } from "path";
 import { templates, TAG_COLORS } from "@/lib/templates";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
@@ -26,6 +28,17 @@ export default async function TemplatePage({ params }: { params: Promise<{ id: s
   const { id } = await params;
   const template = templates.find((t) => t.id === id);
   if (!template) notFound();
+
+  // Read the actual source file for the code snippet (no duplication)
+  let codeSnippet = "";
+  try {
+    codeSnippet = readFileSync(
+      join(process.cwd(), "remotion", `${template.remotionId}.tsx`),
+      "utf8"
+    );
+  } catch {
+    codeSnippet = `// Source file not found for ${template.remotionId}`;
+  }
 
   const related = templates.filter(
     (t) => t.id !== template.id && t.tags.some((tag) => template.tags.includes(tag))
@@ -89,7 +102,7 @@ export default async function TemplatePage({ params }: { params: Promise<{ id: s
                 <p className="text-xs font-semibold text-zinc-500 uppercase tracking-widest mb-2">
                   Composition code
                 </p>
-                <CollapsibleCode code={template.codeSnippet} />
+                <CollapsibleCode code={codeSnippet} />
               </div>
             </div>
           </div>
@@ -151,7 +164,7 @@ export default async function TemplatePage({ params }: { params: Promise<{ id: s
             {/* CTA */}
             <div className="space-y-2">
               <TemplateCopyButton
-                text={template.codeSnippet}
+                text={codeSnippet}
                 label="Copy code"
                 variant="primary"
               />

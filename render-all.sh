@@ -32,6 +32,7 @@ COMPOSITIONS=(
   "CelebrationBurst:celebration-burst"
   "CodeReveal:code-reveal"
   "ProductCard:product-card"
+  "AiAnimation:ai-animation"
 )
 
 for ITEM in "${COMPOSITIONS[@]}"; do

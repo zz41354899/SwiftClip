@@ -30,6 +30,7 @@ import { WebPromo } from "./WebPromo";
 import { CelebrationBurst } from "./CelebrationBurst";
 import { CodeReveal } from "./CodeReveal";
 import { ProductCard } from "./ProductCard";
+import { AiAnimation } from "./AiAnimation";
 
 export const RemotionRoot = () => {
   return (
@@ -264,6 +265,14 @@ export const RemotionRoot = () => {
         durationInFrames={180}
         fps={30}
         width={1080}
+        height={1080}
+      />
+      <Composition
+        id="AiAnimation"
+        component={AiAnimation}
+        durationInFrames={240}
+        fps={30}
+        width={1920}
         height={1080}
       />
     </>
