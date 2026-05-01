@@ -37,7 +37,7 @@ export function CTASection() {
           transition={{ duration: 0.5, delay: 0.12 }}
           className="text-black/60  text-lg leading-relaxed mb-10 max-w-lg mx-auto font-light"
         >
-          29 free Remotion templates. Pick one, copy the code, done.
+          30 free Remotion templates. Pick one, copy the code, done.
         </motion.p>
 
         <motion.div
