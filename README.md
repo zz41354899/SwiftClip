@@ -1,8 +1,8 @@
 # SwiftClip
 
-> Production-ready [Remotion](https://remotion.dev) video templates — built with React & TypeScript.
+> Production-ready [Remotion](https://remotion.dev) video templates — built with React & TypeScript, styled with Apple Light Mode design.
 
-SwiftClip is an open-source library of 29 copy-paste video composition templates. Instead of dragging keyframes in After Effects, you write React components. Every template is fully typed, zero-config, and renders to 4K MP4 in seconds.
+SwiftClip is an open-source library of 30 copy-paste video composition templates. Instead of dragging keyframes in After Effects, you write React components. Every template is fully typed, zero-config, and renders to 4K MP4 in seconds.
 
 🌐 **Live site:** [swiftclip.dev](https://swiftclip.dev) *(update with your actual URL)*
 
@@ -10,48 +10,50 @@ SwiftClip is an open-source library of 29 copy-paste video composition templates
 
 ## ✨ Features
 
-- **29 production-ready templates** — Marketing, Social, Data Viz, Titles, and more
-- **Fully typed props** — every template has TypeScript interfaces for safe customisation
-- **Frame-perfect animations** — powered by `useCurrentFrame()` and `interpolate()`
+- **30 production-ready templates** — Marketing, Social, Data Viz, Broadcast, AI, and more
+- **Apple Light Mode design** — consistent `#f5f5f7` backgrounds, frosted glass cards, SF Pro typography
+- **Fully typed** — every template written in TypeScript with React
+- **Frame-perfect animations** — powered by `useCurrentFrame()`, `interpolate()`, and `spring()`
 - **4K-ready** — render at any resolution via `--scale` flag
-- **Zero dependencies†** — only Remotion + React; no proprietary SDKs
+- **Zero dependencies†** — only Remotion + React + lucide-react; no proprietary SDKs
 - **MIT licensed** — use in personal and commercial projects
 
 ---
 
 ## 🗂 Template Library
 
-| # | Template | Category | Resolution | Duration |
-|---|----------|----------|------------|----------|
-| 1 | Product Launch | Marketing | 1920×1080 | 15s |
-| 2 | Social Story | Social | 1080×1920 | 10s |
-| 3 | Brand Reveal | Branding | 1920×1080 | 12s |
-| 4 | Lower Third | Broadcast | 1920×1080 | 8s |
-| 5 | Minimal Title | Typography | 1920×1080 | 10s |
-| 6 | Typewriter Quote | Typography | 1920×1080 | 12s |
-| 7 | Quote Story | Social | 1080×1920 | 10s |
-| 8 | Countdown Timer | Event | 1920×1080 | 10s |
-| 9 | Event Promo | Marketing | 1920×1080 | 15s |
-| 10 | Subscribe CTA | YouTube | 1920×1080 | 8s |
-| 11 | End Screen | YouTube | 1920×1080 | 20s |
-| 12 | Tutorial Intro | Education | 1920×1080 | 12s |
-| 13 | Code Reveal | Developer | 1920×1080 | 15s |
-| 14 | Gradient Reveal | Abstract | 1920×1080 | 10s |
-| 15 | Glitch Title | Abstract | 1920×1080 | 8s |
-| 16 | Split Reveal | Branding | 1920×1080 | 10s |
-| 17 | Celebration Burst | Social | 1080×1080 | 6s |
-| 18 | News Breaking | Broadcast | 1920×1080 | 12s |
-| 19 | Bar Chart | Data Viz | 1920×1080 | 12s |
-| 20 | Data Viz | Data Viz | 1920×1080 | 15s |
-| 21 | Metric Dashboard | Data Viz | 1920×1080 | 12s |
-| 22 | Timeline | Data Viz | 1920×1080 | 18s |
-| 23 | Product Card | E-commerce | 1920×1080 | 10s |
-| 24 | Pricing Card | SaaS | 1920×1080 | 10s |
-| 25 | SaaS Promo | SaaS | 1920×1080 | 15s |
-| 26 | App Promo | Mobile | 1920×1080 | 15s |
-| 27 | Testimonial Card | Marketing | 1920×1080 | 12s |
-| 28 | Team Grid | Corporate | 1920×1080 | 15s |
-| 29 | Vertical Story | Social | 1080×1920 | 10s |
+| # | Template | Tags | Resolution | Duration |
+|---|----------|------|------------|----------|
+| 1 | Product Launch | Marketing, Branding | 1920×1080 | 15s |
+| 2 | Tutorial Intro | Tutorial, Education | 1920×1080 | 8s |
+| 3 | SaaS Promo | SaaS, Marketing | 1920×1080 | 30s |
+| 4 | Social Story | Social, Short-form | 1080×1920 | 10s |
+| 5 | Data Viz | Data, Business | 1920×1080 | 20s |
+| 6 | Lower Third | Broadcast, Motion | 1920×1080 | 5s |
+| 7 | Testimonial Card | Marketing, Social | 1080×1080 | 8s |
+| 8 | Countdown Timer | Events, Marketing | 1920×1080 | 7s |
+| 9 | Brand Reveal | Branding, Marketing | 1920×1080 | 6s |
+| 10 | Vertical Story | Social, Short-form | 1080×1920 | 10s |
+| 11 | End Screen | Marketing, Tutorial | 1920×1080 | 7s |
+| 12 | Metric Dashboard | Data, SaaS | 1920×1080 | 8s |
+| 13 | Typewriter Quote | Social, Motion | 1920×1080 | 8s |
+| 14 | Dynamic Island | Tech, Motion | 1920×1080 | 5s |
+| 15 | Pricing Card | SaaS, Marketing | 1080×1080 | 8s |
+| 16 | Bar Chart | Data, Business | 1920×1080 | 8s |
+| 17 | Split Reveal | Branding, Motion | 1920×1080 | 6s |
+| 18 | Event Promo | Events, Marketing | 1920×1080 | 8s |
+| 19 | Subscribe CTA | Marketing, Social | 1920×1080 | 6s |
+| 20 | News Breaking | Broadcast, Motion | 1920×1080 | 10s |
+| 21 | Minimal Title | Motion, Branding | 1920×1080 | 5s |
+| 22 | Gradient Reveal | Branding, Motion | 1920×1080 | 6s |
+| 23 | Team Grid | Business, Marketing | 1920×1080 | 8s |
+| 24 | Quote Story | Social, Short-form | 1080×1920 | 8s |
+| 25 | Timeline | Business, Tutorial | 1920×1080 | 9s |
+| 26 | Web Promo | Marketing, SaaS | 1920×1080 | 10s |
+| 27 | Celebration Burst | Events, Social | 1080×1080 | 6s |
+| 28 | Code Reveal | Developer, Tutorial | 1920×1080 | 10s |
+| 29 | Product Card | eCommerce, Marketing | 1080×1080 | 6s |
+| 30 | AI Generation | AI, Tech, SaaS | 1920×1080 | 8s |
 
 Browse and preview all templates at the live site.
 
@@ -146,7 +148,7 @@ npx remotion lambda render remotion/index.tsx ProductLaunch --region=us-east-1
 swiftclip/
 ├── app/                    # Next.js App Router (website)
 │   ├── page.tsx            # Homepage
-│   ├── templates/          # Template browser
+│   ├── templates/          # Template browser & detail pages
 │   ├── docs/               # Documentation
 │   ├── community/          # Community page
 │   ├── privacy/            # Privacy Policy
@@ -160,12 +162,13 @@ swiftclip/
 │   ├── Root.tsx            # Composition registry
 │   ├── index.tsx           # Entry point
 │   ├── ProductLaunch.tsx
-│   ├── SocialStory.tsx
-│   └── ... (29 templates total)
+│   ├── AiAnimation.tsx     # Siri-style AI animation
+│   └── ... (30 templates total)
 ├── lib/
-│   └── templates.ts        # Template metadata
+│   └── templates.ts        # Template metadata (no embedded code)
 └── public/
-    └── videos/             # Rendered preview MP4s
+    ├── videos/             # Rendered preview MP4s (30 files)
+    └── thumbnails/         # Extracted JPG thumbnails (30 files)
 ```
 
 ---
