@@ -5,6 +5,7 @@ import {
   interpolate,
   Easing,
 } from "remotion";
+import { Sparkles, Ship, ArrowRightCircle } from "lucide-react";
 
 interface ProductLaunchProps {
   title?: string;
@@ -51,29 +52,30 @@ export const ProductLaunch: React.FC<ProductLaunchProps> = ({
   return (
     <AbsoluteFill
       style={{
-        background: "#080810",
+        background: "#ffffff",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
-        fontFamily: "Inter, system-ui, -apple-system, sans-serif",
+        fontFamily: "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
         overflow: "hidden",
       }}
     >
-      {/* Background glow orbs */}
+      {/* Background soft lighting */}
       <div
         style={{
           position: "absolute",
-          width: 600,
-          height: 600,
+          width: 800,
+          height: 800,
           borderRadius: "50%",
-          background:
-            "radial-gradient(circle, rgba(192,192,192,0.3) 0%, transparent 70%)",
-          filter: `blur(60px)`,
-          opacity: 0.4,
-          transform: `scale(${glowScale})`,
-          top: "-20%",
-          left: "-10%",
+          background: "radial-gradient(circle, rgba(0,0,0,0.03) 0%, transparent 60%)",
+          filter: `blur(80px)`,
+          opacity: 0.8,
+          transform: `scale(${glowScale}) translate3d(0,0,0)`,
+          top: "50%",
+          left: "50%",
+          marginTop: -400,
+          marginLeft: -400,
         }}
       />
 
@@ -83,60 +85,82 @@ export const ProductLaunch: React.FC<ProductLaunchProps> = ({
           position: "relative",
           zIndex: 1,
           textAlign: "center",
+          display: "flex",
+          flexDirection: "column",
         }}
       >
         {/* Title */}
-        <div
-          style={{
-            fontSize: 120,
-            fontWeight: 900,
-            lineHeight: 1,
-            marginBottom: 30,
-            opacity: titleOpacity,
-            transform: `translateY(${titleY}px)`,
-            backgroundImage:
-              "linear-gradient(135deg, #ffffff 0%, #c0c0c0 50%, #8c8c8c 100%)",
-            backgroundClip: "text",
-            WebkitBackgroundClip: "text",
-            WebkitTextFillColor: "transparent",
-            letterSpacing: "-0.02em",
-          }}
-        >
-          {title}
+        <div style={{ display: "flex", justifyContent: "center", marginBottom: 20, opacity: titleOpacity, transform: `translateY(${titleY}px)` }}>
+          <div
+            style={{
+              fontSize: 140,
+              fontWeight: 800,
+              lineHeight: 1,
+              color: "#1d1d1f",
+              letterSpacing: "-0.04em",
+              display: "flex",
+              alignItems: "center",
+              gap: 24,
+            }}
+          >
+            <Ship size={110} color="#1d1d1f" strokeWidth={2.5} />
+            {title}
+          </div>
         </div>
 
         {/* Subtitle */}
         <div
           style={{
-            fontSize: 48,
-            fontWeight: 300,
-            color: "rgba(255, 255, 255, 0.6)",
+            fontSize: 42,
+            fontWeight: 500,
+            color: "#0066cc",
             opacity: subtitleOpacity,
             transform: `translateY(${subtitleY}px)`,
-            maxWidth: 800,
-            lineHeight: 1.4,
-            letterSpacing: "0.5px",
+            maxWidth: 900,
+            lineHeight: 1.2,
+            letterSpacing: "-0.01em",
+            margin: "0 auto",
           }}
         >
           {subtitle}
         </div>
       </div>
 
-      {/* Bottom accent line */}
+      {/* Bottom accent area */}
       <div
         style={{
           position: "absolute",
           bottom: 80,
-          width: 120,
-          height: 3,
-          background:
-            "linear-gradient(90deg, transparent, #c0c0c0, transparent)",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          gap: 24,
           opacity: interpolate(frame, [100, 150], [0, 1], {
             extrapolateLeft: "clamp",
             extrapolateRight: "clamp",
           }),
         }}
-      />
+      >
+        <div style={{ 
+          display: "flex", 
+          alignItems: "center", 
+          gap: 12, 
+          color: "#f5f5f7", 
+          fontSize: 24, 
+          fontWeight: 600, 
+          letterSpacing: "-0.01em",
+          background: "rgba(255,255,255,0.7)",
+          backdropFilter: "blur(20px)",
+          padding: "16px 32px",
+          borderRadius: 40,
+          border: "1px solid rgba(0,0,0,0.05)",
+          boxShadow: "0 20px 40px rgba(0,0,0,0.06)",
+        }}>
+          <Sparkles size={24} color="#1d1d1f" strokeWidth={2} />
+          Join the waitlist
+          <ArrowRightCircle size={24} color="#1d1d1f" strokeWidth={2} />
+        </div>
+      </div>
     </AbsoluteFill>
   );
 };

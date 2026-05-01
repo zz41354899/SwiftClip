@@ -14,7 +14,7 @@ import { VerticalStory } from "./VerticalStory";
 import { EndScreen } from "./EndScreen";
 import { MetricDashboard } from "./MetricDashboard";
 import { TypewriterQuote } from "./TypewriterQuote";
-import { GlitchTitle } from "./GlitchTitle";
+import { DynamicIsland } from "./DynamicIsland";
 import { PricingCard } from "./PricingCard";
 import { BarChart } from "./BarChart";
 import { SplitReveal } from "./SplitReveal";
@@ -26,7 +26,7 @@ import { GradientReveal } from "./GradientReveal";
 import { TeamGrid } from "./TeamGrid";
 import { QuoteStory } from "./QuoteStory";
 import { Timeline } from "./Timeline";
-import { AppPromo } from "./AppPromo";
+import { WebPromo } from "./WebPromo";
 import { CelebrationBurst } from "./CelebrationBurst";
 import { CodeReveal } from "./CodeReveal";
 import { ProductCard } from "./ProductCard";
@@ -139,8 +139,8 @@ export const RemotionRoot = () => {
         height={1080}
       />
       <Composition
-        id="GlitchTitle"
-        component={GlitchTitle}
+        id="DynamicIsland"
+        component={DynamicIsland}
         durationInFrames={150}
         fps={30}
         width={1920}
@@ -235,12 +235,12 @@ export const RemotionRoot = () => {
         height={1080}
       />
       <Composition
-        id="AppPromo"
-        component={AppPromo}
+        id="WebPromo"
+        component={WebPromo}
         durationInFrames={300}
         fps={30}
-        width={1080}
-        height={1920}
+        width={1920}
+        height={1080}
       />
       <Composition
         id="CelebrationBurst"

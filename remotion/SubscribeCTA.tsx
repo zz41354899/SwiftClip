@@ -1,4 +1,5 @@
 import { AbsoluteFill, useCurrentFrame, interpolate, Easing } from "remotion";
+import { Bell, Heart, MousePointer2 } from "lucide-react";
 
 export const SubscribeCTA: React.FC = () => {
   const frame = useCurrentFrame();
@@ -8,11 +9,10 @@ export const SubscribeCTA: React.FC = () => {
     extrapolateRight: "clamp",
   });
 
-  // Channel avatar springs in
-  const avatarScale = interpolate(frame, [10, 40], [0, 1], {
+  const cardScale = interpolate(frame, [10, 40], [0.9, 1], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
-    easing: Easing.out(Easing.back(1.6)),
+    easing: Easing.out(Easing.cubic),
   });
 
   const avatarOpacity = interpolate(frame, [10, 30], [0, 1], {
@@ -23,12 +23,6 @@ export const SubscribeCTA: React.FC = () => {
   const nameOpacity = interpolate(frame, [35, 55], [0, 1], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
-  });
-
-  const nameY = interpolate(frame, [35, 55], [20, 0], {
-    extrapolateLeft: "clamp",
-    extrapolateRight: "clamp",
-    easing: Easing.out(Easing.cubic),
   });
 
   const subCountOpacity = interpolate(frame, [50, 70], [0, 1], {
@@ -42,124 +36,105 @@ export const SubscribeCTA: React.FC = () => {
     easing: Easing.out(Easing.back(1.5)),
   });
 
-  const buttonOpacity = interpolate(frame, [70, 95], [0, 1], {
-    extrapolateLeft: "clamp",
-    extrapolateRight: "clamp",
-  });
-
-  // Bell shake
-  const bellAngle = frame > 110 && frame < 145
-    ? Math.sin((frame - 110) * 0.7) * 20 * Math.max(0, 1 - (frame - 110) / 35)
-    : 0;
-
-  // Ripple rings around button
-  const ring1 = (frame - 100) % 60;
-  const ring1Scale = interpolate(ring1, [0, 60], [1, 2.2], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
-  const ring1Opacity = frame > 100 ? interpolate(ring1, [0, 60], [0.4, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp" }) : 0;
-
-  const ring2 = (frame - 120) % 60;
-  const ring2Scale = interpolate(ring2, [0, 60], [1, 2.2], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
-  const ring2Opacity = frame > 120 ? interpolate(ring2, [0, 60], [0.4, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp" }) : 0;
-
   const ctaOpacity = interpolate(frame, [130, 155], [0, 1], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
   });
 
+  const bellAngle = frame > 110 && frame < 145
+    ? Math.sin((frame - 110) * 0.7) * 20 * Math.max(0, 1 - (frame - 110) / 35)
+    : 0;
+
   return (
     <AbsoluteFill
       style={{
-        background: "#0f0f0f",
-        fontFamily: "Inter, system-ui, -apple-system, sans-serif",
+        background: "#ffffff",
+        fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto',
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
         opacity: bgOpacity,
-        overflow: "hidden",
-        gap: 0,
       }}
     >
-      {/* Red top bar */}
-      <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 3, background: "#ff0000" }} />
-
-      {/* Ambient glow */}
-      <div style={{ position: "absolute", width: 500, height: 500, borderRadius: "50%", background: "radial-gradient(circle, rgba(255,0,0,0.08) 0%, transparent 70%)", filter: "blur(80px)" }} />
-
-      {/* Channel avatar */}
-      <div
-        style={{
-          width: 140,
-          height: 140,
-          borderRadius: "50%",
-          background: "linear-gradient(135deg, #ff0000, #cc0000)",
+      <div style={{
+        background: "rgba(255,255,255,0.7)",
+        backdropFilter: "blur(40px)",
+        border: "1px solid rgba(0,0,0,0.05)", boxShadow: "0 20px 40px rgba(0,0,0,0.06)",
+        borderRadius: 48,
+        padding: "80px 120px",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        transform: `scale(${cardScale})`,
+      }}>
+        {/* Avatar */}
+        <div style={{
+          width: 160,
+          height: 160,
+          borderRadius: 80,
+          background: "rgba(0,0,0,0.05)",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          fontSize: 52,
-          fontWeight: 900,
-          color: "white",
-          marginBottom: 28,
-          transform: `scale(${avatarScale})`,
+          marginBottom: 32,
           opacity: avatarOpacity,
-          boxShadow: "0 0 0 4px rgba(255,0,0,0.2)",
-        }}
-      >
-        YT
-      </div>
-
-      {/* Channel name */}
-      <div style={{ opacity: nameOpacity, transform: `translateY(${nameY}px)`, textAlign: "center", marginBottom: 8 }}>
-        <div style={{ fontSize: 40, fontWeight: 800, color: "white", letterSpacing: "-0.01em" }}>YourChannel</div>
-      </div>
-
-      {/* Subscriber count */}
-      <div style={{ fontSize: 20, color: "rgba(255,255,255,0.35)", marginBottom: 48, opacity: subCountOpacity }}>
-        1.2M subscribers
-      </div>
-
-      {/* Subscribe button with ripple */}
-      <div style={{ position: "relative", marginBottom: 36 }}>
-        {/* Ripple rings */}
-        <div style={{ position: "absolute", inset: 0, borderRadius: 100, border: "2px solid rgba(255,0,0,0.5)", transform: `scale(${ring1Scale})`, opacity: ring1Opacity, pointerEvents: "none" }} />
-        <div style={{ position: "absolute", inset: 0, borderRadius: 100, border: "2px solid rgba(255,0,0,0.5)", transform: `scale(${ring2Scale})`, opacity: ring2Opacity, pointerEvents: "none" }} />
-
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            gap: 14,
-            background: "#ff0000",
-            borderRadius: 100,
-            padding: "20px 48px",
-            fontSize: 26,
-            fontWeight: 700,
-            color: "white",
-            transform: `scale(${buttonScale})`,
-            opacity: buttonOpacity,
-            boxShadow: "0 8px 40px rgba(255,0,0,0.35)",
-          }}
-        >
-          <span style={{ fontSize: 28, transform: `rotate(${bellAngle}deg)`, display: "inline-block", transformOrigin: "top center" }}>🔔</span>
-          SUBSCRIBE
+        }}>
+          <Bell size={64} color="#1d1d1f" />
         </div>
-      </div>
 
-      {/* "Don't miss out" text */}
-      <div
-        style={{
+        {/* Name */}
+        <div style={{ opacity: nameOpacity, textAlign: "center", marginBottom: 12 }}>
+          <div style={{ fontSize: 48, fontWeight: 800, color: "#1d1d1f", letterSpacing: "-0.04em" }}>YourChannel</div>
+        </div>
+
+        <div style={{ fontSize: 24, fontWeight: 500, color: "#86868b", marginBottom: 56, opacity: subCountOpacity }}>
+          1.2M Subscribers
+        </div>
+
+        {/* Button */}
+        <div style={{
+          display: "flex",
+          alignItems: "center",
+          gap: 16,
+          background: "#f5f5f7",
+          border: "1px solid rgba(0,0,0,0.05)",
+          borderRadius: 32,
+          padding: "24px 64px",
+          transform: `scale(${buttonScale})`,
+        }}>
+          <div style={{ transform: `rotate(${bellAngle}deg)`, transformOrigin: "top center" }}>
+            <Bell size={28} color="black" />
+          </div>
+          <span style={{ fontSize: 24, fontWeight: 800, color: "black", letterSpacing: "-0.02em" }}>Subscribe</span>
+        </div>
+
+        <div style={{
+          marginTop: 40,
           fontSize: 18,
-          color: "rgba(255,255,255,0.25)",
+          fontWeight: 600,
+          color: "#86868b",
           letterSpacing: "0.15em",
           textTransform: "uppercase",
           opacity: ctaOpacity,
-        }}
-      >
-        New videos every week
+        }}>
+          New videos every week
+        </div>
+      </div>
+      
+      {/* Interaction icons floating */}
+      <div style={{
+          position: "absolute",
+          bottom: 120,
+          right: 280,
+          opacity: interpolate(frame, [90, 110, 130], [0, 1, 0]),
+          transform: `translate(${interpolate(frame, [90, 110], [60, 0])}px, ${interpolate(frame, [90, 110], [60, 0])}px)`,
+          color: "#1d1d1f",
+          zIndex: 10,
+        }}>
+          <MousePointer2 size={64} fill="#1d1d1f" />
       </div>
 
-      {/* Bottom bar */}
-      <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: 3, background: "#ff0000" }} />
     </AbsoluteFill>
   );
 };

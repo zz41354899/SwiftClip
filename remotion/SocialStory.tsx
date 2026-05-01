@@ -4,6 +4,7 @@ import {
   interpolate,
   Easing,
 } from "remotion";
+import { AtSign, Sparkles, Video } from "lucide-react";
 
 interface SocialStoryProps {
   headline?: string;
@@ -18,11 +19,6 @@ export const SocialStory: React.FC<SocialStoryProps> = ({
   handle = "@swiftclip",
 }) => {
   const frame = useCurrentFrame();
-
-  const bgGradientY = interpolate(frame, [0, 300], [0, -40], {
-    extrapolateLeft: "clamp",
-    extrapolateRight: "clamp",
-  });
 
   const logoOpacity = interpolate(frame, [0, 20], [0, 1], {
     extrapolateLeft: "clamp",
@@ -60,21 +56,11 @@ export const SocialStory: React.FC<SocialStoryProps> = ({
     extrapolateRight: "clamp",
   });
 
-  // Animated gradient blob
-  const blob1X = interpolate(frame, [0, 300], [-100, 60], {
-    extrapolateLeft: "clamp",
-    extrapolateRight: "clamp",
-  });
-  const blob2X = interpolate(frame, [0, 300], [200, -60], {
-    extrapolateLeft: "clamp",
-    extrapolateRight: "clamp",
-  });
-
   return (
     <AbsoluteFill
       style={{
-        background: `linear-gradient(to bottom, #0f0a1e ${bgGradientY}%, #1a0533 60%, #0d0d1a 100%)`,
-        fontFamily: "Inter, system-ui, -apple-system, sans-serif",
+        background: "#f5f5f7",
+        fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
         overflow: "hidden",
         display: "flex",
         flexDirection: "column",
@@ -82,34 +68,6 @@ export const SocialStory: React.FC<SocialStoryProps> = ({
         justifyContent: "center",
       }}
     >
-      {/* Animated blobs */}
-      <div
-        style={{
-          position: "absolute",
-          width: 600,
-          height: 600,
-          borderRadius: "50%",
-          background:
-            "radial-gradient(circle, rgba(139,92,246,0.4) 0%, transparent 65%)",
-          filter: "blur(60px)",
-          top: -200,
-          left: blob1X,
-        }}
-      />
-      <div
-        style={{
-          position: "absolute",
-          width: 500,
-          height: 500,
-          borderRadius: "50%",
-          background:
-            "radial-gradient(circle, rgba(236,72,153,0.3) 0%, transparent 65%)",
-          filter: "blur(80px)",
-          bottom: -150,
-          right: blob2X,
-        }}
-      />
-
       {/* Top logo / handle */}
       <div
         style={{
@@ -127,11 +85,12 @@ export const SocialStory: React.FC<SocialStoryProps> = ({
             display: "flex",
             alignItems: "center",
             gap: 12,
-            background: "rgba(255,255,255,0.1)",
-            backdropFilter: "blur(12px)",
-            borderRadius: 100,
-            padding: "12px 28px",
-            border: "1px solid rgba(255,255,255,0.15)",
+            background: "rgba(255,255,255,0.7)",
+            backdropFilter: "blur(40px)",
+            borderRadius: 64,
+            padding: "16px 32px",
+            border: "1px solid rgba(0,0,0,0.05)",
+            boxShadow: "0 20px 40px rgba(0,0,0,0.06)",
           }}
         >
           <div
@@ -139,10 +98,15 @@ export const SocialStory: React.FC<SocialStoryProps> = ({
               width: 32,
               height: 32,
               borderRadius: "50%",
-              background: "linear-gradient(135deg, #8b5cf6, #ec4899)",
+              background: "#0066cc",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
             }}
-          />
-          <span style={{ color: "#fff", fontSize: 28, fontWeight: 600 }}>
+          >
+            <Video size={18} color="white" />
+          </div>
+          <span style={{ color: "#1d1d1f", fontSize: 24, fontWeight: 700, letterSpacing: "-0.02em" }}>
             SwiftClip
           </span>
         </div>
@@ -165,16 +129,22 @@ export const SocialStory: React.FC<SocialStoryProps> = ({
         <div
           style={{
             transform: `scale(${badgeScale})`,
-            background: "linear-gradient(135deg, #8b5cf6, #ec4899)",
-            borderRadius: 100,
-            padding: "10px 32px",
-            fontSize: 26,
+            backdropFilter: "blur(40px)",
+            border: "1px solid rgba(0,0,0,0.05)",
+            boxShadow: "0 20px 40px rgba(0,0,0,0.06)",
+            borderRadius: 64,
+            padding: "12px 32px",
+            display: "flex",
+            alignItems: "center",
+            gap: 12,
+            fontSize: 14,
             fontWeight: 700,
-            color: "#fff",
+            color: "#1d1d1f",
             letterSpacing: "0.04em",
             textTransform: "uppercase",
           }}
         >
+          <Sparkles size={20} color="#0066cc" />
           New Template
         </div>
 
@@ -184,15 +154,10 @@ export const SocialStory: React.FC<SocialStoryProps> = ({
             fontSize: 96,
             fontWeight: 900,
             lineHeight: 1.05,
-            color: "#ffffff",
+            color: "#1d1d1f",
             opacity: headlineOpacity,
             transform: `translateY(${headlineY}px)`,
-            letterSpacing: "-0.03em",
-            backgroundImage:
-              "linear-gradient(135deg, #fff 0%, rgba(255,255,255,0.75) 100%)",
-            backgroundClip: "text",
-            WebkitBackgroundClip: "text",
-            WebkitTextFillColor: "transparent",
+            letterSpacing: "-0.04em",
           }}
         >
           {headline}
@@ -201,12 +166,13 @@ export const SocialStory: React.FC<SocialStoryProps> = ({
         {/* Subline */}
         <div
           style={{
-            fontSize: 38,
-            fontWeight: 400,
-            color: "rgba(255,255,255,0.65)",
+            fontSize: 36,
+            fontWeight: 500,
+            color: "#86868b",
             opacity: sublineOpacity,
             transform: `translateY(${sublineY}px)`,
-            lineHeight: 1.4,
+            letterSpacing: "-0.01em",
+            maxWidth: 600,
           }}
         >
           {subline}
@@ -217,24 +183,19 @@ export const SocialStory: React.FC<SocialStoryProps> = ({
       <div
         style={{
           position: "absolute",
-          bottom: 100,
-          left: 0,
-          right: 0,
-          display: "flex",
-          justifyContent: "center",
+          bottom: 80,
           opacity: handleOpacity,
+          display: "flex",
+          alignItems: "center",
+          gap: 8,
+          fontSize: 24,
+          fontWeight: 600,
+          color: "#86868b",
+          letterSpacing: "-0.01em",
         }}
       >
-        <span
-          style={{
-            fontSize: 30,
-            color: "rgba(255,255,255,0.45)",
-            fontWeight: 500,
-            letterSpacing: "0.02em",
-          }}
-        >
-          {handle}
-        </span>
+        <AtSign size={24} />
+        {handle.replace("@", "")}
       </div>
     </AbsoluteFill>
   );

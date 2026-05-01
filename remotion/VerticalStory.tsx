@@ -1,9 +1,11 @@
+import React from "react";
 import { AbsoluteFill, useCurrentFrame, interpolate, Easing } from "remotion";
+import { Zap, Palette, Rocket, Sparkles, ArrowRight } from "lucide-react";
 
 const FEATURES = [
-  { emoji: "⚡", text: "10× faster than manual editing" },
-  { emoji: "🎨", text: "Beautiful, production-ready templates" },
-  { emoji: "🚀", text: "Ship polished video in minutes" },
+  { icon: <Zap size={44} color="#6366f1" />, text: "10× faster than manual editing" },
+  { icon: <Palette size={44} color="#a855f7" />, text: "Beautiful, production-ready templates" },
+  { icon: <Rocket size={44} color="#ec4899" />, text: "Ship polished video in minutes" },
 ];
 const FEATURE_DELAYS = [70, 92, 114];
 
@@ -56,8 +58,8 @@ export const VerticalStory: React.FC = () => {
   return (
     <AbsoluteFill
       style={{
-        background: "linear-gradient(160deg, #0a0a14 0%, #12102a 45%, #0d1a2e 100%)",
-        fontFamily: "Inter, system-ui, -apple-system, sans-serif",
+        background: "#f5f5f7",
+        fontFamily: "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
@@ -70,55 +72,60 @@ export const VerticalStory: React.FC = () => {
       <div
         style={{
           position: "absolute",
-          width: 700,
-          height: 700,
+          width: 800,
+          height: 800,
           borderRadius: "50%",
-          background: "radial-gradient(circle, rgba(99,102,241,0.12) 0%, transparent 70%)",
-          top: "-15%",
-          left: "-25%",
-          filter: "blur(80px)",
+          background: "radial-gradient(circle, rgba(0,0,0,0.04) 0%, transparent 60%)",
+          top: "-20%",
+          left: "-30%",
+          filter: "blur(100px)",
         }}
       />
       <div
         style={{
           position: "absolute",
-          width: 500,
-          height: 500,
+          width: 600,
+          height: 600,
           borderRadius: "50%",
-          background: "radial-gradient(circle, rgba(168,85,247,0.1) 0%, transparent 70%)",
-          bottom: "5%",
-          right: "-15%",
-          filter: "blur(60px)",
+          background: "radial-gradient(circle, rgba(0,0,0,0.03) 0%, transparent 60%)",
+          bottom: "0%",
+          right: "-20%",
+          filter: "blur(80px)",
         }}
       />
 
       {/* Pill badge */}
       <div
         style={{
-          padding: "14px 32px",
-          background: "rgba(99,102,241,0.12)",
-          border: "1px solid rgba(99,102,241,0.3)",
+          padding: "16px 36px",
+          background: "rgba(255,255,255,0.7)",
+          backdropFilter: "blur(30px)",
+          border: "1px solid rgba(0,0,0,0.05)",
+          boxShadow: "0 20px 40px rgba(0,0,0,0.06)",
           borderRadius: 100,
-          fontSize: 28,
-          color: "#a5b4fc",
+          fontSize: 26,
+          color: "#1d1d1f",
           fontWeight: 600,
-          letterSpacing: "0.04em",
-          marginBottom: 52,
+          letterSpacing: "-0.01em",
+          marginBottom: 60,
+          display: "flex",
+          alignItems: "center",
+          gap: 14,
           opacity: badgeOpacity,
         }}
       >
-        New in 2026 ✦
+        New in 2026 <Sparkles size={28} color="#0066cc" strokeWidth={2} />
       </div>
 
       {/* Headline */}
       <div
         style={{
-          fontSize: 96,
-          fontWeight: 900,
-          lineHeight: 1.08,
+          fontSize: 104,
+          fontWeight: 800,
+          lineHeight: 1.05,
           textAlign: "center",
-          color: "white",
-          letterSpacing: "-0.03em",
+          color: "#1d1d1f",
+          letterSpacing: "-0.04em",
           marginBottom: 32,
           opacity: headlineOpacity,
           transform: `translateY(${headlineY}px)`,
@@ -128,9 +135,7 @@ export const VerticalStory: React.FC = () => {
         <br />
         <span
           style={{
-            background: "linear-gradient(135deg, #6366f1, #a855f7)",
-            WebkitBackgroundClip: "text",
-            WebkitTextFillColor: "transparent",
+            color: "#86868b"
           }}
         >
           10× Faster
@@ -140,13 +145,14 @@ export const VerticalStory: React.FC = () => {
       {/* Sub-headline */}
       <p
         style={{
-          fontSize: 34,
-          color: "rgba(255,255,255,0.45)",
+          fontSize: 36,
+          color: "#86868b",
           textAlign: "center",
-          lineHeight: 1.55,
-          marginBottom: 72,
+          lineHeight: 1.4,
+          marginBottom: 80,
           opacity: subOpacity,
-          maxWidth: 860,
+          maxWidth: 900,
+          letterSpacing: "-0.01em",
         }}
       >
         Production-ready Remotion templates
@@ -160,8 +166,8 @@ export const VerticalStory: React.FC = () => {
           width: "100%",
           display: "flex",
           flexDirection: "column",
-          gap: 20,
-          marginBottom: 72,
+          gap: 24,
+          marginBottom: 80,
         }}
       >
         {FEATURES.map((f, i) => {
@@ -181,21 +187,26 @@ export const VerticalStory: React.FC = () => {
               style={{
                 display: "flex",
                 alignItems: "center",
-                gap: 24,
-                background: "rgba(255,255,255,0.04)",
-                border: "1px solid rgba(255,255,255,0.07)",
-                borderRadius: 20,
-                padding: "26px 36px",
+                gap: 28,
+                background: "rgba(255,255,255,0.7)",
+                backdropFilter: "blur(40px)",
+                border: "1px solid rgba(0,0,0,0.05)",
+                boxShadow: "0 20px 40px rgba(0,0,0,0.06)",
+                borderRadius: 32,
+                padding: "32px 40px",
                 opacity: fOpacity,
                 transform: `translateX(${fX}px)`,
               }}
             >
-              <span style={{ fontSize: 44 }}>{f.emoji}</span>
+              <div style={{ background: "rgba(0,102,204,0.1)", padding: 12, borderRadius: 16 }}>
+                {React.cloneElement(f.icon, { color: "#ffffff", strokeWidth: 2 })}
+              </div>
               <span
                 style={{
-                  fontSize: 30,
-                  color: "rgba(255,255,255,0.82)",
-                  fontWeight: 500,
+                  fontSize: 32,
+                  color: "#1d1d1f",
+                  fontWeight: 600,
+                  letterSpacing: "-0.02em",
                 }}
               >
                 {f.text}
@@ -208,19 +219,22 @@ export const VerticalStory: React.FC = () => {
       {/* CTA Button */}
       <div
         style={{
-          background: "linear-gradient(135deg, #6366f1, #a855f7)",
-          borderRadius: 22,
-          padding: "34px 72px",
-          fontSize: 38,
-          fontWeight: 700,
-          color: "white",
+          background: "white",
+          borderRadius: 48,
+          padding: "30px 60px",
+          fontSize: 34,
+          fontWeight: 600,
+          color: "black",
           opacity: ctaOpacity,
           transform: `scale(${ctaScale * pulseScale})`,
-          boxShadow: "0 20px 60px rgba(99,102,241,0.35)",
-          letterSpacing: "0.01em",
+          boxShadow: "0 20px 40px rgba(255,255,255,0.15)",
+          letterSpacing: "-0.01em",
+          display: "flex",
+          alignItems: "center",
+          gap: 16,
         }}
       >
-        Browse Templates →
+        Browse Templates <ArrowRight size={36} color="black" strokeWidth={2} />
       </div>
     </AbsoluteFill>
   );

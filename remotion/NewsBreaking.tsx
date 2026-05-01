@@ -1,3 +1,4 @@
+import { Zap, Radio, Clock } from "lucide-react";
 import { AbsoluteFill, useCurrentFrame, interpolate, Easing } from "remotion";
 
 export const NewsBreaking: React.FC = () => {
@@ -61,8 +62,8 @@ export const NewsBreaking: React.FC = () => {
   return (
     <AbsoluteFill
       style={{
-        background: "#0a0a0a",
-        fontFamily: "'Arial', 'Helvetica Neue', sans-serif",
+        background: "#f5f5f7",
+        fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
         opacity: bgOpacity,
         overflow: "hidden",
       }}
@@ -72,7 +73,7 @@ export const NewsBreaking: React.FC = () => {
         style={{
           position: "absolute",
           inset: 0,
-          background: "linear-gradient(135deg, #0d0d1a 0%, #1a1a0d 50%, #0d1a1a 100%)",
+          background: "linear-gradient(135deg, #ffffff 0%, #f5f5f7 50%, #eaeaea 100%)",
           opacity: 0.8,
         }}
       />
@@ -81,26 +82,29 @@ export const NewsBreaking: React.FC = () => {
       <div
         style={{
           position: "absolute",
-          top: 32,
-          left: 40,
+          top: 40,
+          left: 48,
           opacity: badgeOpacity,
           display: "flex",
           alignItems: "center",
-          gap: 12,
+          gap: 16,
         }}
       >
         <div
           style={{
-            background: "#ff0000",
-            color: "white",
-            fontWeight: 900,
-            fontSize: 20,
-            padding: "8px 18px",
-            borderRadius: 4,
-            letterSpacing: "0.1em",
+            background: "rgba(255,255,255,0.7)",
+            backdropFilter: "blur(20px)",
+            border: "1px solid rgba(0,0,0,0.05)",
+            boxShadow: "0 10px 30px rgba(0,0,0,0.04)",
+            color: "#1d1d1f",
+            fontWeight: 800,
+            fontSize: 22,
+            padding: "8px 20px",
+            borderRadius: 16,
+            letterSpacing: "0.05em",
           }}
         >
-          NEWS24
+          NEWS<span style={{ color: "#ff3b30" }}>24</span>
         </div>
         {/* LIVE badge */}
         <div
@@ -108,15 +112,16 @@ export const NewsBreaking: React.FC = () => {
             display: "flex",
             alignItems: "center",
             gap: 8,
-            background: "rgba(255,0,0,0.15)",
-            border: "1px solid rgba(255,0,0,0.4)",
-            padding: "6px 14px",
-            borderRadius: 4,
+            background: "rgba(255, 59, 48, 0.1)",
+            border: "1px solid rgba(255, 59, 48, 0.2)",
+            padding: "8px 16px",
+            borderRadius: 16,
             opacity: livePulse ? 1 : 0.5,
+            backdropFilter: "blur(8px)",
           }}
         >
-          <div style={{ width: 8, height: 8, borderRadius: "50%", background: "#ff0000" }} />
-          <span style={{ fontSize: 14, fontWeight: 700, color: "#ff4444", letterSpacing: "0.15em" }}>LIVE</span>
+          <Radio size={18} color="#ff3b30" strokeWidth={3} />
+          <span style={{ fontSize: 15, fontWeight: 800, color: "#ff3b30", letterSpacing: "0.15em" }}>LIVE</span>
         </div>
       </div>
 
@@ -124,54 +129,74 @@ export const NewsBreaking: React.FC = () => {
       <div
         style={{
           position: "absolute",
-          top: 38,
-          right: 40,
+          top: 48,
+          right: 48,
           fontSize: 18,
-          color: "rgba(255,255,255,0.5)",
+          color: "#86868b",
           fontWeight: 500,
           opacity: badgeOpacity,
+          display: "flex",
+          alignItems: "center",
+          gap: 8,
         }}
       >
-        09:42 AM · APR 30, 2026
+        <Clock size={18} />
+        09:42 AM <span style={{ color: "rgba(0,0,0,0.2)" }}>|</span> APR 30, 2026
       </div>
 
       {/* Main headline area */}
       <div
         style={{
           position: "absolute",
-          bottom: 100,
-          left: 0,
-          right: 0,
+          bottom: 120,
+          left: 80,
+          right: 80,
           opacity: headlineOpacity,
           transform: `translateY(${headlineY}px)`,
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "flex-start",
         }}
       >
         {/* BREAKING bar */}
         <div
           style={{
-            background: "#ff0000",
-            padding: "12px 40px",
+            background: "rgba(255,255,255,0.85)",
+            backdropFilter: "blur(40px)",
+            border: "1px solid rgba(255, 59, 48, 0.4)",
+            padding: "12px 32px",
             display: "inline-flex",
             alignItems: "center",
-            gap: 16,
+            gap: 12,
             transform: `translateX(${barX}px)`,
+            boxShadow: "0 10px 30px rgba(255, 59, 48, 0.15)",
+            borderRadius: 32,
+            marginBottom: 20,
+            zIndex: 2,
           }}
         >
-          <span style={{ fontSize: 22, fontWeight: 900, color: "white", letterSpacing: "0.2em" }}>
-            ⚡ BREAKING NEWS
+          <Zap size={24} color="#ff3b30" fill="#ff3b30" strokeWidth={2.5} />
+          <span style={{ fontSize: 20, fontWeight: 900, color: "#ff3b30", letterSpacing: "0.05em" }}>
+            BREAKING NEWS
           </span>
         </div>
 
         {/* Headline */}
         <div
           style={{
-            background: "rgba(0,0,0,0.88)",
-            padding: "20px 40px",
-            fontSize: 42,
+            background: "rgba(255,255,255,0.7)",
+            backdropFilter: "blur(40px)",
+            border: "1px solid rgba(0,0,0,0.05)",
+            boxShadow: "0 20px 40px rgba(0,0,0,0.06)",
+            padding: "24px 48px",
+            fontSize: 46,
             fontWeight: 800,
-            color: "white",
-            lineHeight: 1.3,
-            maxWidth: "80%",
+            color: "#1d1d1f",
+            lineHeight: 1.25,
+            maxWidth: "85%",
+            letterSpacing: "-0.04em",
+            borderTopLeftRadius: 32,
+            borderTopRightRadius: 32,
           }}
         >
           Major Breakthrough in Video Automation Technology Announced
@@ -180,14 +205,26 @@ export const NewsBreaking: React.FC = () => {
         {/* Sub-headline */}
         <div
           style={{
-            background: "rgba(0,0,0,0.75)",
-            padding: "12px 40px",
-            fontSize: 22,
-            color: "rgba(255,255,255,0.7)",
+            background: "rgba(255,255,255,0.6)",
+            display: "inline-flex",
+            alignItems: "center",
+            gap: 16,
+            padding: "16px 48px",
             opacity: infoOpacity,
+            backdropFilter: "blur(40px)",
+            border: "1px solid rgba(0,0,0,0.05)",
+            color: "#86868b",
+            fontSize: 20,
+            fontWeight: 500,
+            borderTop: "none",
+            borderBottomRightRadius: 32,
+            borderBottomLeftRadius: 32,
+            marginTop: -1,
           }}
         >
-          SwiftClip releases 20 new templates for developers · Full story developing
+          <span>SwiftClip releases 20 new templates for developers</span>
+          <div style={{ width: 6, height: 6, borderRadius: "50%", background: "#ff3b30" }} />
+          <span style={{ color: "#ff3b30", fontWeight: 700 }}>Full story developing</span>
         </div>
       </div>
 
@@ -195,11 +232,15 @@ export const NewsBreaking: React.FC = () => {
       <div
         style={{
           position: "absolute",
-          bottom: 0,
-          left: 0,
-          right: 0,
-          height: 48,
-          background: "#ff0000",
+          bottom: 32,
+          left: 80,
+          right: 80,
+          height: 64,
+          background: "rgba(255,255,255,0.6)",
+          border: "1px solid rgba(0,0,0,0.05)",
+          boxShadow: "0 10px 30px rgba(0,0,0,0.04)",
+          borderRadius: 32,
+          backdropFilter: "blur(40px)",
           display: "flex",
           alignItems: "center",
           overflow: "hidden",
@@ -208,8 +249,8 @@ export const NewsBreaking: React.FC = () => {
       >
         <div
           style={{
-            background: "#cc0000",
-            padding: "0 20px",
+            background: "#1d1d1f",
+            padding: "0 32px",
             height: "100%",
             display: "flex",
             alignItems: "center",
@@ -219,8 +260,8 @@ export const NewsBreaking: React.FC = () => {
         >
           <span style={{ fontSize: 16, fontWeight: 900, color: "white", letterSpacing: "0.1em" }}>LATEST</span>
         </div>
-        <div style={{ transform: `translateX(${tickerX}px)`, whiteSpace: "nowrap", fontSize: 18, fontWeight: 600, color: "white", letterSpacing: "0.03em" }}>
-          ● SwiftClip launches 20 new video templates &nbsp;&nbsp;&nbsp;●&nbsp;&nbsp;&nbsp; Remotion v5 release expected Q3 2026 &nbsp;&nbsp;&nbsp;●&nbsp;&nbsp;&nbsp; Video automation market hits $12B &nbsp;&nbsp;&nbsp;●&nbsp;&nbsp;&nbsp; Developer tools surge in popularity
+        <div style={{ transform: `translateX(${tickerX}px)`, whiteSpace: "nowrap", fontSize: 20, fontWeight: 600, color: "#1d1d1f", letterSpacing: "0.02em", paddingLeft: 32 }}>
+          ●&nbsp;&nbsp;&nbsp; SwiftClip launches 20 new video templates &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;●&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Remotion v5 release expected Q3 2026 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;●&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Video automation market hits $12B &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;●&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Developer tools surge in popularity
         </div>
       </div>
     </AbsoluteFill>

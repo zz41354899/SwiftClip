@@ -1,23 +1,9 @@
 import { AbsoluteFill, useCurrentFrame, interpolate, Easing } from "remotion";
 
-const MESH_COLORS = [
-  { x: 20, y: 30, color: "#6366f1", size: 700 },
-  { x: 75, y: 20, color: "#ec4899", size: 600 },
-  { x: 85, y: 75, color: "#f59e0b", size: 550 },
-  { x: 10, y: 80, color: "#22c55e", size: 500 },
-  { x: 50, y: 55, color: "#06b6d4", size: 650 },
-];
-
 export const GradientReveal: React.FC = () => {
   const frame = useCurrentFrame();
 
   const bgOpacity = interpolate(frame, [0, 25], [0, 1], {
-    extrapolateLeft: "clamp",
-    extrapolateRight: "clamp",
-  });
-
-  // Blobs drift slowly
-  const drift = interpolate(frame, [0, 180], [0, 1], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
   });
@@ -67,8 +53,8 @@ export const GradientReveal: React.FC = () => {
   return (
     <AbsoluteFill
       style={{
-        background: "#06060a",
-        fontFamily: "Inter, system-ui, -apple-system, sans-serif",
+        background: "#f5f5f7",
+        fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
         overflow: "hidden",
         opacity: bgOpacity,
         display: "flex",
@@ -76,36 +62,14 @@ export const GradientReveal: React.FC = () => {
         justifyContent: "center",
       }}
     >
-      {/* Mesh gradient blobs */}
-      {MESH_COLORS.map((blob, i) => {
-        const driftX = Math.sin(drift * Math.PI * 2 + i * 1.2) * 3;
-        const driftY = Math.cos(drift * Math.PI * 2 + i * 0.8) * 3;
-        return (
-          <div
-            key={i}
-            style={{
-              position: "absolute",
-              width: blob.size,
-              height: blob.size,
-              borderRadius: "50%",
-              background: `radial-gradient(circle, ${blob.color}55 0%, transparent 65%)`,
-              left: `${blob.x + driftX}%`,
-              top: `${blob.y + driftY}%`,
-              transform: "translate(-50%, -50%)",
-              filter: "blur(80px)",
-              mixBlendMode: "screen",
-            }}
-          />
-        );
-      })}
-
       {/* Frosted glass card */}
       <div
         style={{
-          background: "rgba(255,255,255,0.07)",
+          background: "rgba(255,255,255,0.7)",
           backdropFilter: "blur(40px)",
-          border: "1px solid rgba(255,255,255,0.12)",
-          borderRadius: 40,
+          border: "1px solid rgba(0,0,0,0.05)",
+          boxShadow: "0 20px 40px rgba(0,0,0,0.06)",
+          borderRadius: 64,
           padding: "72px 96px",
           width: 960,
           transform: `scale(${cardScale})`,
@@ -114,19 +78,6 @@ export const GradientReveal: React.FC = () => {
           overflow: "hidden",
         }}
       >
-        {/* Glass shimmer */}
-        <div
-          style={{
-            position: "absolute",
-            top: 0,
-            left: "-100%",
-            width: "200%",
-            height: 1,
-            background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent)",
-            transform: `translateX(${drift * 200}%)`,
-          }}
-        />
-
         <div style={{ textAlign: "center" }}>
           {/* Main headline */}
           <div
@@ -134,8 +85,8 @@ export const GradientReveal: React.FC = () => {
               fontSize: 96,
               fontWeight: 900,
               lineHeight: 1.05,
-              letterSpacing: "-0.03em",
-              color: "white",
+              letterSpacing: "-0.01em",
+              color: "#1d1d1f",
               opacity: textOpacity,
               transform: `translateY(${textY}px)`,
               marginBottom: 28,
@@ -145,9 +96,7 @@ export const GradientReveal: React.FC = () => {
             <br />
             <span
               style={{
-                background: "linear-gradient(135deg, #6366f1, #ec4899, #f59e0b)",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
+                color: "#0066cc",
               }}
             >
               Limits
@@ -157,12 +106,14 @@ export const GradientReveal: React.FC = () => {
           {/* Sub */}
           <p
             style={{
-              fontSize: 26,
-              color: "rgba(255,255,255,0.5)",
+              fontSize: 24,
+              color: "#86868b",
               lineHeight: 1.6,
+              letterSpacing: "-0.01em",
               marginBottom: 40,
               opacity: subOpacity,
               transform: `translateY(${subY}px)`,
+              fontWeight: 500,
             }}
           >
             Beautiful motion graphics, zero timeline editing
@@ -183,12 +134,13 @@ export const GradientReveal: React.FC = () => {
                 key={i}
                 style={{
                   padding: "10px 28px",
-                  background: "rgba(255,255,255,0.1)",
-                  border: "1px solid rgba(255,255,255,0.15)",
-                  borderRadius: 100,
+                  background: "#0066cc",
+                  border: "1px solid rgba(0,0,0,0.05)",
+                  borderRadius: 32,
                   fontSize: 18,
                   fontWeight: 600,
-                  color: "rgba(255,255,255,0.7)",
+                  color: "#ffffff",
+                  letterSpacing: "-0.01em",
                 }}
               >
                 {pill}

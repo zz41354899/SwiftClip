@@ -4,7 +4,7 @@ import {
   interpolate,
   Easing,
 } from "remotion";
-import { Play } from "lucide-react";
+import { Play, Clock } from "lucide-react";
 
 interface TutorialIntroProps {
   title?: string;
@@ -18,8 +18,7 @@ export const TutorialIntro: React.FC<TutorialIntroProps> = ({
 }) => {
   const frame = useCurrentFrame();
 
-  // Card slide in from left
-  const cardX = interpolate(frame, [0, 40], [-200, 0], {
+  const cardY = interpolate(frame, [0, 40], [60, 0], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
     easing: Easing.out(Easing.cubic),
@@ -30,14 +29,12 @@ export const TutorialIntro: React.FC<TutorialIntroProps> = ({
     extrapolateRight: "clamp",
   });
 
-  // Play icon scale
   const playScale = interpolate(frame, [30, 80], [0.5, 1], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
     easing: Easing.out(Easing.cubic),
   });
 
-  // Bottom text fade
   const textOpacity = interpolate(frame, [60, 100], [0, 1], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
@@ -46,28 +43,13 @@ export const TutorialIntro: React.FC<TutorialIntroProps> = ({
   return (
     <AbsoluteFill
       style={{
-        background: "linear-gradient(135deg, #080810 0%, #0a0a14 100%)",
+        background: "#ffffff",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        fontFamily: "Inter, system-ui, -apple-system, sans-serif",
+        fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto',
       }}
     >
-      {/* Glow background */}
-      <div
-        style={{
-          position: "absolute",
-          width: 500,
-          height: 500,
-          borderRadius: "50%",
-          background:
-            "radial-gradient(circle, rgba(100,140,255,0.15) 0%, transparent 70%)",
-          filter: "blur(80px)",
-          opacity: 0.5,
-        }}
-      />
-
-      {/* Main card */}
       <div
         style={{
           position: "relative",
@@ -75,70 +57,75 @@ export const TutorialIntro: React.FC<TutorialIntroProps> = ({
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
-          gap: 40,
-          transform: `translateX(${cardX}px)`,
+          gap: 48,
+          transform: `translateY(${cardY}px)`,
           opacity: cardOpacity,
+          background: "rgba(255,255,255,0.7)",
+          backdropFilter: "blur(40px)",
+          border: "1px solid rgba(0,0,0,0.05)", boxShadow: "0 20px 40px rgba(0,0,0,0.06)",
+          borderRadius: 48,
+          padding: "100px 140px",
         }}
       >
-        {/* Play button circle */}
         <div
           style={{
-            width: 150,
-            height: 150,
+            width: 160,
+            height: 160,
             borderRadius: "50%",
-            background: "rgba(255, 255, 255, 0.08)",
-            border: "2px solid rgba(192, 192, 192, 0.3)",
+            background: "rgba(255,255,255,0.7)",
+            border: "1px solid rgba(0,0,0,0.05)", boxShadow: "0 20px 40px rgba(0,0,0,0.06)",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
             transform: `scale(${playScale})`,
-            backdropFilter: "blur(12px)",
+            backdropFilter: "blur(40px)",
           }}
         >
           <div
             style={{
-              width: 60,
-              height: 60,
+              width: 80,
+              height: 80,
               borderRadius: "50%",
-              background: "linear-gradient(135deg, #ffffff 0%, #c0c0c0 100%)",
+              background: "white",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
             }}
           >
-            <div style={{ color: "#080810", marginLeft: 3 }}>▶</div>
+            <Play size={40} fill="#000" color="#000" style={{ marginLeft: 6 }} />
           </div>
         </div>
 
-        {/* Title */}
         <div
           style={{
-            fontSize: 56,
-            fontWeight: 700,
-            color: "#ffffff",
+            fontSize: 72,
+            fontWeight: 800,
+            color: "#1d1d1f",
             textAlign: "center",
-            letterSpacing: "-0.01em",
+            letterSpacing: "-0.04em",
+            maxWidth: 600,
+            lineHeight: 1.1,
           }}
         >
           {title}
         </div>
 
-        {/* Duration badge */}
         <div
           style={{
             opacity: textOpacity,
             display: "flex",
             alignItems: "center",
-            gap: 8,
-            padding: "8px 16px",
-            borderRadius: 24,
-            background: "rgba(192, 192, 192, 0.1)",
-            border: "1px solid rgba(192, 192, 192, 0.2)",
-            fontSize: 14,
-            color: "rgba(255, 255, 255, 0.6)",
+            gap: 12,
+            padding: "16px 32px",
+            borderRadius: 32,
+            background: "rgba(0,0,0,0.05)",
+            border: "1px solid rgba(0,0,0,0.05)",
+            fontSize: 24,
+            fontWeight: 600,
+            color: "#1d1d1f",
           }}
         >
-          <span>⏱️</span>
+          <Clock size={24} color="rgba(255,255,255,0.6)" />
           <span>{duration}</span>
         </div>
       </div>

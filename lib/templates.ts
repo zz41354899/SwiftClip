@@ -918,33 +918,90 @@ export const TypewriterQuote: React.FC = () => {
 };`
   },
   {
-    id: "glitch-title",
-    title: "Glitch Title",
-    description: "Cyberpunk RGB split glitch text effect with scanlines, color channels, and dramatic reveal.",
-    tags: ["Motion", "Gaming"],
+    id: "dynamic-island",
+    title: "Apple Dynamic Island",
+    description: "Smooth fluid Dynamic Island animation that expands to reveal content and collapses like Apple iOS.",
+    tags: ["UI", "Motion"],
     duration: "5s",
-    remotionId: "GlitchTitle",
+    remotionId: "DynamicIsland",
     fps: 30,
     durationInFrames: 150,
     width: 1920,
     height: 1080,
-    videoUrl: "/videos/glitch-title.mp4",
-    codeSnippet: `import { AbsoluteFill, useCurrentFrame, interpolate } from "remotion";
+    videoUrl: "/videos/dynamic-island.mp4",
+    codeSnippet: `import { AbsoluteFill, interpolate, spring, useCurrentFrame, useVideoConfig } from "remotion";
+import React from "react";
 
-export const GlitchTitle: React.FC = () => {
+export const DynamicIsland: React.FC = () => {
   const frame = useCurrentFrame();
-  const glitchCycle = (frame - 30) % 22;
-  const isGlitching = glitchCycle < 5 && frame > 30 && frame < 130;
-  const redX = isGlitching ? (glitchCycle < 2 ? 12 : -6) : 0;
-  const blueX = isGlitching ? (glitchCycle < 2 ? -12 : 8) : 0;
-  const mainOpacity = interpolate(frame, [10, 30], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
+  const { fps } = useVideoConfig();
+
+  const initialPop = spring({ frame, fps, config: { damping: 14 } });
+  const expandProgress = spring({ frame: frame - 40, fps, config: { damping: 14 } });
+  const collapseProgress = spring({ frame: frame - 110, fps, config: { damping: 14 } });
+
+  const pillBaseWidth = 140;
+  const pillBaseHeight = 44;
+  const pillExpandedWidth = 380;
+  const pillExpandedHeight = 100;
+
+  const currentWidth = interpolate(collapseProgress, [0, 1], [
+    interpolate(expandProgress, [0, 1], [pillBaseWidth, pillExpandedWidth]),
+    pillBaseWidth
+  ]);
+
+  const currentHeight = interpolate(collapseProgress, [0, 1], [
+    interpolate(expandProgress, [0, 1], [pillBaseHeight, pillExpandedHeight]),
+    pillBaseHeight
+  ]);
+
+  const borderRadius = currentHeight / 2.5; 
+  const topPadding = 20;
+
+  const expandedContentOpacity = interpolate(collapseProgress, [0, 0.5], [
+    interpolate(expandProgress, [0.5, 1], [0, 1]),
+    0
+  ]);
 
   return (
-    <AbsoluteFill style={{ background: "#020202", fontFamily: "Inter, sans-serif", display: "flex", alignItems: "center", justifyContent: "center", flexDirection: "column" }}>
-      <div style={{ position: "relative", opacity: mainOpacity }}>
-        <div style={{ position: "absolute", fontSize: 220, fontWeight: 900, color: "#ff003c", mixBlendMode: "screen", transform: \`translateX(\${redX}px)\`, opacity: isGlitching ? 0.7 : 0, letterSpacing: "0.06em" }}>GLITCH</div>
-        <div style={{ position: "absolute", fontSize: 220, fontWeight: 900, color: "#00c8ff", mixBlendMode: "screen", transform: \`translateX(\${blueX}px)\`, opacity: isGlitching ? 0.7 : 0, letterSpacing: "0.06em" }}>GLITCH</div>
-        <div style={{ fontSize: 220, fontWeight: 900, color: "white", letterSpacing: "0.06em", textShadow: isGlitching ? "0 0 30px rgba(255,255,255,0.8)" : "none" }}>GLITCH</div>
+    <AbsoluteFill style={{ background: "#f5f5f7", fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto' }}>
+      <div
+        style={{
+          position: "absolute",
+          top: topPadding,
+          left: "50%",
+          transform: \`translateX(-50%) scale(\${interpolate(initialPop, [0, 1], [0.8, 1])})\`,
+          opacity: interpolate(initialPop, [0.5, 1], [0, 1]),
+          width: currentWidth,
+          height: currentHeight,
+          backgroundColor: "#000000",
+          borderRadius,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          overflow: "hidden",
+          boxShadow: "0 10px 30px rgba(0,0,0,0.15)",
+        }}
+      >
+        <div style={{ opacity: expandedContentOpacity, color: "white", display: "flex", flexDirection: "row", alignItems: "center", width: "100%", padding: "0 24px", justifyContent: "space-between" }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
+                <div style={{ width: 52, height: 52, borderRadius: 26, backgroundColor: "#333", display:"flex", alignItems:"center", justifyContent:"center" }}>
+                    <div style={{ width: 24, height: 24, borderRadius: "50%", background: "linear-gradient(135deg, #FF9F0A 0%, #FF375F 100%)" }} />
+                </div>
+                <div style={{ display: "flex", flexDirection: "column", gap: 4 }}>
+                    <span style={{ fontSize: 16, fontWeight: 500, color: "#8e8e93" }}>Incoming...</span>
+                    <span style={{ fontSize: 18, fontWeight: 600 }}>0:12</span>
+                </div>
+            </div>
+            <div style={{ display: "flex", gap: 12 }}>
+                <div style={{ width: 44, height: 44, borderRadius: 22, backgroundColor: "#333", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                    <div style={{ width: 14, height: 14, backgroundColor: "#FF453A", borderRadius: 7 }} />
+                </div>
+                <div style={{ width: 44, height: 44, borderRadius: 22, backgroundColor: "#32D74B", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                    <div style={{ width: 16, height: 16, border: "2px solid #fff", borderRadius: 8 }} />
+                </div>
+            </div>
+        </div>
       </div>
     </AbsoluteFill>
   );
@@ -1419,38 +1476,28 @@ export const Timeline: React.FC = () => {
 };`
   },
   {
-    id: "app-promo",
-    title: "App Promo",
-    description: "9:16 mobile app promotional video with phone mockup, floating notification, feature pills, and pulsing download CTA.",
-    tags: ["Marketing", "Reels"],
+    id: "web-promo",
+    title: "Web Promo",
+    description: "16:9 promotional video for websites with browser mockup, feature highlights, and elegant scroll effects.",
+    tags: ["Marketing", "Web"],
     duration: "10s",
-    remotionId: "AppPromo",
+    remotionId: "WebPromo",
     fps: 30,
     durationInFrames: 300,
-    width: 1080,
-    height: 1920,
-    videoUrl: "/videos/app-promo.mp4",
+    width: 1920,
+    height: 1080,
+    videoUrl: "/videos/web-promo.mp4",
     codeSnippet: `import { AbsoluteFill, useCurrentFrame, interpolate, Easing } from "remotion";
 
-export const AppPromo: React.FC = () => {
+export const WebPromo: React.FC = () => {
   const frame = useCurrentFrame();
-  const mockupScale = interpolate(frame, [20, 60], [0.7, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: Easing.out(Easing.back(1.1)) });
-  const ctaOpacity = interpolate(frame, [200, 230], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
-
+  const titleOpacity = interpolate(frame, [0, 20], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
+  
   return (
-    <AbsoluteFill style={{ background: "linear-gradient(180deg, #06060c, #0f0e24, #06060c)", fontFamily: "Inter, sans-serif", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "flex-start", paddingTop: 80 }}>
-      <div style={{ fontSize: 72, fontWeight: 900, color: "white", textAlign: "center", marginBottom: 48 }}>
-        SwiftClip <span style={{ background: "linear-gradient(135deg, #6366f1, #a855f7)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>Mobile</span>
+    <AbsoluteFill style={{ background: "#ffffff", fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto', display: "flex", justifyContent: "center", alignItems: "center" }}>
+      <div style={{ fontSize: 96, fontWeight: 900, color: "#1d1d1f", opacity: titleOpacity, letterSpacing: "-0.04em" }}>
+        Web Promo
       </div>
-      <div style={{ width: 340, height: 520, transform: \`scale(\${mockupScale})\` }}>
-        <div style={{ width: "100%", height: "100%", background: "rgba(255,255,255,0.06)", border: "2px solid rgba(255,255,255,0.12)", borderRadius: 52, overflow: "hidden", boxShadow: "0 40px 100px rgba(0,0,0,0.6)" }}>
-          <div style={{ height: 40, background: "rgba(0,0,0,0.4)", display: "flex", alignItems: "center", justifyContent: "center" }}><div style={{ width: 60, height: 6, borderRadius: 100, background: "rgba(255,255,255,0.15)" }} /></div>
-          <div style={{ padding: "20px 24px" }}>
-            <div style={{ height: 140, borderRadius: 16, background: "linear-gradient(135deg, #6366f1, #a855f7)", display: "flex", alignItems: "center", justifyContent: "center" }}><span style={{ fontSize: 40 }}>▶</span></div>
-          </div>
-        </div>
-      </div>
-      <div style={{ marginTop: 40, background: "linear-gradient(135deg, #6366f1, #a855f7)", borderRadius: 100, padding: "20px 56px", fontSize: 22, fontWeight: 700, color: "white", opacity: ctaOpacity }}>Download Free →</div>
     </AbsoluteFill>
   );
 };`
