@@ -7,13 +7,13 @@ export const metadata: Metadata = {
     template: "%s | SwiftClip",
   },
   description:
-    "29 production-ready Remotion video templates built with React & TypeScript. Code-driven video, frame-perfect animations, zero config.",
+    "30 production-ready Remotion video templates built with React & TypeScript. Code-driven video, frame-perfect animations, zero config.",
   keywords: ["Remotion", "video templates", "React video", "TypeScript", "animation", "open source"],
   authors: [{ name: "SwiftClip" }],
   openGraph: {
     title: "SwiftClip — Video Templates for Developers",
     description:
-      "29 production-ready Remotion video templates built with React & TypeScript.",
+      "30 production-ready Remotion video templates built with React & TypeScript.",
     url: "https://github.com/zz41354899/SwiftClip",
     siteName: "SwiftClip",
     type: "website",
@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     card: "summary",
     title: "SwiftClip — Video Templates for Developers",
     description:
-      "29 production-ready Remotion video templates built with React & TypeScript.",
+      "30 production-ready Remotion video templates built with React & TypeScript.",
   },
 };
 
