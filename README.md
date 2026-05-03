@@ -4,7 +4,7 @@
 
 SwiftClip is an open-source library of 30 copy-paste video composition templates. Instead of dragging keyframes in After Effects, you write React components. Every template is fully typed, zero-config, and renders to 4K MP4 in seconds.
 
-🌐 **Live site:** [swiftclip.dev](https://swiftclip.dev) *(update with your actual URL)*
+🌐 **Live site:** [swift-clip.vercel.app](https://swift-clip.vercel.app)
 
 ---
 
@@ -255,6 +255,28 @@ Use this checklist before submitting SwiftClip to the official Anthropic marketp
 - [ ] Or submit through Console: `https://platform.claude.com/plugins/submit`
 - [ ] Prepare a short listing description, install instructions, homepage URL, and support contact before submitting.
 - [ ] Confirm the repository is public, or that reviewers can access it.
+
+### Submission description
+
+Use this draft in the official marketplace submission form:
+
+> SwiftClip Remotion is a Claude Code plugin and GitHub-backed marketplace for planning and generating Remotion video compositions. It helps users align a video brief, recommend the best internal base template, produce a machine-readable preflight JSON and storyboard beats, then generate a derivative component and register it in `remotion/Root.tsx`. The plugin is designed for teams already working inside a Remotion project who want a structured workflow for template selection, brief confirmation, and composition generation.
+
+Suggested homepage URL:
+
+- `https://swift-clip.vercel.app/`
+
+Suggested repository URL:
+
+- `https://github.com/zz41354899/SwiftClip`
+
+Suggested install commands:
+
+```text
+/plugin marketplace add zz41354899/SwiftClip
+/plugin install swiftclip-remotion@swiftclip-tools
+/reload-plugins
+```
 
 
 ## 🎬 Rendering Options

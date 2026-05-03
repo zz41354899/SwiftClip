@@ -57,13 +57,6 @@ export function HeroSection() {
           >
             Read docs
           </Link>
-
-          <Link
-            href="/docs"
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 h-12 px-7 rounded-full bg-indigo-50 border border-indigo-200 text-[14px] font-semibold text-indigo-700 hover:bg-indigo-100 transition-colors hover:scale-[1.02] active:scale-[0.97]"
-          >
-            Claude workflow
-          </Link>
         </motion.div>
 
         <motion.div
