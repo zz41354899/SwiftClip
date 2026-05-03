@@ -21,7 +21,7 @@ export const templates: Template[] = [
     duration: "15s",
     remotionId: "ProductLaunch",
     fps: 30, durationInFrames: 450, width: 1920, height: 1080,
-    videoUrl: "/videos/product-launch.mp4",
+    videoUrl: "/gifs/product-launch.gif",
   },
   {
     id: "tutorial-intro",
@@ -31,7 +31,7 @@ export const templates: Template[] = [
     duration: "8s",
     remotionId: "TutorialIntro",
     fps: 30, durationInFrames: 240, width: 1920, height: 1080,
-    videoUrl: "/videos/tutorial-intro.mp4",
+    videoUrl: "/gifs/tutorial-intro.gif",
   },
   {
     id: "saas-promo",
@@ -41,7 +41,7 @@ export const templates: Template[] = [
     duration: "30s",
     remotionId: "SaaSPromo",
     fps: 30, durationInFrames: 900, width: 1920, height: 1080,
-    videoUrl: "/videos/saas-promo.mp4",
+    videoUrl: "/gifs/saas-promo.gif",
   },
   {
     id: "social-story",
@@ -51,7 +51,7 @@ export const templates: Template[] = [
     duration: "10s",
     remotionId: "SocialStory",
     fps: 30, durationInFrames: 300, width: 1080, height: 1920,
-    videoUrl: "/videos/social-story.mp4",
+    videoUrl: "/gifs/social-story.gif",
   },
   {
     id: "data-viz",
@@ -61,7 +61,7 @@ export const templates: Template[] = [
     duration: "20s",
     remotionId: "DataViz",
     fps: 30, durationInFrames: 600, width: 1920, height: 1080,
-    videoUrl: "/videos/data-viz.mp4",
+    videoUrl: "/gifs/data-viz.gif",
   },
   {
     id: "lower-third",
@@ -71,7 +71,7 @@ export const templates: Template[] = [
     duration: "5s",
     remotionId: "LowerThird",
     fps: 30, durationInFrames: 150, width: 1920, height: 1080,
-    videoUrl: "/videos/lower-third.mp4",
+    videoUrl: "/gifs/lower-third.gif",
   },
   {
     id: "testimonial-card",
@@ -81,7 +81,7 @@ export const templates: Template[] = [
     duration: "8s",
     remotionId: "TestimonialCard",
     fps: 30, durationInFrames: 240, width: 1080, height: 1080,
-    videoUrl: "/videos/testimonial-card.mp4",
+    videoUrl: "/gifs/testimonial-card.gif",
   },
   {
     id: "countdown-timer",
@@ -91,7 +91,7 @@ export const templates: Template[] = [
     duration: "7s",
     remotionId: "CountdownTimer",
     fps: 30, durationInFrames: 210, width: 1920, height: 1080,
-    videoUrl: "/videos/countdown-timer.mp4",
+    videoUrl: "/gifs/countdown-timer.gif",
   },
   {
     id: "brand-reveal",
@@ -101,7 +101,7 @@ export const templates: Template[] = [
     duration: "6s",
     remotionId: "BrandReveal",
     fps: 30, durationInFrames: 180, width: 1920, height: 1080,
-    videoUrl: "/videos/brand-reveal.mp4",
+    videoUrl: "/gifs/brand-reveal.gif",
   },
   {
     id: "vertical-story",
@@ -111,7 +111,7 @@ export const templates: Template[] = [
     duration: "10s",
     remotionId: "VerticalStory",
     fps: 30, durationInFrames: 300, width: 1080, height: 1920,
-    videoUrl: "/videos/vertical-story.mp4",
+    videoUrl: "/gifs/vertical-story.gif",
   },
   {
     id: "end-screen",
@@ -121,7 +121,7 @@ export const templates: Template[] = [
     duration: "7s",
     remotionId: "EndScreen",
     fps: 30, durationInFrames: 210, width: 1920, height: 1080,
-    videoUrl: "/videos/end-screen.mp4",
+    videoUrl: "/gifs/end-screen.gif",
   },
   {
     id: "metric-dashboard",
@@ -131,7 +131,7 @@ export const templates: Template[] = [
     duration: "8s",
     remotionId: "MetricDashboard",
     fps: 30, durationInFrames: 240, width: 1920, height: 1080,
-    videoUrl: "/videos/metric-dashboard.mp4",
+    videoUrl: "/gifs/metric-dashboard.gif",
   },
   {
     id: "typewriter-quote",
@@ -141,7 +141,7 @@ export const templates: Template[] = [
     duration: "8s",
     remotionId: "TypewriterQuote",
     fps: 30, durationInFrames: 240, width: 1920, height: 1080,
-    videoUrl: "/videos/typewriter-quote.mp4",
+    videoUrl: "/gifs/typewriter-quote.gif",
   },
   {
     id: "dynamic-island",
@@ -151,7 +151,7 @@ export const templates: Template[] = [
     duration: "5s",
     remotionId: "DynamicIsland",
     fps: 30, durationInFrames: 150, width: 1920, height: 1080,
-    videoUrl: "/videos/dynamic-island.mp4",
+    videoUrl: "/gifs/dynamic-island.gif",
   },
   {
     id: "pricing-card",
@@ -161,7 +161,7 @@ export const templates: Template[] = [
     duration: "8s",
     remotionId: "PricingCard",
     fps: 30, durationInFrames: 240, width: 1080, height: 1080,
-    videoUrl: "/videos/pricing-card.mp4",
+    videoUrl: "/gifs/pricing-card.gif",
   },
   {
     id: "bar-chart",
@@ -171,7 +171,7 @@ export const templates: Template[] = [
     duration: "8s",
     remotionId: "BarChart",
     fps: 30, durationInFrames: 240, width: 1920, height: 1080,
-    videoUrl: "/videos/bar-chart.mp4",
+    videoUrl: "/gifs/bar-chart.gif",
   },
   {
     id: "split-reveal",
@@ -181,7 +181,7 @@ export const templates: Template[] = [
     duration: "6s",
     remotionId: "SplitReveal",
     fps: 30, durationInFrames: 180, width: 1920, height: 1080,
-    videoUrl: "/videos/split-reveal.mp4",
+    videoUrl: "/gifs/split-reveal.gif",
   },
   {
     id: "event-promo",
@@ -191,7 +191,7 @@ export const templates: Template[] = [
     duration: "8s",
     remotionId: "EventPromo",
     fps: 30, durationInFrames: 240, width: 1920, height: 1080,
-    videoUrl: "/videos/event-promo.mp4",
+    videoUrl: "/gifs/event-promo.gif",
   },
   {
     id: "subscribe-cta",
@@ -201,7 +201,7 @@ export const templates: Template[] = [
     duration: "6s",
     remotionId: "SubscribeCTA",
     fps: 30, durationInFrames: 180, width: 1920, height: 1080,
-    videoUrl: "/videos/subscribe-cta.mp4",
+    videoUrl: "/gifs/subscribe-cta.gif",
   },
   {
     id: "news-breaking",
@@ -211,7 +211,7 @@ export const templates: Template[] = [
     duration: "10s",
     remotionId: "NewsBreaking",
     fps: 30, durationInFrames: 300, width: 1920, height: 1080,
-    videoUrl: "/videos/news-breaking.mp4",
+    videoUrl: "/gifs/news-breaking.gif",
   },
   {
     id: "minimal-title",
@@ -221,7 +221,7 @@ export const templates: Template[] = [
     duration: "5s",
     remotionId: "MinimalTitle",
     fps: 30, durationInFrames: 150, width: 1920, height: 1080,
-    videoUrl: "/videos/minimal-title.mp4",
+    videoUrl: "/gifs/minimal-title.gif",
   },
   {
     id: "gradient-reveal",
@@ -231,7 +231,7 @@ export const templates: Template[] = [
     duration: "6s",
     remotionId: "GradientReveal",
     fps: 30, durationInFrames: 180, width: 1920, height: 1080,
-    videoUrl: "/videos/gradient-reveal.mp4",
+    videoUrl: "/gifs/gradient-reveal.gif",
   },
   {
     id: "team-grid",
@@ -241,7 +241,7 @@ export const templates: Template[] = [
     duration: "8s",
     remotionId: "TeamGrid",
     fps: 30, durationInFrames: 240, width: 1920, height: 1080,
-    videoUrl: "/videos/team-grid.mp4",
+    videoUrl: "/gifs/team-grid.gif",
   },
   {
     id: "quote-story",
@@ -251,7 +251,7 @@ export const templates: Template[] = [
     duration: "8s",
     remotionId: "QuoteStory",
     fps: 30, durationInFrames: 240, width: 1080, height: 1920,
-    videoUrl: "/videos/quote-story.mp4",
+    videoUrl: "/gifs/quote-story.gif",
   },
   {
     id: "timeline",
@@ -261,7 +261,7 @@ export const templates: Template[] = [
     duration: "9s",
     remotionId: "Timeline",
     fps: 30, durationInFrames: 270, width: 1920, height: 1080,
-    videoUrl: "/videos/timeline.mp4",
+    videoUrl: "/gifs/timeline.gif",
   },
   {
     id: "web-promo",
@@ -271,7 +271,7 @@ export const templates: Template[] = [
     duration: "10s",
     remotionId: "WebPromo",
     fps: 30, durationInFrames: 300, width: 1920, height: 1080,
-    videoUrl: "/videos/web-promo.mp4",
+    videoUrl: "/gifs/web-promo.gif",
   },
   {
     id: "celebration-burst",
@@ -281,7 +281,7 @@ export const templates: Template[] = [
     duration: "6s",
     remotionId: "CelebrationBurst",
     fps: 30, durationInFrames: 180, width: 1080, height: 1080,
-    videoUrl: "/videos/celebration-burst.mp4",
+    videoUrl: "/gifs/celebration-burst.gif",
   },
   {
     id: "code-reveal",
@@ -291,7 +291,7 @@ export const templates: Template[] = [
     duration: "10s",
     remotionId: "CodeReveal",
     fps: 30, durationInFrames: 300, width: 1920, height: 1080,
-    videoUrl: "/videos/code-reveal.mp4",
+    videoUrl: "/gifs/code-reveal.gif",
   },
   {
     id: "product-card",
@@ -301,7 +301,7 @@ export const templates: Template[] = [
     duration: "6s",
     remotionId: "ProductCard",
     fps: 30, durationInFrames: 180, width: 1080, height: 1080,
-    videoUrl: "/videos/product-card.mp4",
+    videoUrl: "/gifs/product-card.gif",
   },
   {
     id: "ai-animation",
@@ -311,7 +311,7 @@ export const templates: Template[] = [
     duration: "8s",
     remotionId: "AiAnimation",
     fps: 30, durationInFrames: 240, width: 1920, height: 1080,
-    videoUrl: "/videos/ai-animation.mp4",
+    videoUrl: "/gifs/ai-animation.gif",
   },
 ];
 

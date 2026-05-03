@@ -9,29 +9,28 @@ function GithubIcon({ className }: { className?: string }) {
   );
 }
 
-
 const nav = [
   {
     heading: "Product",
     links: [
-      { label: "Templates", href: "/templates", external: false as const },
-      { label: "Docs", href: "/docs", external: false as const },
-      { label: "How it works", href: "/#workflow", external: false as const },
+      { label: "Templates", href: "/templates", external: false },
+      { label: "Docs", href: "/docs", external: false },
+      { label: "How it works", href: "/#workflow", external: false },
     ],
   },
   {
     heading: "Community",
     links: [
-      { label: "Community", href: "/community", external: false as const },
-      { label: "GitHub", href: "https://github.com/zz41354899/SwiftClip", external: true as const },
-      { label: "Remotion docs", href: "https://remotion.dev/docs", external: true as const },
+      { label: "Community", href: "/community", external: false },
+      { label: "GitHub", href: "https://github.com/zz41354899/SwiftClip", external: true },
+      { label: "Remotion docs", href: "https://remotion.dev/docs", external: true },
     ],
   },
   {
     heading: "Legal",
     links: [
-      { label: "Privacy policy", href: "/privacy", external: false as const },
-      { label: "Terms", href: "/terms", external: false as const },
+      { label: "Privacy", href: "/privacy", external: false },
+      { label: "Terms", href: "/terms", external: false },
     ],
   },
 ];
@@ -41,35 +40,31 @@ export function Footer() {
 
   return (
     <footer className="border-t border-black/10  bg-background pt-16 pb-8">
-      {/* Main footer */}
       <div className="max-w-6xl mx-auto px-6 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-[2fr_1fr_1fr_1fr] gap-10 mb-16">
-        {/* Brand */}
         <div className="col-span-2 sm:col-span-3 lg:col-span-1">
-          <Link href="/" className="inline-flex items-center gap-2 text-black  font-semibold text-base mb-4 tracking-tight">
+          <Link href="/" className="inline-flex items-center gap-2 text-black font-semibold text-base mb-4 tracking-tight">
             <Clapperboard className="w-[18px] h-[18px]" strokeWidth={2} />
             SwiftClip
           </Link>
-          <p className="text-black/50  text-[13px] leading-relaxed max-w-xs mb-6 font-light">
-            Production-ready Remotion video templates for developers who ship fast.
+          <p className="text-black/50 text-[13px] leading-relaxed max-w-xs mb-6 font-light">
+            Production-ready Remotion video templates built with React &amp; TypeScript.
           </p>
           <div className="flex items-center gap-3">
             <a
               href="https://github.com/zz41354899/SwiftClip"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-8 h-8 rounded-full border border-black/10  flex items-center justify-center text-black/40  hover:text-black  hover:border-black/20  transition-colors"
+              className="w-8 h-8 rounded-full border border-black/10 flex items-center justify-center text-black/40 hover:text-black hover:border-black/20 transition-colors"
               aria-label="GitHub"
             >
               <GithubIcon className="w-3.5 h-3.5" />
             </a>
-
           </div>
         </div>
 
-        {/* Nav columns */}
         {nav.map(({ heading, links }) => (
           <div key={heading}>
-            <p className="text-[12px] font-semibold tracking-wider text-black  mb-4">
+            <p className="text-[12px] font-semibold tracking-wider text-black mb-4">
               {heading}
             </p>
             <ul className="space-y-3">
@@ -80,14 +75,14 @@ export function Footer() {
                       href={href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-[13px] text-black/60  hover:text-black  transition-colors"
+                      className="text-[13px] text-black/60 hover:text-black transition-colors"
                     >
                       {label}
                     </a>
                   ) : (
                     <Link
                       href={href}
-                      className="text-[13px] text-black/60  hover:text-black  transition-colors"
+                      className="text-[13px] text-black/60 hover:text-black transition-colors"
                     >
                       {label}
                     </Link>
@@ -99,19 +94,16 @@ export function Footer() {
         ))}
       </div>
 
-      {/* Bottom bar */}
-      <div className="border-t border-black/5  px-6 pt-8 pb-4">
-        <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3 text-[12px] text-black/40  font-medium tracking-wide">
-          <p>
-            © {year} SwiftClip. All rights reserved.
-          </p>
+      <div className="border-t border-black/5 px-6 pt-8 pb-4">
+        <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3 text-[12px] text-black/40 font-medium tracking-wide">
+          <p>&copy; {year} SwiftClip</p>
           <p>
             Built with{" "}
-            <a href="https://remotion.dev" target="_blank" rel="noopener noreferrer" className="text-black/70  hover:text-black  hover:underline underline-offset-2">
+            <a href="https://remotion.dev" target="_blank" rel="noopener noreferrer" className="text-black/70 hover:text-black hover:underline underline-offset-2">
               Remotion
             </a>
             {" · "}
-            <a href="https://nextjs.org" target="_blank" rel="noopener noreferrer" className="text-black/70  hover:text-black  hover:underline underline-offset-2">
+            <a href="https://nextjs.org" target="_blank" rel="noopener noreferrer" className="text-black/70 hover:text-black hover:underline underline-offset-2">
               Next.js
             </a>
           </p>

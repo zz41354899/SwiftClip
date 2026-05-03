@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+
 import { Copy, Check } from "lucide-react";
 import { clsx } from "clsx";
 
@@ -10,7 +11,8 @@ interface Props {
   variant?: "ghost" | "primary";
 }
 
-export function TemplateCopyButton({ text, label = "Copy", variant = "ghost" }: Props) {
+export function TemplateCopyButton({ text, label, variant = "ghost" }: Props) {
+  const displayLabel = label ?? "Copy";
   const [copied, setCopied] = useState(false);
 
   const handleCopy = async () => {
@@ -37,12 +39,12 @@ export function TemplateCopyButton({ text, label = "Copy", variant = "ghost" }: 
         {copied ? (
           <>
             <Check className="w-4 h-4" />
-            Copied!
+            "Copied!"
           </>
         ) : (
           <>
             <Copy className="w-4 h-4" />
-            {label}
+            {displayLabel}
           </>
         )}
       </button>
@@ -53,17 +55,17 @@ export function TemplateCopyButton({ text, label = "Copy", variant = "ghost" }: 
     <button
       onClick={handleCopy}
       className="absolute top-3 right-3 flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-zinc-800 hover:bg-zinc-700 text-zinc-300 hover:text-white text-xs font-medium transition-all duration-150"
-      aria-label={label}
+      aria-label={displayLabel}
     >
       {copied ? (
         <>
           <Check className="w-3 h-3 text-green-400" />
-          Copied!
+          "Copied!"
         </>
       ) : (
         <>
           <Copy className="w-3 h-3" />
-          {label}
+          {displayLabel}
         </>
       )}
     </button>

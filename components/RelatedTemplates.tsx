@@ -1,13 +1,12 @@
 "use client";
 
-import { useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { Play } from "lucide-react";
 import { type Template, TAG_COLORS } from "@/lib/templates";
 
 function RelatedCard({ rel }: { rel: Template }) {
-  const [isHovered, setIsHovered] = useState(false);
-  const thumbnailSrc = rel.videoUrl.replace('/videos/', '/thumbnails/').replace('.mp4', '.jpg');
+  const isPortrait = rel.height > rel.width;
 
   return (
     <Link
@@ -17,35 +16,31 @@ function RelatedCard({ rel }: { rel: Template }) {
     >
       <div
         className="relative aspect-video overflow-hidden"
-        style={{ background: rel.height > rel.width ? '#0a0a14' : '#f4f4f5' }}
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
+        style={{ background: isPortrait ? "#0a0a14" : "#f4f4f5" }}
       >
-        {isHovered ? (
-          <video
-            key="video"
-            src={rel.videoUrl}
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="none"
-            className={`w-full h-full transition-transform duration-300 group-hover:scale-[1.03] ${
-              rel.height > rel.width ? 'object-contain' : 'object-cover'
-            }`}
-          />
-        ) : (
-          /* eslint-disable-next-line @next/next/no-img-element */
-          <img
-            key="img"
-            src={thumbnailSrc}
-            alt={rel.title}
-            loading="lazy"
-            className={`w-full h-full transition-transform duration-300 group-hover:scale-[1.03] ${
-              rel.height > rel.width ? 'object-contain' : 'object-cover'
-            }`}
-          />
-        )}
+        <div
+          className={`absolute inset-0 transition-transform duration-300 group-hover:scale-[1.03] ${
+            isPortrait ? "flex items-center justify-center" : ""
+          }`}
+        >
+          <div
+            className="relative"
+            style={
+              isPortrait
+                ? { aspectRatio: `${rel.width} / ${rel.height}`, height: "100%" }
+                : { width: "100%", height: "100%" }
+            }
+          >
+            <Image
+              src={`/thumbnails/${rel.id}.jpg`}
+              alt={rel.title}
+              fill
+              sizes="(max-width: 768px) 100vw, 33vw"
+              className="object-cover"
+              loading="lazy"
+            />
+          </div>
+        </div>
         <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200">
           <span className="flex items-center gap-1.5 px-3 py-1.5 bg-white rounded-xl text-xs font-semibold text-zinc-900 shadow">
             <Play className="w-3 h-3 fill-current" /> View

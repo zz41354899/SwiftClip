@@ -3,26 +3,33 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: {
-    default: "SwiftClip — Video Templates for Developers",
-    template: "%s | SwiftClip",
+    default: "SwiftClip",
+    template: "%s — SwiftClip",
   },
   description:
-    "30 production-ready Remotion video templates built with React & TypeScript. Code-driven video, frame-perfect animations, zero config.",
-  keywords: ["Remotion", "video templates", "React video", "TypeScript", "animation", "open source"],
+    "Production-ready Remotion video templates built with React & TypeScript. Free, open-source, copy-and-paste.",
+  keywords: [
+    "Remotion",
+    "video templates",
+    "React video",
+    "TypeScript",
+    "animation",
+    "open source",
+  ],
   authors: [{ name: "SwiftClip" }],
   openGraph: {
-    title: "SwiftClip — Video Templates for Developers",
+    title: "SwiftClip — React video templates",
     description:
-      "30 production-ready Remotion video templates built with React & TypeScript.",
+      "Production-ready Remotion video templates built with React & TypeScript. Free, open-source, copy-and-paste.",
     url: "https://github.com/zz41354899/SwiftClip",
     siteName: "SwiftClip",
     type: "website",
   },
   twitter: {
     card: "summary",
-    title: "SwiftClip — Video Templates for Developers",
+    title: "SwiftClip — React video templates",
     description:
-      "30 production-ready Remotion video templates built with React & TypeScript.",
+      "Production-ready Remotion video templates built with React & TypeScript. Free, open-source, copy-and-paste.",
   },
 };
 

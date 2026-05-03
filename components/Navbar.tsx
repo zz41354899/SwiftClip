@@ -18,7 +18,7 @@ const NAV_LINKS = [
   { label: "Templates", href: "/templates" },
   { label: "Community", href: "/community" },
   { label: "Docs", href: "/docs" },
-];
+] as const;
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -30,7 +30,6 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Close menu on resize to desktop
   useEffect(() => {
     const onResize = () => { if (window.innerWidth >= 768) setMenuOpen(false); };
     window.addEventListener("resize", onResize);
@@ -39,7 +38,6 @@ export function Navbar() {
 
   return (
     <header className="fixed top-4 md:top-6 inset-x-0 z-50 pointer-events-none flex justify-center px-4">
-      {/* Dynamic Island pill */}
       <motion.nav
         layout
         transition={{ type: "spring", stiffness: 300, damping: 30 }}
@@ -54,9 +52,7 @@ export function Navbar() {
           WebkitBackdropFilter: "blur(20px) saturate(180%)",
         }}
       >
-        {/* Top bar */}
         <div className="flex items-center justify-between px-3 py-2">
-          {/* Logo */}
           <Link
             href="/"
             onClick={() => setMenuOpen(false)}
@@ -66,7 +62,6 @@ export function Navbar() {
             <span>SwiftClip</span>
           </Link>
 
-          {/* Desktop nav links */}
           <ul className="hidden md:flex items-center gap-7 text-[13px] font-medium text-zinc-500">
             {NAV_LINKS.map(({ label, href }) => (
               <li key={href}>
@@ -77,8 +72,7 @@ export function Navbar() {
             ))}
           </ul>
 
-          {/* Desktop actions */}
-          <div className="hidden md:flex items-center gap-4">
+          <div className="hidden md:flex items-center gap-3">
             <a href="https://github.com/zz41354899/SwiftClip" target="_blank" rel="noopener noreferrer" className="text-zinc-400 hover:text-zinc-900 transition-colors" aria-label="GitHub">
               <GithubIcon className="w-[16px] h-[16px]" />
             </a>
@@ -90,8 +84,7 @@ export function Navbar() {
             </Link>
           </div>
 
-          {/* Mobile: icons + hamburger */}
-          <div className="flex md:hidden items-center gap-3 pr-1">
+          <div className="flex md:hidden items-center gap-2 pr-1">
             <a href="https://github.com/zz41354899/SwiftClip" target="_blank" rel="noopener noreferrer" className="text-zinc-400 hover:text-zinc-900 transition-colors" aria-label="GitHub">
               <GithubIcon className="w-[15px] h-[15px]" />
             </a>
@@ -102,23 +95,11 @@ export function Navbar() {
             >
               <AnimatePresence mode="wait" initial={false}>
                 {menuOpen ? (
-                  <motion.span
-                    key="close"
-                    initial={{ rotate: -45, opacity: 0 }}
-                    animate={{ rotate: 0, opacity: 1 }}
-                    exit={{ rotate: 45, opacity: 0 }}
-                    transition={{ duration: 0.18 }}
-                  >
+                  <motion.span key="close" initial={{ rotate: -45, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: 45, opacity: 0 }} transition={{ duration: 0.18 }}>
                     <X className="w-4 h-4" />
                   </motion.span>
                 ) : (
-                  <motion.span
-                    key="open"
-                    initial={{ rotate: 45, opacity: 0 }}
-                    animate={{ rotate: 0, opacity: 1 }}
-                    exit={{ rotate: -45, opacity: 0 }}
-                    transition={{ duration: 0.18 }}
-                  >
+                  <motion.span key="open" initial={{ rotate: 45, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: -45, opacity: 0 }} transition={{ duration: 0.18 }}>
                     <Menu className="w-4 h-4" />
                   </motion.span>
                 )}
@@ -127,7 +108,6 @@ export function Navbar() {
           </div>
         </div>
 
-        {/* Mobile dropdown menu */}
         <AnimatePresence>
           {menuOpen && (
             <motion.div

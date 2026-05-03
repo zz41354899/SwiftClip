@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+
 import { ChevronDown, ChevronUp } from "lucide-react";
 import { TemplateCopyButton } from "./TemplateCopyButton";
 
@@ -20,7 +21,6 @@ export function CollapsibleCode({ code }: { code: string }) {
         {visibleCode}
       </pre>
 
-      {/* Fade + expand button */}
       {isTruncatable && !expanded && (
         <div className="absolute bottom-0 left-0 right-0">
           <div className="h-16 bg-gradient-to-t from-zinc-950 to-transparent" />
@@ -36,7 +36,6 @@ export function CollapsibleCode({ code }: { code: string }) {
         </div>
       )}
 
-      {/* Collapse button when expanded */}
       {isTruncatable && expanded && (
         <div className="px-4 pb-3 flex justify-center border-t border-zinc-800 mt-1">
           <button

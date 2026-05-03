@@ -1,8 +1,9 @@
 import { notFound } from "next/navigation";
-import Link from "next/link";
 import { readFileSync } from "fs";
 import { join } from "path";
+import Link from "next/link";
 import { templates, TAG_COLORS } from "@/lib/templates";
+import { RemotionPlayer } from "@/components/RemotionPlayer";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { TemplateCopyButton } from "@/components/TemplateCopyButton";
@@ -14,22 +15,30 @@ export function generateStaticParams() {
   return templates.map((t) => ({ id: t.id }));
 }
 
-export async function generateMetadata({ params }: { params: Promise<{ id: string }> }) {
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
   const { id } = await params;
   const template = templates.find((t) => t.id === id);
-  if (!template) return { title: "Template not found" };
+  if (!template) return { title: "Template not found — SwiftClip" };
   return {
     title: `${template.title} — SwiftClip`,
     description: template.description,
   };
 }
 
-export default async function TemplatePage({ params }: { params: Promise<{ id: string }> }) {
+export default async function TemplatePage({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
   const { id } = await params;
+
   const template = templates.find((t) => t.id === id);
   if (!template) notFound();
 
-  // Read the actual source file for the code snippet (no duplication)
   let codeSnippet = "";
   try {
     codeSnippet = readFileSync(
@@ -40,54 +49,42 @@ export default async function TemplatePage({ params }: { params: Promise<{ id: s
     codeSnippet = `// Source file not found for ${template.remotionId}`;
   }
 
-  const related = templates.filter(
-    (t) => t.id !== template.id && t.tags.some((tag) => template.tags.includes(tag))
-  ).slice(0, 3);
+  const related = templates
+    .filter(
+      (x) => x.id !== template.id && x.tags.some((tag) => template.tags.includes(tag))
+    )
+    .slice(0, 3);
 
-  const renderCmd = `npx remotion render remotion/index.tsx ${template.remotionId} output.mp4`;
+  const renderCmd = `npx remotion render remotion/index.tsx ${template.remotionId} output.gif --codec=gif --width=720 --every-nth-frame=2 --num-loops=0`;
 
   return (
     <div className="min-h-screen bg-white flex flex-col">
       <Navbar />
 
       <main className="flex-1 pt-24">
-        {/* Back link */}
         <div className="max-w-6xl mx-auto px-6 pt-6 pb-2">
           <Link
             href="/templates"
             className="inline-flex items-center gap-1.5 text-sm text-zinc-500 hover:text-zinc-900 transition-colors font-medium"
           >
             <ArrowLeft className="w-4 h-4" />
-            All templates
+            Back to templates
           </Link>
         </div>
 
-        {/* Two-column layout */}
-        <div className="max-w-6xl mx-auto px-6 py-8 grid grid-cols-1 lg:grid-cols-[1fr_360px] gap-10 items-start">
-          {/* Left: video + code */}
+        <div className="max-w-6xl mx-auto px-6 py-8 grid grid-cols-1 lg:grid-cols-[680px_1fr] gap-10 items-start">
           <div>
-            {/* Video player */}
             <div
-              className="relative w-full bg-zinc-950 rounded-2xl overflow-hidden border border-zinc-200 shadow-sm mb-8"
+              className="relative w-full bg-zinc-100 rounded-2xl overflow-hidden border border-zinc-200 shadow-sm mb-8"
               style={{ aspectRatio: `${template.width} / ${template.height}` }}
             >
-              <video
-                src={template.videoUrl}
-                className="w-full h-full object-cover"
-                controls
-                autoPlay
-                loop
-                muted
-                playsInline
-              />
+              <RemotionPlayer templateId={template.id} />
             </div>
 
-            {/* Code blocks */}
             <div className="space-y-4">
-              {/* Render command */}
               <div>
                 <p className="text-xs font-semibold text-zinc-500 uppercase tracking-widest mb-2">
-                  Render with Remotion CLI
+                  Render CLI
                 </p>
                 <div className="relative rounded-xl bg-zinc-950 border border-zinc-800 p-4">
                   <pre className="text-xs text-zinc-300 font-mono overflow-x-auto">
@@ -97,7 +94,6 @@ export default async function TemplatePage({ params }: { params: Promise<{ id: s
                 </div>
               </div>
 
-              {/* Code snippet */}
               <div>
                 <p className="text-xs font-semibold text-zinc-500 uppercase tracking-widest mb-2">
                   Composition code
@@ -107,9 +103,7 @@ export default async function TemplatePage({ params }: { params: Promise<{ id: s
             </div>
           </div>
 
-          {/* Right: sidebar info */}
           <div className="lg:sticky lg:top-28 space-y-6">
-            {/* Title + tags */}
             <div>
               <h1 className="text-3xl font-bold text-zinc-950 tracking-tight mb-3">
                 {template.title}
@@ -121,7 +115,7 @@ export default async function TemplatePage({ params }: { params: Promise<{ id: s
                 {template.tags.map((tag) => (
                   <Link
                     key={tag}
-                    href={`/templates?tag=${tag}`}
+                    href={`/templates?tag=${encodeURIComponent(tag)}`}
                     className={`px-3 py-1 rounded-full text-xs font-semibold border transition-opacity hover:opacity-80 ${
                       TAG_COLORS[tag] ?? "bg-zinc-100 text-zinc-500 border-zinc-200"
                     }`}
@@ -132,7 +126,6 @@ export default async function TemplatePage({ params }: { params: Promise<{ id: s
               </div>
             </div>
 
-            {/* Metadata */}
             <div className="border border-zinc-100 rounded-2xl divide-y divide-zinc-100 bg-zinc-50">
               <div className="flex items-center justify-between px-4 py-3">
                 <span className="text-xs text-zinc-500 font-medium">Duration</span>
@@ -161,7 +154,6 @@ export default async function TemplatePage({ params }: { params: Promise<{ id: s
               </div>
             </div>
 
-            {/* CTA */}
             <div className="space-y-2">
               <TemplateCopyButton
                 text={codeSnippet}
@@ -176,14 +168,12 @@ export default async function TemplatePage({ params }: { params: Promise<{ id: s
               </Link>
             </div>
 
-            {/* Hint */}
             <p className="text-xs text-zinc-400 leading-relaxed">
-              Copy the code snippet into your Remotion project and run the render command to generate this template locally.
+              This is a free, open-source template. Copy the code and drop it into your Remotion project.
             </p>
           </div>
         </div>
 
-        {/* Related templates */}
         <RelatedTemplates templates={related} />
       </main>
 
