@@ -11,9 +11,10 @@ import { type Template, TAG_COLORS } from "@/lib/templates";
 interface TemplateCardProps {
   template: Template;
   index: number;
+  priority?: boolean;
 }
 
-export function TemplateCard({ template, index }: TemplateCardProps) {
+export function TemplateCard({ template, index, priority = false }: TemplateCardProps) {
   const isPortrait = template.height > template.width;
 
   return (
@@ -53,7 +54,8 @@ export function TemplateCard({ template, index }: TemplateCardProps) {
                 fill
                 sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
                 className="object-cover"
-                loading="lazy"
+                loading={priority ? "eager" : "lazy"}
+                priority={priority}
               />
             </div>
           </div>

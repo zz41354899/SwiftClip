@@ -72,6 +72,7 @@ export function RemotionPlayer({ templateId }: { templateId: string }) {
           fill
           sizes="(max-width: 1024px) 100vw, 680px"
           priority
+          loading="eager"
           className="object-cover"
         />
       </div>
@@ -116,6 +117,7 @@ export function RemotionPlayer({ templateId }: { templateId: string }) {
         fill
         sizes="(max-width: 1024px) 100vw, 680px"
         priority
+        loading="eager"
         className="object-cover"
       />
       <div

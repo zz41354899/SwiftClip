@@ -88,7 +88,7 @@ export function TemplateGrid() {
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {filteredTemplates.map((template, index) => (
-              <TemplateCard key={template.id} template={template} index={index} />
+              <TemplateCard key={template.id} template={template} index={index} priority={index < 6} />
             ))}
           </div>
         )}

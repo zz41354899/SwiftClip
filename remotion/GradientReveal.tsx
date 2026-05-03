@@ -3,151 +3,91 @@ import { AbsoluteFill, useCurrentFrame, interpolate, Easing } from "remotion";
 export const GradientReveal: React.FC = () => {
   const frame = useCurrentFrame();
 
-  const bgOpacity = interpolate(frame, [0, 25], [0, 1], {
+  // Background fade in
+  const bgOpacity = interpolate(frame, [0, 15], [0, 1], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
   });
 
-  // Main text reveal — slides up from behind a mask
-  const textY = interpolate(frame, [25, 65], [120, 0], {
-    extrapolateLeft: "clamp",
-    extrapolateRight: "clamp",
-    easing: Easing.out(Easing.cubic),
-  });
-
-  const textOpacity = interpolate(frame, [25, 50], [0, 1], {
-    extrapolateLeft: "clamp",
-    extrapolateRight: "clamp",
-  });
-
-  // Frosted glass card expands
-  const cardScale = interpolate(frame, [15, 50], [0.85, 1], {
+  // Text scaling out slightly for cinematic feel
+  const textScale = interpolate(frame, [20, 120], [0.92, 1.05], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
     easing: Easing.out(Easing.cubic),
   });
 
-  const cardOpacity = interpolate(frame, [15, 40], [0, 1], {
-    extrapolateLeft: "clamp",
-    extrapolateRight: "clamp",
+  // Gradient animation sweeping across the text
+  const gradientPos = interpolate(frame, [20, 95], [250, -50], {
+     extrapolateLeft: "clamp",
+     extrapolateRight: "clamp",
+     easing: Easing.inOut(Easing.cubic),
   });
 
-  const subOpacity = interpolate(frame, [55, 85], [0, 1], {
-    extrapolateLeft: "clamp",
-    extrapolateRight: "clamp",
-  });
-
-  const subY = interpolate(frame, [55, 85], [30, 0], {
+  // Fade in subtitle
+  const subOpacity = interpolate(frame, [80, 110], [0, 1], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
     easing: Easing.out(Easing.cubic),
   });
 
-  const pillsOpacity = interpolate(frame, [85, 115], [0, 1], {
+  const subY = interpolate(frame, [80, 110], [20, 0], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
+    easing: Easing.out(Easing.cubic),
   });
-
-  const pills = ["Design", "Motion", "Code", "Ship"];
 
   return (
     <AbsoluteFill
       style={{
-        background: "#f5f5f7",
-        fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
-        overflow: "hidden",
+        backgroundColor: "#f5f5f7",
+        fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
         opacity: bgOpacity,
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
+        flexDirection: "column",
       }}
     >
-      {/* Frosted glass card */}
+      {/* 
+        This is the Apple-style gradient text reveal. 
+        Instead of moving the text itself, we move the background gradient 
+        over the text, clipping the background to the text and dropping the fill.
+      */}
       <div
         style={{
-          background: "rgba(255,255,255,0.7)",
-          backdropFilter: "blur(40px)",
-          border: "1px solid rgba(0,0,0,0.05)",
-          boxShadow: "0 20px 40px rgba(0,0,0,0.06)",
-          borderRadius: 64,
-          padding: "72px 96px",
-          width: 960,
-          transform: `scale(${cardScale})`,
-          opacity: cardOpacity,
-          position: "relative",
-          overflow: "hidden",
+          fontSize: 280,
+          fontWeight: 800,
+          letterSpacing: "-0.04em",
+          lineHeight: 1.1,
+          textAlign: "center",
+          transform: `scale(${textScale})`,
+          // A clean dark text base, with a signature Apple HIG color sweep (Blue -> Indigo -> Purple -> Pink) from the right
+          backgroundImage: "linear-gradient(75deg, #1d1d1f 0%, #1d1d1f 23%, #007AFF 33%, #5856D6 43%, #AF52DE 53%, #FF2D55 60%, rgba(0,0,0,0.05) 75%, rgba(0,0,0,0) 100%)",
+          backgroundSize: "300% auto",
+          backgroundPosition: `${gradientPos}% center`,
+          WebkitBackgroundClip: "text",
+          WebkitTextFillColor: "transparent",
+          // Fallback text color for transparency support
+          color: "rgba(0,0,0,0.03)",
+          padding: "20px 0", // Give breathing room so clipping doesn't cut tall letters
         }}
       >
-        <div style={{ textAlign: "center" }}>
-          {/* Main headline */}
-          <div
-            style={{
-              fontSize: 96,
-              fontWeight: 900,
-              lineHeight: 1.05,
-              letterSpacing: "-0.01em",
-              color: "#1d1d1f",
-              opacity: textOpacity,
-              transform: `translateY(${textY}px)`,
-              marginBottom: 28,
-            }}
-          >
-            Create Without
-            <br />
-            <span
-              style={{
-                color: "#0066cc",
-              }}
-            >
-              Limits
-            </span>
-          </div>
+        
+      </div>
 
-          {/* Sub */}
-          <p
-            style={{
-              fontSize: 24,
-              color: "#86868b",
-              lineHeight: 1.6,
-              letterSpacing: "-0.01em",
-              marginBottom: 40,
-              opacity: subOpacity,
-              transform: `translateY(${subY}px)`,
-              fontWeight: 500,
-            }}
-          >
-            Beautiful motion graphics, zero timeline editing
-          </p>
-
-          {/* Pills */}
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              gap: 16,
-              opacity: pillsOpacity,
-              flexWrap: "wrap",
-            }}
-          >
-            {pills.map((pill, i) => (
-              <div
-                key={i}
-                style={{
-                  padding: "10px 28px",
-                  background: "#0066cc",
-                  border: "1px solid rgba(0,0,0,0.05)",
-                  borderRadius: 32,
-                  fontSize: 18,
-                  fontWeight: 600,
-                  color: "#ffffff",
-                  letterSpacing: "-0.01em",
-                }}
-              >
-                {pill}
-              </div>
-            ))}
-          </div>
-        </div>
+      {/* Subtitle fading in softly at the end */}
+      <div
+        style={{
+          marginTop: 40,
+          fontSize: 32,
+          fontWeight: 500,
+          color: "#86868b", // Apple's signature gray for dark mode
+          letterSpacing: "-0.01em",
+          opacity: subOpacity,
+          transform: `translateY(${subY}px)`,
+        }}
+      >
+        Pro performance. Unprecedented reveal.
       </div>
     </AbsoluteFill>
   );

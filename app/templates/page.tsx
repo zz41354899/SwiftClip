@@ -10,7 +10,7 @@ import { templates, type Template } from "@/lib/templates";
 import { Search, X, Clock, PlaySquare, SlidersHorizontal, ChevronDown } from "lucide-react";
 import { clsx } from "clsx";
 
-function TemplateMediaCard({ template }: { template: Template }) {
+function TemplateMediaCard({ template, priority = false }: { template: Template; priority?: boolean }) {
   const isPortrait = template.height > template.width;
 
   return (
@@ -42,7 +42,8 @@ function TemplateMediaCard({ template }: { template: Template }) {
               fill
               sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
               className="object-cover"
-              loading="lazy"
+              loading={priority ? "eager" : "lazy"}
+              priority={priority}
             />
           </div>
         </div>
@@ -287,7 +288,7 @@ export default function TemplatesPage() {
                     exit={{ opacity: 0, scale: 0.95 }}
                     transition={{ duration: 0.4, delay: Math.min(idx * 0.05, 0.4) }}
                   >
-                    <TemplateMediaCard template={template} />
+                    <TemplateMediaCard template={template} priority={idx < 6} />
                   </motion.div>
                 ))}
               </motion.div>
