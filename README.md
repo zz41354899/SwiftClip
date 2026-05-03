@@ -120,6 +120,143 @@ npx remotion render remotion/index.tsx ProductLaunch output.mp4
 
 ---
 
+## Claude Code Marketplace
+
+SwiftClip also ships as a Claude Code marketplace plus plugin for Remotion planning and generation workflows.
+
+What it does:
+
+- aligns the video brief before code generation
+- recommends the best internal Remotion base template
+- outputs a machine-readable preflight JSON plus storyboard beats
+- generates a derivative component and registers it in `remotion/Root.tsx`
+
+### Claude prerequisites
+
+Before enabling the SwiftClip Claude workflow, make sure you already have:
+
+- a Claude Code environment with `/plugin` support
+- an existing Remotion project
+- `remotion` installed in `package.json`
+- `remotion/Root.tsx` in the target workspace
+
+If you do not have a Remotion project yet, run:
+
+```bash
+npx create-video@latest
+cd my-video-project
+```
+
+Then enable the SwiftClip workflow inside that project.
+
+### Install from GitHub marketplace
+
+Add the marketplace:
+
+```text
+/plugin marketplace add zz41354899/SwiftClip
+```
+
+Install the plugin:
+
+```text
+/plugin install swiftclip-remotion@swiftclip-tools
+```
+
+If you prefer the CLI form:
+
+```bash
+claude plugin marketplace add zz41354899/SwiftClip
+claude plugin install swiftclip-remotion@swiftclip-tools --scope project
+```
+
+After installation, reload plugins:
+
+```text
+/reload-plugins
+```
+
+### Team setup in this repository
+
+This repository already includes project-scoped marketplace wiring in `.claude/settings.json`:
+
+- marketplace name: `swiftclip-tools`
+- plugin id: `swiftclip-remotion`
+- source: GitHub repository `zz41354899/SwiftClip`
+
+That means collaborators can clone the repo, trust the folder in Claude Code, and install the shared plugin from the configured project settings.
+
+### Publish and update flow
+
+The current distribution model is a GitHub-backed third-party marketplace.
+
+- Push changes to this repository.
+- Users run `/plugin marketplace update swiftclip-tools` to refresh the marketplace.
+- Users run `/plugin update swiftclip-remotion@swiftclip-tools` to pull the latest plugin version.
+- Because the plugin currently does not declare an explicit `version`, Claude Code uses the git commit SHA as the version key.
+
+This commit-SHA versioning model is useful while the plugin is still evolving quickly.
+
+### Example install path for a new user
+
+```bash
+npx create-video@latest
+cd my-video-project
+claude plugin marketplace add zz41354899/SwiftClip
+claude plugin install swiftclip-remotion@swiftclip-tools --scope project
+```
+
+Then in Claude Code:
+
+```text
+/reload-plugins
+```
+
+---
+
+## Official Marketplace Submission Checklist
+
+Use this checklist before submitting SwiftClip to the official Anthropic marketplace.
+
+### Metadata and listing
+
+- [ ] Replace the placeholder live-site note with the final public homepage URL.
+- [ ] Add a dedicated plugin homepage or docs page that explains what `swiftclip-remotion` does.
+- [ ] Add a real `LICENSE` file at the repository root. The README says MIT, but the repository should include the actual license text.
+- [ ] Add repository metadata that matches the public listing you want users to see.
+- [ ] Confirm marketplace and plugin names stay stable: `swiftclip-tools` and `swiftclip-remotion`.
+
+### Versioning strategy
+
+- [ ] Decide whether to keep commit-SHA versioning for rapid iteration or switch to explicit semver for public releases.
+- [ ] If switching to semver, add `version` to `plugins/swiftclip-remotion/.claude-plugin/plugin.json` and bump it on every release.
+- [ ] Do not define conflicting versions in both `plugin.json` and the marketplace entry unless you intend `plugin.json` to win.
+- [ ] Add a `CHANGELOG.md` if you want clearer public release notes.
+
+### Validation
+
+- [ ] Run `claude plugin validate .` once the Claude CLI is installed.
+- [ ] Verify `.claude-plugin/marketplace.json` loads correctly from GitHub.
+- [ ] Verify `plugins/swiftclip-remotion/.claude-plugin/plugin.json` is valid.
+- [ ] Verify the skill, builder, and hook files load without frontmatter or JSON errors.
+- [ ] Test a full local install with `/plugin marketplace add ./path/to/repo` and `/plugin install swiftclip-remotion@swiftclip-tools`.
+- [ ] Test a full GitHub install with `zz41354899/SwiftClip` as the marketplace source.
+
+### Install and usage docs
+
+- [ ] Keep the exact install commands in this README up to date.
+- [ ] Document the Remotion prerequisite clearly so users know this does not replace `npx create-video@latest`.
+- [ ] Document the expected output: preflight JSON, storyboard beats, generated component, and `Root.tsx` registration.
+- [ ] Include `/reload-plugins` in the usage flow so users know how to activate updates immediately.
+
+### Official submission path
+
+- [ ] Submit through Claude.ai: `https://claude.ai/settings/plugins/submit`
+- [ ] Or submit through Console: `https://platform.claude.com/plugins/submit`
+- [ ] Prepare a short listing description, install instructions, homepage URL, and support contact before submitting.
+- [ ] Confirm the repository is public, or that reviewers can access it.
+
+
 ## 🎬 Rendering Options
 
 ```bash

@@ -104,6 +104,10 @@ export function FadeIn() {
           Get a Remotion project running locally in under 2 minutes.
         </p>
 
+        <Note type="info">
+          SwiftClip supports two setup paths: copy-paste templates into a Remotion project, or install the Claude Code marketplace workflow to align briefs, generate a derivative component, and register it in <C>remotion/Root.tsx</C>.
+        </Note>
+
         <h2 className="text-2xl font-bold text-zinc-900 mb-4">Prerequisites</h2>
         <div className="border border-zinc-200 rounded-2xl overflow-hidden mb-8">
           <table className="w-full text-sm text-left">
@@ -165,6 +169,29 @@ export const RemotionRoot = () => (
         <div className="flex flex-wrap gap-3 mt-6">
           <DocRef href="https://remotion.dev/docs" label="Remotion getting started" />
           <DocRef href="https://remotion.dev/docs/brownfield" label="Add to existing project" />
+        </div>
+
+        <h2 className="text-2xl font-bold text-zinc-900 mb-3 mt-10">4. Enable the Claude workflow</h2>
+        <p className="text-zinc-600 leading-relaxed mb-4">
+          If you want SwiftClip to help plan the brief, choose an internal base template, emit a preflight JSON plus storyboard, and then generate a component for you, install the Claude Code marketplace plugin inside your existing Remotion project.
+        </p>
+        <Note type="warn">
+          The Claude workflow is not a replacement for Remotion setup. You still need a working Remotion project with <C>remotion</C> installed and a <C>remotion/Root.tsx</C> file before enabling it.
+        </Note>
+        <CB label="Claude Code">{`/plugin marketplace add zz41354899/SwiftClip
+/plugin install swiftclip-remotion@swiftclip-tools
+/reload-plugins`}</CB>
+        <p className="text-zinc-600 leading-relaxed mb-4">
+          Prefer the CLI form? Run the following from your Remotion project root:
+        </p>
+        <CB label="Terminal">{`claude plugin marketplace add zz41354899/SwiftClip
+claude plugin install swiftclip-remotion@swiftclip-tools --scope project`}</CB>
+        <p className="text-zinc-600 leading-relaxed mb-4">
+          Once enabled, the workflow guides the user through brief alignment, recommends one internal execution base, confirms storyboard beats, generates a derivative component under <C>remotion/</C>, and registers the matching <C>{"<Composition>"}</C> in <C>remotion/Root.tsx</C>.
+        </p>
+        <div className="flex flex-wrap gap-3 mt-6">
+          <DocRef href="https://code.claude.com/docs/zh-TW/discover-plugins" label="Claude plugin install docs" />
+          <DocRef href="https://code.claude.com/docs/zh-TW/plugin-marketplaces" label="Claude marketplace publish docs" />
         </div>
       </>
     ),
