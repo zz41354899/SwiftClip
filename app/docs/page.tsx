@@ -105,7 +105,7 @@ export function FadeIn() {
         </p>
 
         <Note type="info">
-          SwiftClip supports two setup paths: copy-paste templates into a Remotion project, or install the Claude Code marketplace workflow to align briefs, generate a derivative component, and register it in <C>remotion/Root.tsx</C>.
+          SwiftClip is ready to install on Claude Code today. Codex compatibility is also included with the same storyboard-backed planning contract, with local CLI verification still pending.
         </Note>
 
         <h2 className="text-2xl font-bold text-zinc-900 mb-4">Prerequisites</h2>
@@ -173,7 +173,7 @@ export const RemotionRoot = () => (
 
         <h2 className="text-2xl font-bold text-zinc-900 mb-3 mt-10">4. Enable the Claude workflow</h2>
         <p className="text-zinc-600 leading-relaxed mb-4">
-          If you want SwiftClip to help plan the brief, choose an internal base template, emit a preflight JSON plus storyboard, and then generate a component for you, install the Claude Code marketplace plugin inside your existing Remotion project.
+          Claude Code is the primary SwiftClip release surface. Install it in your existing Remotion project to turn template selection, brief alignment, storyboard confirmation, component generation, and <C>remotion/Root.tsx</C> registration into one guided workflow.
         </p>
         <Note type="warn">
           The Claude workflow is not a replacement for Remotion setup. You still need a working Remotion project with <C>remotion</C> installed and a <C>remotion/Root.tsx</C> file before enabling it.
@@ -192,6 +192,28 @@ claude plugin install swiftclip-remotion@swiftclip-tools --scope project`}</CB>
         <div className="flex flex-wrap gap-3 mt-6">
           <DocRef href="https://code.claude.com/docs/zh-TW/discover-plugins" label="Claude plugin install docs" />
           <DocRef href="https://code.claude.com/docs/zh-TW/plugin-marketplaces" label="Claude marketplace publish docs" />
+        </div>
+
+        <h2 className="text-2xl font-bold text-zinc-900 mb-3 mt-10">5. Enable the Codex workflow</h2>
+        <p className="text-zinc-600 leading-relaxed mb-4">
+          SwiftClip also ships a Codex compatibility layer with a repo marketplace and plugin manifest. It follows the same shared workflow contract as Claude Code: the same internal template router, the same <C>preflight JSON + storyboard beats</C> contract, and the same derivative-component-plus-Root-registration outcome.
+        </p>
+        <Note type="warn">
+          Codex support still assumes an existing Remotion project. It does not replace <C>npx create-video@latest</C>, it still expects <C>remotion</C> in <C>package.json</C> plus a working <C>remotion/Root.tsx</C> file, and the install steps below are published but not yet locally CLI-verified in this environment.
+        </Note>
+        <p className="text-zinc-600 leading-relaxed mb-4">
+          Standard install:
+        </p>
+        <CB label="Terminal">{`codex plugin marketplace add zz41354899/SwiftClip`}</CB>
+        <p className="text-zinc-600 leading-relaxed mb-4">
+          Advanced install with sparse checkout:
+        </p>
+        <CB label="Terminal">{`codex plugin marketplace add zz41354899/SwiftClip --sparse .agents/plugins --sparse .codex-plugin --sparse plugins`}</CB>
+        <p className="text-zinc-600 leading-relaxed mb-4">
+          This repository includes a repo-scoped Codex marketplace at <C>.agents/plugins/marketplace.json</C> and a Codex plugin manifest at <C>.codex-plugin/plugin.json</C>. After adding the marketplace, restart Codex and install <C>swiftclip-remotion</C> from the <C>swiftclip-tools</C> marketplace.
+        </p>
+        <div className="flex flex-wrap gap-3 mt-6">
+          <DocRef href="https://developers.openai.com/codex/plugins/build" label="Codex plugin build docs" />
         </div>
       </>
     ),

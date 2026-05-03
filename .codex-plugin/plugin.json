@@ -1,0 +1,42 @@
+{
+  "name": "swiftclip-remotion",
+  "version": "0.1.0",
+  "description": "Storyboard-driven Remotion workflow for Codex.",
+  "author": {
+    "name": "zz41354899",
+    "email": "zz41354899@gmail.com",
+    "url": "https://github.com/zz41354899"
+  },
+  "homepage": "https://swift-clip.vercel.app/",
+  "repository": "https://github.com/zz41354899/SwiftClip",
+  "license": "MIT",
+  "keywords": [
+    "remotion",
+    "video",
+    "templates",
+    "storyboard",
+    "codex"
+  ],
+  "skills": "./plugins/swiftclip-remotion/skills/",
+  "hooks": "./plugins/swiftclip-remotion/hooks/hooks.json",
+  "interface": {
+    "displayName": "SwiftClip Remotion",
+    "shortDescription": "Storyboard-driven Remotion composition workflow.",
+    "longDescription": "Align video briefs, choose the best internal Remotion base template, generate machine-readable preflight JSON plus storyboard beats, and create derivative compositions registered in remotion/Root.tsx.",
+    "developerName": "zz41354899",
+    "category": "Productivity",
+    "capabilities": [
+      "Read",
+      "Write"
+    ],
+    "websiteURL": "https://swift-clip.vercel.app/",
+    "privacyPolicyURL": "https://swift-clip.vercel.app/privacy",
+    "termsOfServiceURL": "https://swift-clip.vercel.app/terms",
+    "defaultPrompt": [
+      "Help me choose the right Remotion template for a product launch video.",
+      "Turn my video brief into preflight JSON and storyboard beats.",
+      "Generate a new Remotion derivative component and register it in Root.tsx."
+    ],
+    "brandColor": "#111827"
+  }
+}

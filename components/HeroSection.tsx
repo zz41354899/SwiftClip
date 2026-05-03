@@ -36,7 +36,7 @@ export function HeroSection() {
           variants={FADE_UP}
           className="text-[17px] sm:text-[19px] max-w-xl text-zinc-500 leading-relaxed font-light mb-12"
         >
-          Production-ready Remotion video templates. Copy, customise, and render in minutes — or install the Claude workflow to plan, generate, and register compositions in your Remotion project.
+          Production-ready Remotion video templates. Copy, customise, and render in minutes — or install the Claude Code workflow to plan, generate, and register compositions in your Remotion project.
         </motion.p>
 
         <motion.div

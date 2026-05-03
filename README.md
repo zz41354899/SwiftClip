@@ -214,6 +214,55 @@ Then in Claude Code:
 
 ---
 
+## Codex Plugin Compatibility
+
+SwiftClip also includes a Codex-compatible plugin manifest and repo marketplace.
+
+The Codex layer uses the same shared workflow contract as the Claude Code version:
+
+- the same plugin id: `swiftclip-remotion`
+- the same marketplace id: `swiftclip-tools`
+- the same skill and agent naming
+- the same `preflight JSON + storyboard beats` output contract
+- the same expectation that the workflow creates a derivative component and registers it in `remotion/Root.tsx`
+
+### Codex prerequisites
+
+Before enabling the Codex workflow, make sure you already have:
+
+- a Codex environment with plugin support
+- an existing Remotion project
+- `remotion` installed in `package.json`
+- `remotion/Root.tsx` in the target workspace
+
+If you do not have a Remotion project yet, run:
+
+```bash
+npx create-video@latest
+cd my-video-project
+```
+
+### Add the Codex marketplace
+
+```bash
+codex plugin marketplace add zz41354899/SwiftClip
+```
+
+Advanced install with sparse checkout:
+
+```bash
+codex plugin marketplace add zz41354899/SwiftClip --sparse .agents/plugins --sparse .codex-plugin --sparse plugins
+```
+
+This repository includes:
+
+- repo marketplace: `.agents/plugins/marketplace.json`
+- plugin manifest: `.codex-plugin/plugin.json`
+
+After adding the marketplace, restart Codex and install `swiftclip-remotion` from the `swiftclip-tools` marketplace.
+
+---
+
 ## Official Marketplace Submission Checklist
 
 Use this checklist before submitting SwiftClip to the official Anthropic marketplace.
