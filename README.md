@@ -67,8 +67,10 @@ Browse and preview all templates at the live site.
 |-------------|---------|
 | Node.js | v16+ (v18+ recommended) |
 | npm / yarn / pnpm / bun | any |
+| Remotion project | required |
 
 Chrome and FFmpeg are automatically downloaded by Remotion — no global installation needed.
+SwiftClip templates and the Claude marketplace workflow assume you are already inside a Remotion project with `remotion` installed and a `remotion/Root.tsx` entry file available.
 
 ### 1. Scaffold a Remotion project
 

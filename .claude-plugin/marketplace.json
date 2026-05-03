@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-marketplace.json",
+  "name": "swiftclip-tools",
+  "description": "SwiftClip internal Claude marketplace for Remotion template workflows.",
+  "owner": {
+    "name": "SwiftClip"
+  },
+  "plugins": [
+    {
+      "name": "swiftclip-remotion",
+      "source": "./plugins/swiftclip-remotion",
+      "description": "Interactive Remotion template alignment workflow for SwiftClip.",
+      "tags": ["remotion", "templates", "video", "workflow"]
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "extraKnownMarketplaces": {
+    "swiftclip-tools": {
+      "source": {
+        "source": "github",
+        "repo": "zz41354899/SwiftClip"
+      }
+    }
+  },
+  "enabledPlugins": {
+    "swiftclip-remotion@swiftclip-tools": true
+  }
+}

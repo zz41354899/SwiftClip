@@ -1,7 +1,12 @@
 import { AbsoluteFill, useCurrentFrame, interpolate, Easing } from "remotion";
 import { Globe, Video } from "lucide-react";
+import {
+  resolveEndScreenCopy,
+  type EndScreenTemplateProps,
+} from "./firstBatchProps";
 
-export const EndScreen: React.FC = () => {
+export const EndScreen: React.FC<EndScreenTemplateProps> = (props) => {
+  const { brandName, siteUrl } = resolveEndScreenCopy(props);
   const frame = useCurrentFrame();
 
   const logoY = interpolate(frame, [10, 50], [40, 0], {
@@ -20,7 +25,7 @@ export const EndScreen: React.FC = () => {
         <div style={{ width: 120, height: 120, borderRadius: 32, background: "#1d1d1f", display: "flex", justifyContent: "center", alignItems: "center", boxShadow: "0 20px 40px rgba(0,0,0,0.06)" }}>
           <Video size={64} color="white" />
         </div>
-        <div style={{ fontSize: 96, fontWeight: 900, color: "#1d1d1f", letterSpacing: "-0.04em" }}>SwiftClip</div>
+        <div style={{ fontSize: 96, fontWeight: 900, color: "#1d1d1f", letterSpacing: "-0.04em" }}>{brandName}</div>
       </div>
       <div style={{
         transform: `translateY(${logoY}px)`, opacity: logoOpacity,
@@ -29,7 +34,7 @@ export const EndScreen: React.FC = () => {
         display: "flex", gap: 16, color: "#1d1d1f", fontSize: 32, fontWeight: 600, alignItems: "center",
         boxShadow: "0 20px 40px rgba(0,0,0,0.06)"
       }}>
-        <Globe size={32} color="#0066cc" /> swiftclip.com
+        <Globe size={32} color="#0066cc" /> {siteUrl}
       </div>
     </AbsoluteFill>
   );

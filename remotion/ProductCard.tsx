@@ -1,7 +1,12 @@
 import { AbsoluteFill, useCurrentFrame, interpolate, Easing } from "remotion";
 import { ShoppingBag } from "lucide-react";
+import {
+  resolveProductCardCopy,
+  type ProductCardTemplateProps,
+} from "./firstBatchProps";
 
-export const ProductCard: React.FC = () => {
+export const ProductCard: React.FC<ProductCardTemplateProps> = (props) => {
+  const { productName, category, ctaLabel } = resolveProductCardCopy(props);
   const frame = useCurrentFrame();
 
   const cardY = interpolate(frame, [10, 50], [60, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: Easing.out(Easing.cubic) });
@@ -19,11 +24,11 @@ export const ProductCard: React.FC = () => {
            <ShoppingBag size={80} color="#1d1d1f" style={{ opacity: 0.8 }} />
         </div>
         <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 16 }}>
-          <div style={{ fontSize: 40, fontWeight: 800, color: "#1d1d1f", letterSpacing: "-0.04em", lineHeight: 1 }}>Vision Pro</div>
-          <div style={{ fontSize: 24, fontWeight: 500, color: "#86868b" }}>Spatial Computing</div>
+          <div style={{ fontSize: 40, fontWeight: 800, color: "#1d1d1f", letterSpacing: "-0.04em", lineHeight: 1 }}>{productName}</div>
+          <div style={{ fontSize: 24, fontWeight: 500, color: "#86868b" }}>{category}</div>
         </div>
         <div style={{ background: "#1d1d1f", color: "#ffffff", padding: "16px 40px", borderRadius: 32, fontSize: 20, fontWeight: 600 }}>
-          Pre-order Now
+          {ctaLabel}
         </div>
       </div>
     </AbsoluteFill>

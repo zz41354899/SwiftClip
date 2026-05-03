@@ -6,15 +6,13 @@ import {
   interpolate,
   Easing,
 } from "remotion";
+import {
+  resolveSaaSPromoCopy,
+  type SaaSPromoTemplateProps,
+} from "./firstBatchProps";
 
-interface SaaSPromoProps {
-  features?: string[];
-  [key: string]: any;
-}
-
-export const SaaSPromo: React.FC<SaaSPromoProps> = ({
-  features = ["Code-Driven", "Highly Customizable", "Lightning Fast"],
-}) => {
+export const SaaSPromo: React.FC<SaaSPromoTemplateProps> = (props) => {
+  const { headline, featureItems } = resolveSaaSPromoCopy(props);
   const frame = useCurrentFrame();
 
   return (
@@ -46,12 +44,12 @@ export const SaaSPromo: React.FC<SaaSPromoProps> = ({
 
       {/* Title sequence */}
       <Sequence from={0} durationInFrames={150}>
-        <TitlePart />
+        <TitlePart headline={headline} />
       </Sequence>
 
       {/* Features sequence */}
       <Sequence from={120} durationInFrames={750}>
-        <FeaturesList features={features} />
+        <FeaturesList features={featureItems} />
       </Sequence>
 
       {/* Closing sequence */}
@@ -62,7 +60,11 @@ export const SaaSPromo: React.FC<SaaSPromoProps> = ({
   );
 };
 
-function TitlePart() {
+interface TitlePartProps {
+  headline: string;
+}
+
+function TitlePart({ headline }: TitlePartProps) {
   const frame = useCurrentFrame();
 
   const titleOpacity = interpolate(frame, [0, 30], [0, 1], {
@@ -92,7 +94,7 @@ function TitlePart() {
         letterSpacing: "-0.02em",
       }}
     >
-      SwiftClip Features
+      {headline}
     </div>
   );
 }

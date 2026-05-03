@@ -5,17 +5,13 @@ import {
   Easing,
 } from "remotion";
 import { Play, Clock } from "lucide-react";
+import {
+  resolveTutorialIntroCopy,
+  type TutorialIntroTemplateProps,
+} from "./firstBatchProps";
 
-interface TutorialIntroProps {
-  title?: string;
-  duration?: string;
-  [key: string]: any;
-}
-
-export const TutorialIntro: React.FC<TutorialIntroProps> = ({
-  title = "Getting Started",
-  duration = "5 min",
-}) => {
+export const TutorialIntro: React.FC<TutorialIntroTemplateProps> = (props) => {
+  const { headline, durationLabel } = resolveTutorialIntroCopy(props);
   const frame = useCurrentFrame();
 
   const cardY = interpolate(frame, [0, 40], [60, 0], {
@@ -107,7 +103,7 @@ export const TutorialIntro: React.FC<TutorialIntroProps> = ({
             lineHeight: 1.1,
           }}
         >
-          {title}
+          {headline}
         </div>
 
         <div
@@ -126,7 +122,7 @@ export const TutorialIntro: React.FC<TutorialIntroProps> = ({
           }}
         >
           <Clock size={24} color="rgba(255,255,255,0.6)" />
-          <span>{duration}</span>
+          <span>{durationLabel}</span>
         </div>
       </div>
     </AbsoluteFill>

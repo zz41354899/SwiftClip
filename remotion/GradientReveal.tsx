@@ -1,6 +1,12 @@
 import { AbsoluteFill, useCurrentFrame, interpolate, Easing } from "remotion";
+import {
+  resolveGradientRevealCopy,
+  type GradientRevealTemplateProps,
+} from "./firstBatchProps";
 
-export const GradientReveal: React.FC = () => {
+export const GradientReveal: React.FC<GradientRevealTemplateProps> = (props) => {
+  const { symbol, subtitle, backgroundColor, gradientStops } =
+    resolveGradientRevealCopy(props);
   const frame = useCurrentFrame();
 
   // Background fade in
@@ -39,7 +45,7 @@ export const GradientReveal: React.FC = () => {
   return (
     <AbsoluteFill
       style={{
-        backgroundColor: "#f5f5f7",
+        backgroundColor,
         fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
         opacity: bgOpacity,
         display: "flex",
@@ -61,8 +67,7 @@ export const GradientReveal: React.FC = () => {
           lineHeight: 1.1,
           textAlign: "center",
           transform: `scale(${textScale})`,
-          // A clean dark text base, with a signature Apple HIG color sweep (Blue -> Indigo -> Purple -> Pink) from the right
-          backgroundImage: "linear-gradient(75deg, #1d1d1f 0%, #1d1d1f 23%, #007AFF 33%, #5856D6 43%, #AF52DE 53%, #FF2D55 60%, rgba(0,0,0,0.05) 75%, rgba(0,0,0,0) 100%)",
+          backgroundImage: `linear-gradient(75deg, #1d1d1f 0%, #1d1d1f 23%, ${gradientStops.join(", ")})`,
           backgroundSize: "300% auto",
           backgroundPosition: `${gradientPos}% center`,
           WebkitBackgroundClip: "text",
@@ -72,7 +77,7 @@ export const GradientReveal: React.FC = () => {
           padding: "20px 0", // Give breathing room so clipping doesn't cut tall letters
         }}
       >
-        
+        {symbol}
       </div>
 
       {/* Subtitle fading in softly at the end */}
@@ -87,7 +92,7 @@ export const GradientReveal: React.FC = () => {
           transform: `translateY(${subY}px)`,
         }}
       >
-        Pro performance. Unprecedented reveal.
+        {subtitle}
       </div>
     </AbsoluteFill>
   );

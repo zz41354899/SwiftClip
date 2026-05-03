@@ -1,10 +1,12 @@
 import { AbsoluteFill, useCurrentFrame, interpolate, Easing } from "remotion";
 import { Quote } from "lucide-react";
+import {
+  resolveTypewriterQuoteCopy,
+  type TypewriterQuoteTemplateProps,
+} from "./firstBatchProps";
 
-const QUOTE = "The best time to plant a tree was 20 years ago. The second best time is now.";
-const AUTHOR = "Chinese Proverb";
-
-export const TypewriterQuote: React.FC = () => {
+export const TypewriterQuote: React.FC<TypewriterQuoteTemplateProps> = (props) => {
+  const { quote, author } = resolveTypewriterQuoteCopy(props);
   const frame = useCurrentFrame();
 
   const bgOpacity = interpolate(frame, [0, 15], [0, 1], {
@@ -13,7 +15,7 @@ export const TypewriterQuote: React.FC = () => {
   });
 
   const charCount = Math.floor(
-    interpolate(frame, [20, 160], [0, QUOTE.length], {
+    interpolate(frame, [20, 160], [0, quote.length], {
       extrapolateLeft: "clamp",
       extrapolateRight: "clamp",
       easing: Easing.inOut(Easing.cubic),
@@ -21,7 +23,7 @@ export const TypewriterQuote: React.FC = () => {
   );
 
   const cursorVisible = frame % 15 < 8;
-  const showCursor = charCount < QUOTE.length || cursorVisible;
+  const showCursor = charCount < quote.length || cursorVisible;
 
   const authorOpacity = interpolate(frame, [170, 200], [0, 1], {
     extrapolateLeft: "clamp",
@@ -93,8 +95,8 @@ export const TypewriterQuote: React.FC = () => {
             letterSpacing: "-0.04em",
           }}
         >
-          {QUOTE.slice(0, charCount)}
-          {showCursor && charCount < QUOTE.length && (
+          {quote.slice(0, charCount)}
+          {showCursor && charCount < quote.length && (
             <span
               style={{
                 display: "inline-block",
@@ -126,7 +128,7 @@ export const TypewriterQuote: React.FC = () => {
               letterSpacing: "-0.02em",
             }}
           >
-            {AUTHOR}
+            {author}
           </div>
         </div>
       </div>

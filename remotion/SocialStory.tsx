@@ -5,19 +5,13 @@ import {
   Easing,
 } from "remotion";
 import { AtSign, Sparkles, Video } from "lucide-react";
+import {
+  resolveSocialStoryCopy,
+  type SocialStoryTemplateProps,
+} from "./firstBatchProps";
 
-interface SocialStoryProps {
-  headline?: string;
-  subline?: string;
-  handle?: string;
-  [key: string]: any;
-}
-
-export const SocialStory: React.FC<SocialStoryProps> = ({
-  headline = "SwiftClip",
-  subline = "Remotion templates that ship fast",
-  handle = "@swiftclip",
-}) => {
+export const SocialStory: React.FC<SocialStoryTemplateProps> = (props) => {
+  const { headline, subheadline, brandHandle } = resolveSocialStoryCopy(props);
   const frame = useCurrentFrame();
 
   const logoOpacity = interpolate(frame, [0, 20], [0, 1], {
@@ -175,7 +169,7 @@ export const SocialStory: React.FC<SocialStoryProps> = ({
             maxWidth: 600,
           }}
         >
-          {subline}
+          {subheadline}
         </div>
       </div>
 
@@ -195,7 +189,7 @@ export const SocialStory: React.FC<SocialStoryProps> = ({
         }}
       >
         <AtSign size={24} />
-        {handle.replace("@", "")}
+        {brandHandle.replace("@", "")}
       </div>
     </AbsoluteFill>
   );
