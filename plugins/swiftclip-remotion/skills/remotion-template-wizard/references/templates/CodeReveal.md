@@ -1,6 +1,6 @@
 # CodeReveal
 
-- **File**: `remotion/CodeReveal.tsx`
+- **Component**: `CodeReveal`
 - **Tier**: hardcoded
 - **Aspect ratio**: 16:9
 - **Dimensions**: 1920×1080 | 30fps | 300 frames | 10s

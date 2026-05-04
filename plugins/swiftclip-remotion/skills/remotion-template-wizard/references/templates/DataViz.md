@@ -1,6 +1,6 @@
 # DataViz
 
-- **File**: `remotion/DataViz.tsx`
+- **Component**: `DataViz`
 - **Tier**: hardcoded
 - **Aspect ratio**: 16:9
 - **Dimensions**: 1920×1080 | 30fps | 600 frames | 20s

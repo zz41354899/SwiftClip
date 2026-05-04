@@ -1,6 +1,6 @@
 # SaaSPromo
 
-- **File**: `remotion/SaaSPromo.tsx`
+- **Component**: `SaaSPromo`
 - **Tier**: prop-enabled
 - **Aspect ratio**: 16:9
 - **Dimensions**: 1920×1080 | 30fps | 900 frames | 30s
@@ -17,7 +17,6 @@ Feature showcase animation for SaaS products with animated metric cards and smoo
 | `headline` | string | `"SwiftClip Features"` | — |
 | `featureItems` | string[] | `["Code-Driven", "Highly Customizable", "Lightning Fast"]` | `features` |
 
-Resolve helper: `resolveSaaSPromoCopy(props)` in `remotion/firstBatchProps.ts`
 
 ## Visual style
 
@@ -38,13 +37,17 @@ import {
   interpolate,
   Easing,
 } from "remotion";
-import {
-  resolveSaaSPromoCopy,
-  type SaaSPromoTemplateProps,
-} from "./firstBatchProps";
+interface SaaSPromoTemplateProps {
+  headline?: string;
+  featureItems?: string[];
+  features?: string[];
+}
 
 export const SaaSPromo: React.FC<SaaSPromoTemplateProps> = (props) => {
-  const { headline, featureItems } = resolveSaaSPromoCopy(props);
+  const headline = props.headline ?? "SwiftClip Features";
+  const featureItems = (props.featureItems ?? props.features ?? ["Code-Driven", "Highly Customizable", "Lightning Fast"])
+    .map((item) => item.trim())
+    .filter(Boolean);
   const frame = useCurrentFrame();
 
   return (

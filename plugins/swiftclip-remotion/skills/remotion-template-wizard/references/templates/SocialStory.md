@@ -1,6 +1,6 @@
 # SocialStory
 
-- **File**: `remotion/SocialStory.tsx`
+- **Component**: `SocialStory`
 - **Tier**: prop-enabled
 - **Aspect ratio**: 9:16
 - **Dimensions**: 1080×1920 | 30fps | 300 frames | 10s
@@ -18,7 +18,6 @@ Vertical social media story template with animated text overlays and brand eleme
 | `subheadline` | string | `"Remotion templates that ship fast"` | `subline` |
 | `brandHandle` | string | `"@swiftclip"` | `handle` |
 
-Resolve helper: `resolveSocialStoryCopy(props)` in `remotion/firstBatchProps.ts`
 
 ## Visual style
 
@@ -38,13 +37,19 @@ import {
   Easing,
 } from "remotion";
 import { AtSign, Sparkles, Video } from "lucide-react";
-import {
-  resolveSocialStoryCopy,
-  type SocialStoryTemplateProps,
-} from "./firstBatchProps";
+
+interface SocialStoryTemplateProps {
+  headline?: string;
+  subheadline?: string;
+  brandHandle?: string;
+  subline?: string;
+  handle?: string;
+}
 
 export const SocialStory: React.FC<SocialStoryTemplateProps> = (props) => {
-  const { headline, subheadline, brandHandle } = resolveSocialStoryCopy(props);
+  const headline = props.headline ?? "SwiftClip";
+  const subheadline = props.subheadline ?? props.subline ?? "Remotion templates that ship fast";
+  const brandHandle = props.brandHandle ?? props.handle ?? "@swiftclip";
   const frame = useCurrentFrame();
 
   const logoOpacity = interpolate(frame, [0, 20], [0, 1], {

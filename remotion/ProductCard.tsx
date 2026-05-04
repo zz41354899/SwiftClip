@@ -1,12 +1,19 @@
 import { AbsoluteFill, useCurrentFrame, interpolate, Easing } from "remotion";
 import { ShoppingBag } from "lucide-react";
-import {
-  resolveProductCardCopy,
-  type ProductCardTemplateProps,
-} from "./firstBatchProps";
+
+interface ProductCardTemplateProps {
+  productName?: string;
+  category?: string;
+  ctaLabel?: string;
+  title?: string;
+  subtitle?: string;
+  buttonLabel?: string;
+}
 
 export const ProductCard: React.FC<ProductCardTemplateProps> = (props) => {
-  const { productName, category, ctaLabel } = resolveProductCardCopy(props);
+  const productName = props.productName ?? props.title ?? "Vision Pro";
+  const category = props.category ?? props.subtitle ?? "Spatial Computing";
+  const ctaLabel = props.ctaLabel ?? props.buttonLabel ?? "Pre-order Now";
   const frame = useCurrentFrame();
 
   const cardY = interpolate(frame, [10, 50], [60, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: Easing.out(Easing.cubic) });

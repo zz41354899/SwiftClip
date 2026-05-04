@@ -3,7 +3,7 @@
 Index of all 30 templates. Each template has its own reference file under `./templates/` with props, visual style description, and embedded source code.
 
 Two tiers:
-- **Prop-enabled** — accept external props. Source code in each ref file uses a resolve helper from `firstBatchProps.ts`.
+- **Prop-enabled** — accept external props via a typed props object. Each ref file documents the canonical prop schema and how to pass values.
 - **Hardcoded** — no external props. Source code in each ref file has key values annotated for direct editing.
 
 ## Prop-Enabled Templates

@@ -1,6 +1,6 @@
 # CountdownTimer
 
-- **File**: `remotion/CountdownTimer.tsx`
+- **Component**: `CountdownTimer`
 - **Tier**: hardcoded
 - **Aspect ratio**: 16:9
 - **Dimensions**: 1920×1080 | 30fps | 210 frames | 7s

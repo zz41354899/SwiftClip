@@ -1,6 +1,6 @@
 # MetricDashboard
 
-- **File**: `remotion/MetricDashboard.tsx`
+- **Component**: `MetricDashboard`
 - **Tier**: hardcoded
 - **Aspect ratio**: 16:9
 - **Dimensions**: 1920×1080 | 30fps | 240 frames | 8s

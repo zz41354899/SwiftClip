@@ -1,6 +1,6 @@
 # ProductLaunch
 
-- **File**: `remotion/ProductLaunch.tsx`
+- **Component**: `ProductLaunch`
 - **Tier**: prop-enabled
 - **Aspect ratio**: 16:9
 - **Dimensions**: 1920×1080 | 30fps | 450 frames | 15s
@@ -17,7 +17,6 @@ Cinematic reveal animation for product announcements with smooth entrance transi
 | `headline` | string | `"SwiftClip"` | `title` |
 | `subheadline` | string | `"High-performance Remotion templates"` | `subtitle` |
 
-Resolve helper: `resolveProductLaunchCopy(props)` in `remotion/firstBatchProps.ts`
 
 ## Visual style
 
@@ -38,13 +37,17 @@ import {
   Easing,
 } from "remotion";
 import { Sparkles, Ship, ArrowRightCircle } from "lucide-react";
-import {
-  resolveProductLaunchCopy,
-  type ProductLaunchTemplateProps,
-} from "./firstBatchProps";
+
+interface ProductLaunchTemplateProps {
+  headline?: string;
+  subheadline?: string;
+  title?: string;
+  subtitle?: string;
+}
 
 export const ProductLaunch: React.FC<ProductLaunchTemplateProps> = (props) => {
-  const { headline, subheadline } = resolveProductLaunchCopy(props);
+  const headline = props.headline ?? props.title ?? "SwiftClip";
+  const subheadline = props.subheadline ?? props.subtitle ?? "High-performance Remotion templates";
   const frame = useCurrentFrame();
 
   // Title entrance: fade in from frame 0-30

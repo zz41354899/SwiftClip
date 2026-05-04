@@ -6,13 +6,17 @@ import {
   Easing,
 } from "remotion";
 import { Sparkles, Ship, ArrowRightCircle } from "lucide-react";
-import {
-  resolveProductLaunchCopy,
-  type ProductLaunchTemplateProps,
-} from "./firstBatchProps";
+
+interface ProductLaunchTemplateProps {
+  headline?: string;
+  subheadline?: string;
+  title?: string;
+  subtitle?: string;
+}
 
 export const ProductLaunch: React.FC<ProductLaunchTemplateProps> = (props) => {
-  const { headline, subheadline } = resolveProductLaunchCopy(props);
+  const headline = props.headline ?? props.title ?? "SwiftClip";
+  const subheadline = props.subheadline ?? props.subtitle ?? "High-performance Remotion templates";
   const frame = useCurrentFrame();
 
   // Title entrance: fade in from frame 0-30

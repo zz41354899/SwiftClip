@@ -1,6 +1,6 @@
 # NewsBreaking
 
-- **File**: `remotion/NewsBreaking.tsx`
+- **Component**: `NewsBreaking`
 - **Tier**: hardcoded
 - **Aspect ratio**: 16:9
 - **Dimensions**: 1920×1080 | 30fps | 300 frames | 10s

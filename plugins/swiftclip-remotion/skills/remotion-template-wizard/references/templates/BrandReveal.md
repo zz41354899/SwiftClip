@@ -1,6 +1,6 @@
 # BrandReveal
 
-- **File**: `remotion/BrandReveal.tsx`
+- **Component**: `BrandReveal`
 - **Tier**: prop-enabled
 - **Aspect ratio**: 16:9
 - **Dimensions**: 1920×1080 | 30fps | 180 frames | 6s
@@ -18,7 +18,6 @@ Elegant brand logo reveal with layered entrance animations and clean typography.
 | `tagline` | string | `"Creative Automation"` | `subtitle` |
 | `accentColor` | string | `"#0066cc"` | `color` |
 
-Resolve helper: `resolveBrandRevealCopy(props)` in `remotion/firstBatchProps.ts`
 
 ## Visual style
 
@@ -33,13 +32,20 @@ Brand reveals, logo stings, identity intros, event openers, sponsorship bumpers.
 ```tsx
 import { AbsoluteFill, useCurrentFrame, interpolate, Easing } from "remotion";
 import { Zap } from "lucide-react";
-import {
-  resolveBrandRevealCopy,
-  type BrandRevealTemplateProps,
-} from "./firstBatchProps";
+
+interface BrandRevealTemplateProps {
+  brandName?: string;
+  tagline?: string;
+  accentColor?: string;
+  title?: string;
+  subtitle?: string;
+  color?: string;
+}
 
 export const BrandReveal: React.FC<BrandRevealTemplateProps> = (props) => {
-  const { brandName, tagline, accentColor } = resolveBrandRevealCopy(props);
+  const brandName = props.brandName ?? props.title ?? "SwiftClip";
+  const tagline = props.tagline ?? props.subtitle ?? "Creative Automation";
+  const accentColor = props.accentColor ?? props.color ?? "#0066cc";
   const frame = useCurrentFrame();
 
   const logoScale = interpolate(frame, [10, 50], [0.8, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: Easing.out(Easing.back(1.5)) });

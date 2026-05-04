@@ -1,6 +1,6 @@
 # VerticalStory
 
-- **File**: `remotion/VerticalStory.tsx`
+- **Component**: `VerticalStory`
 - **Tier**: hardcoded
 - **Aspect ratio**: 9:16
 - **Dimensions**: 1080×1920 | 30fps | 300 frames | 10s

@@ -6,13 +6,17 @@ import {
   interpolate,
   Easing,
 } from "remotion";
-import {
-  resolveSaaSPromoCopy,
-  type SaaSPromoTemplateProps,
-} from "./firstBatchProps";
+interface SaaSPromoTemplateProps {
+  headline?: string;
+  featureItems?: string[];
+  features?: string[];
+}
 
 export const SaaSPromo: React.FC<SaaSPromoTemplateProps> = (props) => {
-  const { headline, featureItems } = resolveSaaSPromoCopy(props);
+  const headline = props.headline ?? "SwiftClip Features";
+  const featureItems = (props.featureItems ?? props.features ?? ["Code-Driven", "Highly Customizable", "Lightning Fast"])
+    .map((item) => item.trim())
+    .filter(Boolean);
   const frame = useCurrentFrame();
 
   return (

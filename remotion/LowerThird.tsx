@@ -1,11 +1,15 @@
 import { AbsoluteFill, useCurrentFrame, interpolate, Easing } from "remotion";
-import {
-  resolveLowerThirdCopy,
-  type LowerThirdTemplateProps,
-} from "./firstBatchProps";
+
+interface LowerThirdTemplateProps {
+  headline?: string;
+  subheadline?: string;
+  name?: string;
+  title?: string;
+}
 
 export const LowerThird: React.FC<LowerThirdTemplateProps> = (props) => {
-  const { headline, subheadline } = resolveLowerThirdCopy(props);
+  const headline = props.headline ?? props.name ?? "Craig Federighi";
+  const subheadline = props.subheadline ?? props.title ?? "Senior Vice President";
   const frame = useCurrentFrame();
 
   const wrapX = interpolate(frame, [10, 50], [-100, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: Easing.out(Easing.cubic) });

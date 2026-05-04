@@ -103,54 +103,140 @@ Before code generation, produce a compact plan with:
 - brand colors or visual direction
 - whether the result should be a new derivative component or an in-place edit
 
-Wait for explicit confirmation before generating code.
+Show the production plan as a readable Markdown summary in chat — do not output JSON. Wait for explicit confirmation before writing any files.
 
-Include the preflight block:
+The summary must include:
 
-```json
-{
-    "selectedTemplate": "TemplateName",
-    "tier": "prop-enabled | hardcoded",
-    "newComponentName": "CustomTemplateName",
-    "compositionId": "CustomTemplateName",
-    "dimensions": {
-        "width": 1920,
-        "height": 1080,
-        "fps": 30,
-        "durationInFrames": 240
-    },
-    "storyboard": [
-        {
-            "beat": 1,
-            "startFrame": 0,
-            "endFrame": 60,
-            "purpose": "Hero intro",
-            "content": "headline enters",
-            "motion": "fade + rise"
-        }
-    ],
-    "props": {
-        "canonical": {},
-        "legacyAliasesAccepted": []
-    },
-    "remotionDetected": true
-}
-```
+- **Base template** and tier
+- **New component name** and composition ID
+- **Dimensions**: width × height | fps | frames | seconds
+- **Copy**: headline, supporting copy, CTA
+- **Visual direction**: tone, brand colors, style notes
+- **Props** (prop-enabled): canonical key → value table
+- **Hardcoded changes** (hardcoded): element → new value → where table
+- **Output type**: new derivative component or in-place edit
+- **Beat list**: one row per beat with start frame, end frame, purpose, content, motion
+
+Tell the user that upon confirmation, Step 4 will write:
+- `storyboards/brief.md` — technical animation script for AI codegen
+- `storyboards/storyboard.md` — human-readable storyboard for review
+- The component TSX (to disk if Remotion is present, otherwise as a code block)
 
 Rules:
 
-- `tier` is `prop-enabled` or `hardcoded`, from the ref file.
-- `storyboard` must be written before handoff. Each beat must include `beat`, `startFrame`, `endFrame`, `purpose`, `content`, and `motion`.
-- Storyboard timing must fit inside `dimensions.durationInFrames`.
-- `props.canonical` uses exact canonical keys from the ref file. Only set for prop-enabled templates.
-- `remotionDetected` is determined at Step 4 — set it based on whether `remotion/Root.tsx` exists.
+- Tier comes from the ref file — `prop-enabled` or `hardcoded`.
+- Every beat must include start frame, end frame, purpose, content, and motion.
+- Beat timing must fit inside the total `durationInFrames`.
+- Canonical prop keys must match the ref file exactly. Only include for prop-enabled templates.
+- Do not write any files until the user explicitly confirms.
 
 ### Step 4: Code generation
 
-After the brief is confirmed, check for Remotion:
+After the brief is confirmed, check for Remotion and write all output files.
+
+**Always write both files** regardless of Remotion. Each run overwrites the previous files.
+
+---
+
+Write `storyboards/brief.md` — technical animation script for AI codegen.
+
+Fill all fields with actual confirmed values. Do not leave placeholders.
+
+```markdown
+# <NewComponentName> — Animation Brief
+
+## Overview
+
+| field | value |
+| --- | --- |
+| Component | `NewComponentName` |
+| Base template | TemplateName |
+| Tier | prop-enabled \| hardcoded |
+| Composition ID | NewComponentName |
+| Dimensions | 1920×1080 \| 30fps \| 240 frames \| 8s |
+| Aspect ratio | 16:9 \| 9:16 \| 1:1 |
+| Output type | New derivative component \| In-place edit |
+
+## Brief
+
+**Goal**: What this video achieves and where it will be published.  
+**Tone**: product / social / cinematic / data-driven / broadcast / brand-led
+
+## Copy
+
+| field | value |
+| --- | --- |
+| Headline | "..." |
+| Supporting copy | "..." |
+| CTA | "..." |
+
+## Visual direction
+
+Describe brand colors, typography mood, background treatment, and motion feel.
+
+## Props
+
+> _(prop-enabled templates only — omit this section for hardcoded)_
+
+| prop | value |
+| --- | --- |
+| headline | "..." |
+
+## Hardcoded changes
+
+> _(hardcoded templates only — omit this section for prop-enabled)_
+
+| element | new value | where in source |
+| --- | --- | --- |
+| Main headline | "..." | edit text node directly |
+
+## Beats
+
+> One beat per scene. Timing must sum to total `durationInFrames`.
+
+### Beat 1 — Hero intro (frames 0–60)
+
+**Purpose**: Establish brand and hook  
+**Content**: Headline "..." enters from below  
+**Motion**: translateY(50px → 0) + fade in, easing: out cubic  
+**Duration**: 2s
+
+### Beat 2 — Supporting copy (frames 60–120)
+
+**Purpose**: Reinforce value proposition  
+**Content**: Subheadline "..." fades in  
+**Motion**: opacity 0→1, slight translateY  
+**Duration**: 2s
+
+### Beat 3 — CTA (frames 120–180)
+
+**Purpose**: Drive action  
+**Content**: CTA button scales in  
+**Motion**: scale(0.8→1) + fade, easing: out back  
+**Duration**: 2s
+```
+
+---
+
+Write `storyboards/storyboard.md` — human-readable scene breakdown for review.
+
+```markdown
+# <NewComponentName> — Storyboard
+
+| scene | time | visual | copy | motion |
+| --- | --- | --- | --- | --- |
+| 1 Hero intro | 0s – 2s | Full-screen background, headline centered | "Headline text" | Slides up + fade in |
+| 2 Supporting copy | 2s – 4s | Headline stays, subheadline appears below | "Subheadline text" | Fade in with slight rise |
+| 3 CTA | 4s – 6s | CTA button pops in below copy | "Button label" | Scale in + fade |
+
+## Notes
+
+Any additional context for the client or reviewer.
+```
+
+**Then handle the TSX:**
 
 - Look for `remotion/Root.tsx` in the workspace.
-- Set `remotionDetected` in the preflight block accordingly.
 
 **If Remotion is present** (`remotion/Root.tsx` found):
 
@@ -166,7 +252,7 @@ After the brief is confirmed, check for Remotion:
 - Output the component code as a code block.
 - Tell the user which file to create (`remotion/<NewComponentName>.tsx`).
 - Show the `<Composition>` registration snippet they need to add to `Root.tsx`.
-- Do not write to disk.
+- Do not write the TSX to disk.
 
 In both cases, the generated component must match the confirmed storyboard and dimensions exactly.
 

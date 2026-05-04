@@ -1,6 +1,6 @@
 # SplitReveal
 
-- **File**: `remotion/SplitReveal.tsx`
+- **Component**: `SplitReveal`
 - **Tier**: hardcoded
 - **Aspect ratio**: 16:9
 - **Dimensions**: 1920×1080 | 30fps | 180 frames | 6s

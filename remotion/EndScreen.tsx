@@ -1,12 +1,16 @@
 import { AbsoluteFill, useCurrentFrame, interpolate, Easing } from "remotion";
 import { Globe, Video } from "lucide-react";
-import {
-  resolveEndScreenCopy,
-  type EndScreenTemplateProps,
-} from "./firstBatchProps";
+
+interface EndScreenTemplateProps {
+  brandName?: string;
+  siteUrl?: string;
+  title?: string;
+  url?: string;
+}
 
 export const EndScreen: React.FC<EndScreenTemplateProps> = (props) => {
-  const { brandName, siteUrl } = resolveEndScreenCopy(props);
+  const brandName = props.brandName ?? props.title ?? "SwiftClip";
+  const siteUrl = props.siteUrl ?? props.url ?? "swiftclip.com";
   const frame = useCurrentFrame();
 
   const logoY = interpolate(frame, [10, 50], [40, 0], {

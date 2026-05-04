@@ -1,6 +1,6 @@
 # TutorialIntro
 
-- **File**: `remotion/TutorialIntro.tsx`
+- **Component**: `TutorialIntro`
 - **Tier**: prop-enabled
 - **Aspect ratio**: 16:9
 - **Dimensions**: 1920×1080 | 30fps | 240 frames | 8s
@@ -17,7 +17,6 @@ Clean animated intro card for tutorials and online courses with title and chapte
 | `headline` | string | `"Getting Started"` | `title` |
 | `durationLabel` | string | `"5 min"` | `duration` |
 
-Resolve helper: `resolveTutorialIntroCopy(props)` in `remotion/firstBatchProps.ts`
 
 ## Visual style
 
@@ -37,13 +36,17 @@ import {
   Easing,
 } from "remotion";
 import { Play, Clock } from "lucide-react";
-import {
-  resolveTutorialIntroCopy,
-  type TutorialIntroTemplateProps,
-} from "./firstBatchProps";
+
+interface TutorialIntroTemplateProps {
+  headline?: string;
+  durationLabel?: string;
+  title?: string;
+  duration?: string;
+}
 
 export const TutorialIntro: React.FC<TutorialIntroTemplateProps> = (props) => {
-  const { headline, durationLabel } = resolveTutorialIntroCopy(props);
+  const headline = props.headline ?? props.title ?? "Getting Started";
+  const durationLabel = props.durationLabel ?? props.duration ?? "5 min";
   const frame = useCurrentFrame();
 
   const cardY = interpolate(frame, [0, 40], [60, 0], {

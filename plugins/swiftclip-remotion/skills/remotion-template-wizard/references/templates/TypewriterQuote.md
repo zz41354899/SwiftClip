@@ -1,6 +1,6 @@
 # TypewriterQuote
 
-- **File**: `remotion/TypewriterQuote.tsx`
+- **Component**: `TypewriterQuote`
 - **Tier**: prop-enabled
 - **Aspect ratio**: 16:9
 - **Dimensions**: 1920×1080 | 30fps | 240 frames | 8s
@@ -17,7 +17,6 @@ Typewriter-style animated quote reveal with clean Apple Light Mode typography.
 | `quote` | string | `"The best time to plant a tree was 20 years ago. The second best time is now."` | `text` |
 | `author` | string | `"Chinese Proverb"` | `authorName` |
 
-Resolve helper: `resolveTypewriterQuoteCopy(props)` in `remotion/firstBatchProps.ts`
 
 ## Visual style
 
@@ -32,13 +31,17 @@ Inspirational quotes, customer testimonials, thought leadership, social proof cl
 ```tsx
 import { AbsoluteFill, useCurrentFrame, interpolate, Easing } from "remotion";
 import { Quote } from "lucide-react";
-import {
-  resolveTypewriterQuoteCopy,
-  type TypewriterQuoteTemplateProps,
-} from "./firstBatchProps";
+
+interface TypewriterQuoteTemplateProps {
+  quote?: string;
+  author?: string;
+  text?: string;
+  authorName?: string;
+}
 
 export const TypewriterQuote: React.FC<TypewriterQuoteTemplateProps> = (props) => {
-  const { quote, author } = resolveTypewriterQuoteCopy(props);
+  const quote = props.quote ?? props.text ?? "The best time to plant a tree was 20 years ago. The second best time is now.";
+  const author = props.author ?? props.authorName ?? "Chinese Proverb";
   const frame = useCurrentFrame();
 
   const bgOpacity = interpolate(frame, [0, 15], [0, 1], {

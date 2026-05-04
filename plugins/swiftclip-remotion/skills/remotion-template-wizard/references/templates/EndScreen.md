@@ -1,6 +1,6 @@
 # EndScreen
 
-- **File**: `remotion/EndScreen.tsx`
+- **Component**: `EndScreen`
 - **Tier**: prop-enabled
 - **Aspect ratio**: 16:9
 - **Dimensions**: 1920×1080 | 30fps | 210 frames | 7s
@@ -17,7 +17,6 @@ Engaging YouTube-style end screen with subscribe CTA, video cards, and animated 
 | `brandName` | string | `"SwiftClip"` | `title` |
 | `siteUrl` | string | `"swiftclip.com"` | `url` |
 
-Resolve helper: `resolveEndScreenCopy(props)` in `remotion/firstBatchProps.ts`
 
 ## Visual style
 
@@ -32,13 +31,17 @@ Video outros, subscribe CTAs, channel end cards, brand closers.
 ```tsx
 import { AbsoluteFill, useCurrentFrame, interpolate, Easing } from "remotion";
 import { Globe, Video } from "lucide-react";
-import {
-  resolveEndScreenCopy,
-  type EndScreenTemplateProps,
-} from "./firstBatchProps";
+
+interface EndScreenTemplateProps {
+  brandName?: string;
+  siteUrl?: string;
+  title?: string;
+  url?: string;
+}
 
 export const EndScreen: React.FC<EndScreenTemplateProps> = (props) => {
-  const { brandName, siteUrl } = resolveEndScreenCopy(props);
+  const brandName = props.brandName ?? props.title ?? "SwiftClip";
+  const siteUrl = props.siteUrl ?? props.url ?? "swiftclip.com";
   const frame = useCurrentFrame();
 
   const logoY = interpolate(frame, [10, 50], [40, 0], {

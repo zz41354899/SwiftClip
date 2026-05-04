@@ -1,6 +1,6 @@
 # ProductCard
 
-- **File**: `remotion/ProductCard.tsx`
+- **Component**: `ProductCard`
 - **Tier**: prop-enabled
 - **Aspect ratio**: 1:1
 - **Dimensions**: 1080×1080 | 30fps | 180 frames | 6s
@@ -18,7 +18,6 @@ E-commerce product card animation with shimmer reveal, pricing, star rating, and
 | `category` | string | `"Spatial Computing"` | `subtitle` |
 | `ctaLabel` | string | `"Pre-order Now"` | `buttonLabel` |
 
-Resolve helper: `resolveProductCardCopy(props)` in `remotion/firstBatchProps.ts`
 
 ## Visual style
 
@@ -33,13 +32,20 @@ E-commerce product highlights, app store features, product social posts, 1:1 ad 
 ```tsx
 import { AbsoluteFill, useCurrentFrame, interpolate, Easing } from "remotion";
 import { ShoppingBag } from "lucide-react";
-import {
-  resolveProductCardCopy,
-  type ProductCardTemplateProps,
-} from "./firstBatchProps";
+
+interface ProductCardTemplateProps {
+  productName?: string;
+  category?: string;
+  ctaLabel?: string;
+  title?: string;
+  subtitle?: string;
+  buttonLabel?: string;
+}
 
 export const ProductCard: React.FC<ProductCardTemplateProps> = (props) => {
-  const { productName, category, ctaLabel } = resolveProductCardCopy(props);
+  const productName = props.productName ?? props.title ?? "Vision Pro";
+  const category = props.category ?? props.subtitle ?? "Spatial Computing";
+  const ctaLabel = props.ctaLabel ?? props.buttonLabel ?? "Pre-order Now";
   const frame = useCurrentFrame();
 
   const cardY = interpolate(frame, [10, 50], [60, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: Easing.out(Easing.cubic) });

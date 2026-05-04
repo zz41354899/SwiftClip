@@ -1,6 +1,6 @@
 # QuoteStory
 
-- **File**: `remotion/QuoteStory.tsx`
+- **Component**: `QuoteStory`
 - **Tier**: hardcoded
 - **Aspect ratio**: 9:16
 - **Dimensions**: 1080×1920 | 30fps | 240 frames | 8s

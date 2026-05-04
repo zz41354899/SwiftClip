@@ -1,6 +1,6 @@
 # TestimonialCard
 
-- **File**: `remotion/TestimonialCard.tsx`
+- **Component**: `TestimonialCard`
 - **Tier**: hardcoded
 - **Aspect ratio**: 1:1
 - **Dimensions**: 1080×1080 | 30fps | 240 frames | 8s

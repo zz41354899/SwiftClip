@@ -1,6 +1,6 @@
 # GradientReveal
 
-- **File**: `remotion/GradientReveal.tsx`
+- **Component**: `GradientReveal`
 - **Tier**: prop-enabled
 - **Aspect ratio**: 16:9
 - **Dimensions**: 1920×1080 | 30fps | 180 frames | 6s
@@ -21,7 +21,6 @@ Smooth gradient mesh reveal with layered color transitions and animated composit
 
 Default gradient stops: `["#007AFF 33%", "#5856D6 43%", "#AF52DE 53%", "#FF2D55 60%", "rgba(0,0,0,0.05) 75%", "rgba(0,0,0,0) 100%"]`
 
-Resolve helper: `resolveGradientRevealCopy(props)` in `remotion/firstBatchProps.ts`
 
 ## Visual style
 
@@ -35,14 +34,33 @@ Brand intros, product reveal stings, Apple-style keynote transitions, creative i
 
 ```tsx
 import { AbsoluteFill, useCurrentFrame, interpolate, Easing } from "remotion";
-import {
-  resolveGradientRevealCopy,
-  type GradientRevealTemplateProps,
-} from "./firstBatchProps";
+
+const DEFAULT_GRADIENT_STOPS = [
+  "#007AFF 33%",
+  "#5856D6 43%",
+  "#AF52DE 53%",
+  "#FF2D55 60%",
+  "rgba(0,0,0,0.05) 75%",
+  "rgba(0,0,0,0) 100%",
+];
+
+interface GradientRevealTemplateProps {
+  symbol?: string;
+  subtitle?: string;
+  backgroundColor?: string;
+  gradientStops?: string[];
+  glyph?: string;
+  subheadline?: string;
+  bgColor?: string;
+  gradientColors?: string[];
+}
 
 export const GradientReveal: React.FC<GradientRevealTemplateProps> = (props) => {
-  const { symbol, subtitle, backgroundColor, gradientStops } =
-    resolveGradientRevealCopy(props);
+  const symbol = props.symbol ?? props.glyph ?? "";
+  const subtitle = props.subtitle ?? props.subheadline ?? "Pro performance. Unprecedented reveal.";
+  const backgroundColor = props.backgroundColor ?? props.bgColor ?? "#f5f5f7";
+  const rawStops = (props.gradientStops ?? props.gradientColors ?? []).map((s) => s.trim()).filter(Boolean);
+  const gradientStops = rawStops.length >= 2 ? rawStops : DEFAULT_GRADIENT_STOPS;
   const frame = useCurrentFrame();
 
   // Background fade in

@@ -1,12 +1,19 @@
 import { AbsoluteFill, useCurrentFrame, interpolate, Easing } from "remotion";
 import { Zap } from "lucide-react";
-import {
-  resolveBrandRevealCopy,
-  type BrandRevealTemplateProps,
-} from "./firstBatchProps";
+
+interface BrandRevealTemplateProps {
+  brandName?: string;
+  tagline?: string;
+  accentColor?: string;
+  title?: string;
+  subtitle?: string;
+  color?: string;
+}
 
 export const BrandReveal: React.FC<BrandRevealTemplateProps> = (props) => {
-  const { brandName, tagline, accentColor } = resolveBrandRevealCopy(props);
+  const brandName = props.brandName ?? props.title ?? "SwiftClip";
+  const tagline = props.tagline ?? props.subtitle ?? "Creative Automation";
+  const accentColor = props.accentColor ?? props.color ?? "#0066cc";
   const frame = useCurrentFrame();
 
   const logoScale = interpolate(frame, [10, 50], [0.8, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: Easing.out(Easing.back(1.5)) });

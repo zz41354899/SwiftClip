@@ -1,6 +1,6 @@
 # MinimalTitle
 
-- **File**: `remotion/MinimalTitle.tsx`
+- **Component**: `MinimalTitle`
 - **Tier**: hardcoded
 - **Aspect ratio**: 16:9
 - **Dimensions**: 1920×1080 | 30fps | 150 frames | 5s

@@ -1,6 +1,6 @@
 # Timeline
 
-- **File**: `remotion/Timeline.tsx`
+- **Component**: `Timeline`
 - **Tier**: hardcoded
 - **Aspect ratio**: 16:9
 - **Dimensions**: 1920×1080 | 30fps | 270 frames | 9s

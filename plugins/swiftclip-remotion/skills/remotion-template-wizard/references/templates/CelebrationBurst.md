@@ -1,6 +1,6 @@
 # CelebrationBurst
 
-- **File**: `remotion/CelebrationBurst.tsx`
+- **Component**: `CelebrationBurst`
 - **Tier**: hardcoded
 - **Aspect ratio**: 1:1
 - **Dimensions**: 1080×1080 | 30fps | 180 frames | 6s

@@ -1,6 +1,6 @@
 # PricingCard
 
-- **File**: `remotion/PricingCard.tsx`
+- **Component**: `PricingCard`
 - **Tier**: hardcoded
 - **Aspect ratio**: 1:1
 - **Dimensions**: 1080×1080 | 30fps | 240 frames | 8s

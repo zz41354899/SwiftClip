@@ -1,6 +1,6 @@
 # LowerThird
 
-- **File**: `remotion/LowerThird.tsx`
+- **Component**: `LowerThird`
 - **Tier**: prop-enabled
 - **Aspect ratio**: 16:9
 - **Dimensions**: 1920×1080 | 30fps | 150 frames | 5s
@@ -17,7 +17,6 @@ Broadcast-style lower third with name and title slide-in animations for video pr
 | `headline` | string | `"Craig Federighi"` | `name` |
 | `subheadline` | string | `"Senior Vice President"` | `title` |
 
-Resolve helper: `resolveLowerThirdCopy(props)` in `remotion/firstBatchProps.ts`
 
 ## Visual style
 
@@ -31,13 +30,17 @@ Speaker nameplates, event lower-thirds, broadcast IDs, podcast overlays, intervi
 
 ```tsx
 import { AbsoluteFill, useCurrentFrame, interpolate, Easing } from "remotion";
-import {
-  resolveLowerThirdCopy,
-  type LowerThirdTemplateProps,
-} from "./firstBatchProps";
+
+interface LowerThirdTemplateProps {
+  headline?: string;
+  subheadline?: string;
+  name?: string;
+  title?: string;
+}
 
 export const LowerThird: React.FC<LowerThirdTemplateProps> = (props) => {
-  const { headline, subheadline } = resolveLowerThirdCopy(props);
+  const headline = props.headline ?? props.name ?? "Craig Federighi";
+  const subheadline = props.subheadline ?? props.title ?? "Senior Vice President";
   const frame = useCurrentFrame();
 
   const wrapX = interpolate(frame, [10, 50], [-100, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: Easing.out(Easing.cubic) });
