@@ -3,6 +3,5 @@
   "name": "swiftclip-remotion",
   "description": "Interactive workflow for aligning video requirements, selecting Remotion templates, and generating SwiftClip compositions.",
   "skills": "./skills/",
-  "agents": ["./agents/remotion-builder.md"],
-  "hooks": "./hooks/hooks.json"
+  "agents": ["./agents/remotion-builder.md"]
 }
