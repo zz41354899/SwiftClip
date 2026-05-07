@@ -21,15 +21,24 @@ export const metadata: Metadata = {
     title: "SwiftClip — React video templates",
     description:
       "Production-ready Remotion video templates built with React & TypeScript. Free, open-source, copy-and-paste.",
-    url: "https://github.com/zz41354899/SwiftClip",
+    url: "https://swiftclip.dev",
     siteName: "SwiftClip",
     type: "website",
+    images: [
+      {
+        url: "/opengraph-image",
+        width: 1200,
+        height: 630,
+        alt: "SwiftClip — React video templates",
+      },
+    ],
   },
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
     title: "SwiftClip — React video templates",
     description:
       "Production-ready Remotion video templates built with React & TypeScript. Free, open-source, copy-and-paste.",
+    images: ["/opengraph-image"],
   },
 };
 

@@ -10,6 +10,8 @@ export interface Template {
   width: number;
   height: number;
   videoUrl: string;
+  /** Uses HtmlInCanvas — WebGL CRT effects require Chrome Canary with the flag enabled for preview */
+  htmlInCanvas?: boolean;
 }
 
 export const templates: Template[] = [
@@ -313,6 +315,17 @@ export const templates: Template[] = [
     fps: 30, durationInFrames: 240, width: 1920, height: 1080,
     videoUrl: "/gifs/ai-animation.gif",
   },
+  {
+    id: "macintosh",
+    title: "Macintosh",
+    description: "Vintage Mac OS 9 desktop simulation with CRT shader effects — barrel distortion, scanlines, VHS roll, film grain, and a full boot sequence animation.",
+    tags: ["Retro", "Motion", "Tech"],
+    duration: "9s",
+    remotionId: "Macintosh",
+    fps: 30, durationInFrames: 270, width: 1920, height: 1080,
+    videoUrl: "/gifs/macintosh.gif",
+    htmlInCanvas: true,
+  },
 ];
 
 export const TAG_COLORS: Record<string, string> = {
@@ -332,4 +345,5 @@ export const TAG_COLORS: Record<string, string> = {
   Developer:    "bg-zinc-50 text-zinc-600 border-zinc-200",
   eCommerce:    "bg-lime-50 text-lime-600 border-lime-200",
   AI:           "bg-fuchsia-50 text-fuchsia-600 border-fuchsia-200",
+  Retro:        "bg-yellow-50 text-yellow-700 border-yellow-200",
 };

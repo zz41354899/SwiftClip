@@ -39,4 +39,5 @@ export const TEMPLATE_LOADERS: Record<string, CompositionLoader> = {
   "code-reveal": () => import("@/remotion/CodeReveal").then((m) => ({ default: m.CodeReveal })),
   "product-card": () => import("@/remotion/ProductCard").then((m) => ({ default: m.ProductCard })),
   "ai-animation": () => import("@/remotion/AiAnimation").then((m) => ({ default: m.AiAnimation })),
+  "macintosh": () => import("@/remotion/Macintosh").then((m) => ({ default: m.Macintosh })),
 };

@@ -9,7 +9,7 @@ import { Footer } from "@/components/Footer";
 import { TemplateCopyButton } from "@/components/TemplateCopyButton";
 import { CollapsibleCode } from "@/components/CollapsibleCode";
 import { RelatedTemplates } from "@/components/RelatedTemplates";
-import { ArrowLeft, Clock } from "lucide-react";
+import { ArrowLeft, Clock, FlaskConical, ExternalLink } from "lucide-react";
 
 export function generateStaticParams() {
   return templates.map((t) => ({ id: t.id }));
@@ -55,7 +55,9 @@ export default async function TemplatePage({
     )
     .slice(0, 3);
 
-  const renderCmd = `npx remotion render remotion/index.tsx ${template.remotionId} output.gif --codec=gif --width=720 --every-nth-frame=2 --num-loops=0`;
+  const renderCmd = template.htmlInCanvas
+    ? `npx remotion render remotion/index.tsx ${template.remotionId} output.mp4 --codec=h264 --gl=angle`
+    : `npx remotion render remotion/index.tsx ${template.remotionId} output.mp4 --codec=h264`;
 
   return (
     <div className="min-h-screen bg-white flex flex-col">
@@ -80,6 +82,63 @@ export default async function TemplatePage({
             >
               <RemotionPlayer templateId={template.id} />
             </div>
+
+            {template.htmlInCanvas && (
+              <div className="rounded-xl border border-amber-200 bg-amber-50 px-4 py-3.5 mb-8">
+                <div className="flex items-start gap-3">
+                  <FlaskConical className="w-4 h-4 text-amber-500 mt-0.5 shrink-0" />
+                  <div className="space-y-1.5">
+                    <p className="text-sm font-semibold text-amber-900">
+                      Beta — Requires HTML-in-Canvas
+                    </p>
+                    <p className="text-xs text-amber-800 leading-relaxed">
+                      The full CRT WebGL effects use Remotion&apos;s{" "}
+                      <a
+                        href="https://www.remotion.dev/docs/html-in-canvas"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="font-medium underline underline-offset-2 hover:text-amber-900"
+                      >
+                        HTML-in-Canvas API
+                      </a>
+                      , which is experimental and only available in{" "}
+                      <a
+                        href="https://www.google.com/chrome/canary/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="font-medium underline underline-offset-2 hover:text-amber-900"
+                      >
+                        Chrome Canary
+                      </a>
+                      . To preview in Remotion Studio:
+                    </p>
+                    <ol className="text-xs text-amber-800 list-decimal list-inside space-y-0.5 pl-0.5">
+                      <li>Install Chrome Canary (v149+)</li>
+                      <li>
+                        Open{" "}
+                        <code className="bg-amber-100 px-1 rounded font-mono text-amber-900">
+                          chrome://flags/#canvas-draw-element
+                        </code>
+                      </li>
+                      <li>Set the flag to <strong>Enabled</strong> and restart</li>
+                    </ol>
+                    <p className="text-xs text-amber-700">
+                      Rendering via <code className="bg-amber-100 px-1 rounded font-mono">remotion render</code> works without any extra setup. For WebGL shaders, add{" "}
+                      <code className="bg-amber-100 px-1 rounded font-mono">--gl=angle</code>.
+                    </p>
+                  </div>
+                  <a
+                    href="https://www.remotion.dev/docs/html-in-canvas"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="ml-auto shrink-0 text-amber-500 hover:text-amber-700"
+                    aria-label="Open HTML-in-Canvas docs"
+                  >
+                    <ExternalLink className="w-3.5 h-3.5" />
+                  </a>
+                </div>
+              </div>
+            )}
 
             <div className="space-y-4">
               <div>

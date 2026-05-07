@@ -31,6 +31,7 @@ import { CelebrationBurst } from "./CelebrationBurst";
 import { CodeReveal } from "./CodeReveal";
 import { ProductCard } from "./ProductCard";
 import { AiAnimation } from "./AiAnimation";
+import { Macintosh } from "./Macintosh";
 
 export const RemotionRoot = () => {
   return (
@@ -271,6 +272,14 @@ export const RemotionRoot = () => {
         id="AiAnimation"
         component={AiAnimation}
         durationInFrames={240}
+        fps={30}
+        width={1920}
+        height={1080}
+      />
+      <Composition
+        id="Macintosh"
+        component={Macintosh}
+        durationInFrames={270}
         fps={30}
         width={1920}
         height={1080}

@@ -10,7 +10,7 @@ SwiftClip is an open-source library of 30 copy-paste video composition templates
 
 ## ✨ Features
 
-- **30 production-ready templates** — Marketing, Social, Data Viz, Broadcast, AI, and more
+- **31 production-ready templates** — Marketing, Social, Data Viz, Broadcast, AI, Retro, and more
 - **Apple Light Mode design** — consistent `#f5f5f7` backgrounds, frosted glass cards, SF Pro typography
 - **Fully typed** — every template written in TypeScript with React
 - **Frame-perfect animations** — powered by `useCurrentFrame()`, `interpolate()`, and `spring()`
@@ -54,6 +54,7 @@ SwiftClip is an open-source library of 30 copy-paste video composition templates
 | 28 | Code Reveal | Developer, Tutorial | 1920×1080 | 10s |
 | 29 | Product Card | eCommerce, Marketing | 1080×1080 | 6s |
 | 30 | AI Generation | AI, Tech, SaaS | 1920×1080 | 8s |
+| 31 | Macintosh | Retro, Motion, Tech | 1920×1080 | 9s |
 
 Browse and preview all templates at the live site.
 
