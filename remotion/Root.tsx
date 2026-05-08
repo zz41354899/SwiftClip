@@ -32,6 +32,7 @@ import { CodeReveal } from "./CodeReveal";
 import { ProductCard } from "./ProductCard";
 import { AiAnimation } from "./AiAnimation";
 import { Macintosh } from "./Macintosh";
+import { AppleMovie } from "./AppleMovie";
 
 export const RemotionRoot = () => {
   return (
@@ -280,6 +281,14 @@ export const RemotionRoot = () => {
         id="Macintosh"
         component={Macintosh}
         durationInFrames={270}
+        fps={30}
+        width={1920}
+        height={1080}
+      />
+      <Composition
+        id="AppleMovie"
+        component={AppleMovie}
+        durationInFrames={480}
         fps={30}
         width={1920}
         height={1080}

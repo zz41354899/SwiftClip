@@ -326,6 +326,17 @@ export const templates: Template[] = [
     videoUrl: "/gifs/macintosh.gif",
     htmlInCanvas: true,
   },
+  {
+    id: "applemovie",
+    title: "Apple Movie",
+    description: "Cinematic macOS desktop simulation with WebGL cylindrical panoramic wrap and floor reflection — Dock magnification, Launchpad, Calculator interaction, and a holographic 3D curved display.",
+    tags: ["Motion", "Tech", "Retro"],
+    duration: "16s",
+    remotionId: "AppleMovie",
+    fps: 30, durationInFrames: 480, width: 1920, height: 1080,
+    videoUrl: "/gifs/applemovie.gif",
+    htmlInCanvas: true,
+  },
 ];
 
 export const TAG_COLORS: Record<string, string> = {

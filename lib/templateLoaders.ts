@@ -40,4 +40,5 @@ export const TEMPLATE_LOADERS: Record<string, CompositionLoader> = {
   "product-card": () => import("@/remotion/ProductCard").then((m) => ({ default: m.ProductCard })),
   "ai-animation": () => import("@/remotion/AiAnimation").then((m) => ({ default: m.AiAnimation })),
   "macintosh": () => import("@/remotion/Macintosh").then((m) => ({ default: m.Macintosh })),
+  "applemovie": () => import("@/remotion/AppleMovie").then((m) => ({ default: m.AppleMovie })),
 };
