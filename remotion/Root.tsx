@@ -1,5 +1,6 @@
 "use client";
 
+import '../app/globals.css';
 import { Composition } from "remotion";
 import { ProductLaunch } from "./ProductLaunch";
 import { TutorialIntro } from "./TutorialIntro";
@@ -32,7 +33,7 @@ import { CodeReveal } from "./CodeReveal";
 import { ProductCard } from "./ProductCard";
 import { AiAnimation } from "./AiAnimation";
 import { Macintosh } from "./Macintosh";
-import { AppleMovie } from "./AppleMovie";
+import { HoloDashboard } from "./AppleMovie";
 
 export const RemotionRoot = () => {
   return (
@@ -287,7 +288,7 @@ export const RemotionRoot = () => {
       />
       <Composition
         id="AppleMovie"
-        component={AppleMovie}
+        component={HoloDashboard}
         durationInFrames={480}
         fps={30}
         width={1920}

@@ -55,6 +55,7 @@
   "private": "true",
   "devDependencies": {
     "@axe-core/playwright": "^4.11.3",
-    "@playwright/test": "^1.59.1"
+    "@playwright/test": "^1.59.1",
+    "@remotion/tailwind": "^4.0.455"
   }
 }
