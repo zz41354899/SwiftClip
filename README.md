@@ -394,12 +394,29 @@ npm install
 # Start the website (Next.js dev server)
 npm run dev
 
+# Open Remotion Studio for composition preview / render debugging
+npx remotion studio
+
 # Build for production
 npm run build
-
-# Remotion Studio (for template preview/development)
-npx remotion studio
 ```
+
+### Tailwind in Remotion
+
+This repository uses one shared Tailwind source for both the website and Remotion compositions:
+
+- website styles live in `app/globals.css`
+- `remotion/Root.tsx` imports that shared stylesheet
+- `remotion.config.ts` enables the official `@remotion/tailwind` bundler integration
+
+If you add new utility classes in `remotion/*.tsx`, you do not need a separate generated CSS file. Just update the component and restart Remotion Studio if the bundle cache is stale.
+
+### Repo-specific dev notes
+
+- `npm run dev` starts Next.js, not Remotion Studio
+- `npx remotion studio` is the correct preview environment for composition work
+- template thumbnails are served from `public/thumbnails/<template-id>.jpg`
+- `AppleMovie` uses `public/desktop.png` as its wallpaper asset to avoid browser decode issues with JPEGs in the preview/render pipeline
 
 ---
 
