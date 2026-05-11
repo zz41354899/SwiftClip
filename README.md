@@ -6,6 +6,9 @@ SwiftClip is an open-source library of 30 copy-paste video composition templates
 
 🌐 **Live site:** [swift-clip.vercel.app](https://swift-clip.vercel.app)
 
+> 🎬 **Sister project — SwiftMographer:** Turn rough motion ideas into high-quality Markdown storyboard handoffs for Remotion and HyperFrames, powered by Claude Code and Codex.
+> 👉 [github.com/zz41354899/SwiftMographer](https://github.com/zz41354899/SwiftMographer/tree/main)
+
 ---
 
 ## ✨ Features

@@ -70,6 +70,11 @@ export function Navbar() {
                 </Link>
               </li>
             ))}
+            <li>
+              <a href="https://github.com/zz41354899/SwiftMographer/tree/main" target="_blank" rel="noopener noreferrer" className="hover:text-zinc-900 transition-colors">
+                Storyboard ↗
+              </a>
+            </li>
           </ul>
 
           <div className="hidden md:flex items-center gap-3">
@@ -131,6 +136,16 @@ export function Navbar() {
                       </Link>
                     </li>
                   ))}
+                  <li>
+                    <a
+                      href="https://github.com/zz41354899/SwiftMographer/tree/main"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center h-10 px-3 rounded-xl text-[15px] font-medium text-zinc-700 hover:bg-zinc-100 hover:text-zinc-900 transition-colors"
+                    >
+                      Storyboard ↗
+                    </a>
+                  </li>
                 </ul>
                 <Link
                   href="/templates"

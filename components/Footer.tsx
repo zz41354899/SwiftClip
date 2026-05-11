@@ -23,6 +23,7 @@ const nav = [
     links: [
       { label: "Community", href: "/community", external: false },
       { label: "GitHub", href: "https://github.com/zz41354899/SwiftClip", external: true },
+      { label: "SwiftMographer ↗", href: "https://github.com/zz41354899/SwiftMographer/tree/main", external: true },
       { label: "Remotion docs", href: "https://remotion.dev/docs", external: true },
     ],
   },
